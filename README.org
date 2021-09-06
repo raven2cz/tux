@@ -1,0 +1,13 @@
+#+TITLE: Raven2cz TUX - Svět Linuxu
+#+DESCRIPTION: Poznámky a podklady doplňující youtube nahrávky
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/arch-instalace.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+* Vítejte na Linuxu (TUX)
+Toto Github repository slouží jako doplňkové podklady k youtube nahrávkám Raven2cz Svět Linuxu.
