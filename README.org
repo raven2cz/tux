@@ -9,5 +9,7 @@
 #+HTML_HEAD: <style> p{max-width:800px;}</style>
 #+HTML_HEAD: <style> li{max-width:800px;}</style
 
+#+HTML:<img alt="Welcome Banner" align = "center" src="image/tux-intro-banner.jpg">
+
 * Vítejte na Linuxu (TUX)
 Toto Github repository slouží jako doplňkové podklady k youtube nahrávkám Raven2cz Svět Linuxu.
