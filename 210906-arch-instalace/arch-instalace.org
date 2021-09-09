@@ -9,8 +9,280 @@
 #+HTML_HEAD: <style> p{max-width:800px;}</style>
 #+HTML_HEAD: <style> li{max-width:800px;}</style
 
-* Arch Linux Instalace
-** Důležité odkazy
+* Obsah :toc:
+- [[#příprava-zařízení-pro-instalaci][Příprava zařízení pro instalaci]]
+  - [[#stažení-iso-a-vytvoření-boot-usd-disku][Stažení ISO a vytvoření BOOT USD disku]]
+  - [[#příprava-partitions-na-cílovém-disku][Příprava partitions na cílovém disku]]
+  - [[#vytvoření-souborových-systémů][Vytvoření souborových systémů]]
+  - [[#internetové-připojení][Internetové připojení]]
+  - [[#výběr-arch-mirrors][Výběr Arch Mirrors]]
+-  [[#instalace-základního-systému-base][Instalace základního systému (Base)]]
+- [[#konfigurace-nainstalovaného-arch-systému][Konfigurace nainstalovaného Arch systému]]
+  - [[#chroot][CHROOT]]
+  - [[#nastavení-času-a-timezone][Nastavení času a timezone]]
+  - [[#nastavení-lokalizace][Nastavení Lokalizace]]
+  - [[#network-konfigurace][Network konfigurace]]
+  - [[#nastavení-root-hesla][Nastavení root hesla]]
+  - [[#instalace-mého-fundamental-software][Instalace mého Fundamental Software]]
+  - [[#instalace-ovladačů-a-xorg][Instalace ovladačů a Xorg]]
+  - [[#přidání-uživatele-linuxu][Přidání uživatele Linuxu]]
+  - [[#instalace-bootloader-grub2][Instalace Bootloader Grub2]]
+  - [[#restart-základního-systému-a-jeho-test][Restart základního systému a jeho test]]
+- [[#důležité-odkazy][Důležité odkazy]]
+
+* Příprava zařízení pro instalaci
+** Stažení ISO a vytvoření BOOT USD disku
+*Stažení ArchLinux ISO*, ve Win použít Rufus software (portable) na flash disk. V Linuxu použít ~dd~ command.
+
+** Příprava partitions na cílovém disku
+Zjistit disky a souborové systémy ~fdisk -l~, pak ~cfdisk /dev/<DEVICE>~, zkontroluj kterou partition přesně použít pro umístění root adresáře, popř. domácího adresáře; např. pro nvmeXn1 bude nvmeXn1p2 nebo p3 apod. Pro EFI partition použít alespoň =+256M= parameter; nastav pro ni partition type to =EFI System (type 1)=, pro root partition =/= nastavit =Linux system=.
+
+** Vytvoření souborových systémů
+*** Formát diskových oddílů
+Zvolení formátu pro diskové oddíly: ~MBR~ nebo ~GPT~. Pro =GPT= nutno UEFI a 64bit OS.
+Již pro nové stanice s novým HW doporučuji =GPT= a to s dual boot pro Win10/11 + Linux.
+
+*** Formátování diskových oddílů
+Formátování EFI partition =fat=, root partition formátuji =ext4=.
+
+#+BEGIN_SRC bash
+mkfs.fat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
+
+<optional swap>
+mkswap /dev/sdxY
+swapon /dev/sdxY
+#+END_SRC
+
+** Internetové připojení
+*** Wifi
+Podívejte se na [[https://wiki.archlinux.org/title/Iwd][IWD-iwctl]].
+#+BEGIN_SRC bash
+iwctl
+[iwd]# device list -> opsat si oznaceni sveho wifi zarizeni
+[iwd]# station <device> get-networks -> opsat si sit, kterou potrebujete pro pripojeni
+[iwd]# station <device> connect <SSID> -> pripojit se ke zvolene siti a zadat heslo
+
+druha moznost, pokud jiz informace mate predem zjistene:
+iwctl --passphrase <heslo> station <device> connect <SSID>
+
+ping archlinux.org -> otestovani pripojeni
+#+END_SRC
+
+*** Ethernet
+Pouze otestovat připojení, zda internet je k dosažení.
+#+BEGIN_SRC bash
+ping archlinux.org
+#+END_SRC
+
+** Výběr Arch Mirrors
+Výběr nejbližších a rychlých zrcadel balíčků archu.
+
+Nejprve update, stažení skriptu =reflector= a záloha originální konfigurace.
+#+BEGIN_SRC bash
+pacman -Syy
+pacman -S reflector
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+#+END_SRC
+
+Výběr země k nalezení nejbližších bodů připojení: US, CZ, DE atd.
+#+BEGIN_SRC bash
+reflector -c "CZ" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+#+END_SRC
+
+*  Instalace základního systému (Base)
+Připojení (mountování) naformátované partition připravené pro root systému
+#+BEGIN_SRC bash
+mount /dev/sda2 /mnt
+#+END_SRC
+
+Preferuji instalaci aktuálního kernelu (bez speciálních úprav a zen úprav). Bez nutnosti instalace LTS kernelu (Long Term Support).
+Balík jádra a dalších důležitých souvisejících nástrojů je označen ~linux~
+
+Dále doporučuji nainstalovat vhodný textový editor pro úpravu konfiguračních souborů.
+V mém případě, co bude prezentováno je textový editor =neovim=, který spouštíte příkazem ~nvim~.
+
+#+BEGIN_SRC bash
+pacstrap /mnt base base-devel linux linux-headers linux-firmware neovim nano
+#+END_SRC
+
+Pro úplnost ještě uvedu instalaci s možností druhého LTS kernelu. Pro základní desktop toto není nutné.
+V případě problémů je možné kdykoliv doinstalovat, nebo zvolit zen-kernel.
+
+#+BEGIN_SRC bash
+pacstrap /mnt base base-devel linux linux-headers linux-firmware linux-lts linux-lts-headers neovim nano
+#+END_SRC
+
+* Konfigurace nainstalovaného Arch systému
+Generovat =fstab= soubor pro připojení diskových oddílů a služeb při spuštění systému.
+Přepínač ~-U~ je vhodný pro ukládání UUID disků, aby bylo možné jednoduše disky přehazovat a přidávat!
+#+BEGIN_SRC bash
+genfstab -U /mnt >> /mnt/etc/fstab
+#+END_SRC
+
+** CHROOT
+Vstupte do svého nového systému pomocí =chroot=.
+
+*DÚLEŽITÉ:* Tento příkaz, kterému předchází příkaz ~mount~ pro root partition, je velmi užitečný pro opravu systému, reinstalace systému, opravy chyb, popřípadě volání příkazů, které vyžadují odpojený disk. USB klíčenka tak může kdykoliv sloužit pro jednoduché pořešení všech problemů. Systém se tak jednoduše stává nezničitelný.
+
+#+BEGIN_SRC bash
+arch-chroot /mnt
+#+END_SRC
+
+** Nastavení času a timezone
+Pozor na tento bod. Je potřeba jej udělat pečlivě, dle mého postupu.
+
+#+BEGIN_SRC bash
+timedatectl list-timezones
+timedatectl set-timezone Europe/Prague
+ln -sf /usr/share/zoneinfo/Europe/Prague /etc/localtime
+hwclock --systohc    (vygeneruje důležitý /etc/adjtime)
+#+END_SRC
+
+** Nastavení Lokalizace
+Doporučuji si ponechat =US= lokalizaci. V češtině potom používat určité množiny programů a nástrojů, které jsou pro češtinu vhodné. Podobně postupují i programátoři, kteří do kódu určitě nepíší české komentáře. Myšlenkově tedy mějte oddělený jazyk pro konfigurace a jazyk pro GUI.
+
+Editujte soubor ~/etc/locale.gen~ obsahující všechny dostupné lokalizace. odkomentujte potřebné lokalizace.
+V našem případě odkomentujte ~en_US.UTF-8 UTF-8~
+
+Nyní již můžete generovat lokalizační soubory a nakonfigurovat =locale.conf=
+Pokud tento krok uděláte špatně, budete mít velké problémy v mnoha programech a terminálových aplikacích, proto si pečlivě zkontrolujte následující příkazy.
+
+#+BEGIN_SRC bash
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+#+END_SRC
+
+** Network konfigurace
+Zadejte svůj vymyšlený název počítače do ~/etc/hostname~. V mém případě =r7arch=. Pozor nesmí obsahovat pomlčky.
+Dále pak udělejte základní mapování do ~/etc/hosts~.
+#+BEGIN_SRC bash
+echo r7arch > /etc/hostname
+nvim /etc/hosts (uložte následující řádky)
+127.0.0.1 localhost
+::1 localhost
+127.0.1.1 r7arch
+#+END_SRC
+
+** Nastavení root hesla
+Nastavte své root heslo pomocí příkazu ~passwd~.
+
+** Instalace mého Fundamental Software
+Nyní doporučuji nainstalovat naprosto fundamentální software pro přístup a základní obsluhu systému.
+#+BEGIN_SRC bash
+pacman -S openssh networkmanager wpa_supplicant netctl
+systemctl enable NetworkManager
+systemctl enable sshd
+
+pacman -S amd-ucode (pro AMD) pacman -S intel-ucode (pro INTEL)
+mkinitcpio -p linux
+#+END_SRC
+
+** Instalace ovladačů a Xorg
+Pro desktop je nutné nainstalovat správné grafické ovladače a základní basement pro Xorg grafické rozhraní. Toto doporučiji i v případě, že budete chtít používat Wayland s plasma nebo gnome.
+
+*** AMD grafická karta
+#+BEGIN_SRC bash
+pacman -S xorg
+pacman -S mesa
+#+END_SRC
+
+*** NVIDIA grafická karta
+Pokud používáte LTS, nezpomeňte zvolit suffix LTS v názvu balíčků.
+#+BEGIN_SRC bash
+pacman -S xorg
+pacman -S nvidia nvidia-utils
+pacman -S nvidia-lts nvidia-utils-lts (varianta pro LTS kernel)
+#+END_SRC
+
+*** Virtualbox Support
+Pokud systém testujete v virtualboxu, doporučuji nainstalovat další balíčky.
+#+BEGIN_SRC bash
+pacman -S virtualbox-guest-utils xf86-video-vmware
+#+END_SRC
+
+**** NVIDIA TTY (nespuštění tty terminálu, černá obrazovka)
+Nvidia kartami občas bývá problém, dlouhé diskuze zde vést nebudu. Doporučuji přidat nvidia do KMS.
+Tento krok můžete udělat/neudělat kdykoliv bude potřeba, pokud ale máte černou obrazovku po restartu systému, budete toto muset udělat hned.
+
+#+BEGIN_SRC bash
+sudo vim /etc/mkinitcpio.conf
+(editovat následující dvě řádky v souboru)
+MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+FILES="/etc/modprobe.d/nvidia.conf
+
+sudo mkinitcpio -P
+nvim /etc/modprobe.d/nvidia.conf
+(přidat tuto řádku do souboru a uložit)
+options nvidia_drm modeset=1
+#+END_SRC
+
+Ještě pro jistotu doporučuji přidat ~*nvidia-drm.modeset=1~ do příkazů při spuštění kernelu v ~grub.cfg~ (pokud používáte grub). Viz dokument
+https://wiki.archlinux.org/index.php/kernel\_parameters](https://wiki.archlinux.org/index.php/kernel_parameters
+
+Později po restartu systému (teď ještě nerestartovat!) ověřit si správné instalovanou nvidia kartu pomocí příkazu
+#+BEGIN_SRC bash
+lspci -vnn | grep VGA
+#+END_SRC
+
+** Přidání uživatele Linuxu
+Nyní již můžeme přidat naše uživatele linuxu. Nutno v příkazech zaměnit =<user>= za vaše jméno.
+Já v ukázkách používám jméno uživatele =box=.
+
+Velmi užitečnou výhodou v archu je použití již připravených skupin: =storage= a =power=. Umožňují jednoduše používat mountování disků a vypínání/restart systému přímo uživatelem, bez nutnosti dalších berliček.
+
+#+BEGIN_SRC bash
+useradd -m -g users -G wheel,storage,power -s /bin/bash <user>
+passwd <user>
+pacman -S sudo
+EDITOR=nvim visudo,  (odkomentovat řádku) %wheel ALL=(ALL) ALL
+#+END_SRC
+
+** Instalace Bootloader Grub2
+Instalace bootloaderu pro možnost dual boot s windows, popř. přepínání s dalšími operačními systémy. Rovněž konfigurace dostupných kernelů pro zavedení a spuštění. Zde je celá řada možností. Uvádím zde jedno z nejstarších řešení.
+
+#+BEGIN_SRC bash
+pacman -S grub efibootmgr dosfstools os-prober mtools
+#+END_SRC
+
+Vytvoření adresáře kde bude mountována EFI partition:
+#+BEGIN_SRC bash
+mkdir /boot/efi
+#+END_SRC
+
+Nyní připojíme EFI partition, kterou jsme dříve vytvořili v prvním kroku instalace.
+#+BEGIN_SRC bash
+mount /dev/sda1 /boot/efi
+#+END_SRC
+
+Instalace grub2 například takto pro UEFI:
+#+BEGIN_SRC bash
+grub-install --target=x86_64-efi --bootloader-id=ARCH --efi-directory=/boot/efi --recheck
+#+END_SRC
+V tomto případě potom budeme mít v biosu v nabídce jméno EFI části =ARCH= (bootloader-id).
+
+Nakonec se musí zavolat natažení konfigurace do =grub.cfg=
+#+BEGIN_SRC bash
+grub-mkconfig -o /boot/grub/grub.cfg
+#+END_SRC
+
+Základní systém je hotov.
+
+** Restart základního systému a jeho test
+Nejprve regulerně opustě chroot prostředí pomocí ~exit~ příkazu nebo klávesovou zkratkou ~ctrl+d~.
+Volitelně můžete odpojit mountované disky ~umount -R /mnt~.
+
+Nakonec zavolejte:
+#+BEGIN_SRC bash
+reboot
+#+END_SRC
+
+Po restartu systému se spustí grub2 a po správném zavedení systému se objeví tty terminál se zadáním uživatelského jména a zvoleného hesla.
+
+Po úspěšném přihlášení jste ve svém novém Arch systému!
+
+* Důležité odkazy
 + [[https://archlinux.org/][archlinux.org]]
 + [[https://wiki.archlinux.org/][wiki.achlinux.org]]
 + [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
