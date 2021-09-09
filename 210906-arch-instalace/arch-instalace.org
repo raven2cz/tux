@@ -162,8 +162,7 @@ export LANG=en_US.UTF-8
 #+END_SRC
 
 ** Network konfigurace
-rcman eflector -c "CZ" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
-Zadejte svůj vymyšlený název počítače do ~/etc/hostname~. V mém případě =r7arch=. Pozor nesmí obsahovat pomlčky.
+Zadejte svůj definovaný název počítače do ~/etc/hostname~. V mém případě =r7arch=. Pozor nesmí obsahovat pomlčky.
 Dále pak udělejte základní mapování do ~/etc/hosts~.
 #+BEGIN_SRC bash
 echo r7arch > /etc/hostname
@@ -269,7 +268,7 @@ Instalace grub2 například takto pro UEFI:
 grub-install --target=x86_64-efi --bootloader-id=ARCH --efi-directory=/boot/efi --recheck
 #+END_SRC
 V tomto případě potom budeme mít v biosu v nabídce jméno EFI části =ARCH= (bootloader-id).
-grub
+
 Nakonec se musí zavolat natažení konfigurace do =grub.cfg=
 #+BEGIN_SRC bash
 grub-mkconfig -o /boot/grub/grub.cfg
