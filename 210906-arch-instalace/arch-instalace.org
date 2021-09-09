@@ -16,8 +16,9 @@
   - [[#vytvoření-souborových-systémů][Vytvoření souborových systémů]]
   - [[#internetové-připojení][Internetové připojení]]
   - [[#výběr-arch-mirrors][Výběr Arch Mirrors]]
+  - [[#virtualbox-tty-rozlišení-při-instalaci][Virtualbox tty rozlišení při instalaci]]
 -  [[#instalace-základního-systému-base][Instalace základního systému (Base)]]
-- [[#konfigurace-nainstalovaného-arch-systému][Konfigurace nainstalovaného Arch systému]]
+- [[#konfigurace-nainstalovaného-arch-systémdevu][Konfigurace nainstalovaného Arch systém//devu]]
   - [[#chroot][CHROOT]]
   - [[#nastavení-času-a-timezone][Nastavení času a timezone]]
   - [[#nastavení-lokalizace][Nastavení Lokalizace]]
@@ -90,6 +91,12 @@ Výběr země k nalezení nejbližších bodů připojení: US, CZ, DE atd.
 reflector -c "CZ" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 #+END_SRC
 
+** Virtualbox tty rozlišení při instalaci
+#+BEGIN_SRC bash
+pacman -S fbset
+fbset -g 2048 1080 2048 1080 32
+#+END_SRC
+
 *  Instalace základního systému (Base)
 Připojení (mountování) naformátované partition připravené pro root systému
 #+BEGIN_SRC bash
@@ -113,7 +120,7 @@ V případě problémů je možné kdykoliv doinstalovat, nebo zvolit zen-kernel
 pacstrap /mnt base base-devel linux linux-headers linux-firmware linux-lts linux-lts-headers neovim nano
 #+END_SRC
 
-* Konfigurace nainstalovaného Arch systému
+* Konfigurace nainstalovaného Arch systém//devu
 Generovat =fstab= soubor pro připojení diskových oddílů a služeb při spuštění systému.
 Přepínač ~-U~ je vhodný pro ukládání UUID disků, aby bylo možné jednoduše disky přehazovat a přidávat!
 #+BEGIN_SRC bash
@@ -155,6 +162,7 @@ export LANG=en_US.UTF-8
 #+END_SRC
 
 ** Network konfigurace
+rcman eflector -c "CZ" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 Zadejte svůj vymyšlený název počítače do ~/etc/hostname~. V mém případě =r7arch=. Pozor nesmí obsahovat pomlčky.
 Dále pak udělejte základní mapování do ~/etc/hosts~.
 #+BEGIN_SRC bash
@@ -261,7 +269,7 @@ Instalace grub2 například takto pro UEFI:
 grub-install --target=x86_64-efi --bootloader-id=ARCH --efi-directory=/boot/efi --recheck
 #+END_SRC
 V tomto případě potom budeme mít v biosu v nabídce jméno EFI části =ARCH= (bootloader-id).
-
+grub
 Nakonec se musí zavolat natažení konfigurace do =grub.cfg=
 #+BEGIN_SRC bash
 grub-mkconfig -o /boot/grub/grub.cfg
