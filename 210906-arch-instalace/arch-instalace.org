@@ -18,7 +18,7 @@
   - [[#výběr-arch-mirrors][Výběr Arch Mirrors]]
   - [[#virtualbox-tty-rozlišení-při-instalaci][Virtualbox tty rozlišení při instalaci]]
 -  [[#instalace-základního-systému-base][Instalace základního systému (Base)]]
-- [[#konfigurace-nainstalovaného-arch-systémdevu][Konfigurace nainstalovaného Arch systém//devu]]
+- [[#konfigurace-nainstalovaného-arch-systému][Konfigurace nainstalovaného Arch systému]]
   - [[#chroot][CHROOT]]
   - [[#nastavení-času-a-timezone][Nastavení času a timezone]]
   - [[#nastavení-lokalizace][Nastavení Lokalizace]]
@@ -37,6 +37,8 @@
 
 ** Příprava partitions na cílovém disku
 Zjistit disky a souborové systémy ~fdisk -l~, pak ~cfdisk /dev/<DEVICE>~, zkontroluj kterou partition přesně použít pro umístění root adresáře, popř. domácího adresáře; např. pro nvmeXn1 bude nvmeXn1p2 nebo p3 apod. Pro EFI partition použít alespoň =+256M= parameter; nastav pro ni partition type to =EFI System (type 1)=, pro root partition =/= nastavit =Linux system=.
+
+*DŮLEŽITÉ:* Návod používá dnes již standardní UEFI. Pokud testuje Arch dle tohoto seriálu v VirtualBox. Je nutné na záložce Systém VM *označit checkbox EFI*. Aby bylo možné používat EFI pro boot systému, jinak nepůjde instalovat bootloader.
 
 ** Vytvoření souborových systémů
 *** Formát diskových oddílů
@@ -120,7 +122,7 @@ V případě problémů je možné kdykoliv doinstalovat, nebo zvolit zen-kernel
 pacstrap /mnt base base-devel linux linux-headers linux-firmware linux-lts linux-lts-headers neovim nano
 #+END_SRC
 
-* Konfigurace nainstalovaného Arch systém//devu
+* Konfigurace nainstalovaného Arch systému
 Generovat =fstab= soubor pro připojení diskových oddílů a služeb při spuštění systému.
 Přepínač ~-U~ je vhodný pro ukládání UUID disků, aby bylo možné jednoduše disky přehazovat a přidávat!
 #+BEGIN_SRC bash
@@ -192,7 +194,7 @@ Pro desktop je nutné nainstalovat správné grafické ovladače a základní ba
 *** AMD grafická karta
 #+BEGIN_SRC bash
 pacman -S xorg
-pacman -S mesa
+pacman -S mesa  (již obsažen v xorg, pouze pro informaci)
 #+END_SRC
 
 *** NVIDIA grafická karta
@@ -287,7 +289,7 @@ reboot
 
 Po restartu systému se spustí grub2 a po správném zavedení systému se objeví tty terminál se zadáním uživatelského jména a zvoleného hesla.
 
-Po úspěšném přihlášení jste ve svém novém Arch systému!
+Po úspěšném přihlášení jste ve svém novém Arch systému! Vítejte doma :penguin:
 
 * Důležité odkazy
 + [[https://archlinux.org/][archlinux.org]]
