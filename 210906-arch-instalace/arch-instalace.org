@@ -292,6 +292,7 @@ Po restartu systému se spustí grub2 a po správném zavedení systému se obje
 Po úspěšném přihlášení jste ve svém novém Arch systému! Vítejte doma :penguin:
 
 * Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
 + [[https://archlinux.org/][archlinux.org]]
 + [[https://wiki.archlinux.org/][wiki.achlinux.org]]
 + [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]

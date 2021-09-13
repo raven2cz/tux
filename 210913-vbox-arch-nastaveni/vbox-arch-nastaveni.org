@@ -43,7 +43,7 @@ poweroff (reboot u vbox moc nefunguje)
 
 * Virtualbox Guest Utils
 #+BEGIN_SRC bash
-sudo pacman -S virtual-guest-utils
+sudo pacman -S virtualbox-guest-utils
 sudo systemctl status vboxservice.service
 VBoxClient-all  (aktivovat všechny služby virtualboxu)
 sudo systemctl restart vboxservice.service
@@ -52,6 +52,7 @@ poweroff
 #+END_SRC
 
 * Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
 + [[https://archlinux.org/][archlinux.org]]
 + [[https://wiki.archlinux.org/][wiki.achlinux.org]]
 + [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
