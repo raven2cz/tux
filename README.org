@@ -12,4 +12,18 @@
 #+HTML:<img alt="Welcome Banner" align = "center" src="images/tux-intro-banner.jpg">
 
 * Vítejte na Linuxu (TUX)
-Toto Github repository slouží jako doplňkové podklady k youtube nahrávkám Raven2cz Svět Linuxu.
+Toto Github repository slouží jako doplňkové podklady k [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu od Raven2cz]].
+
+* Obecné rady pro začínající Tuxaře
++ Dělejte si poznámky v textovém editoru, např. atom, sublime, doom emacs, vim, nvim.
++ Jste na začátku cesty, každý krok vyžaduje se něco nového naučit, nejde jenom o to, tupě něco opsat z youtube. Je potřeba si pročíst příslušné informace na arch wiki, porozumět tomu, co dělám - o tom je celý seriál, pochopit všechny souvislosti.
++ Nepoužívejte žádné podpůrné skripty, jinak nepochopíte základy a když přijdou první problémy, budete nahraní. Pochopit znamená si zamilovat!
++ Začátky jsou nejlepší, užijte si to!
+
+* Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
