@@ -39,7 +39,7 @@ Zobrazí se 3x xterms, vlevo je hlavní xterm. Pokud jej ukončíte zkratkou =ct
 ** DWM kompilace a instalace
 #+BEGIN_SRC bash
 sudo pacman -S git
-mkdir -R ~/git/github
+mkdir -p ~/git/github
 cd ~/git/github
 git clone git://git.suckless.org/dwm
 git clone git://git.suckless.org/st
