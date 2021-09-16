@@ -1,0 +1,115 @@
+#+TITLE: Xorg a DWM Základy
+#+DESCRIPTION: Instalace Xorg/X11 a základní použití a nastavení DWM
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/xorg-dwm-basic.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+* Obsah :toc:
+- [[#instalace-xorg-a-vysvětlení-xinitrc][Instalace Xorg a vysvětlení .xinitrc]]
+- [[#instalace-a-kompilace-dwm-ručně][Instalace a kompilace DWM ručně]]
+  - [[#dwm-kompilace-a-instalace][DWM kompilace a instalace]]
+  - [[#konfigurace-xinitrc-a-xresources][Konfigurace .xinitrc a Xresources]]
+  - [[#spuštění-dwm][Spuštění DWM]]
+- [[#první-bash-script][První Bash Script]]
+- [[#první-wallpaper][První Wallpaper]]
+- [[#dwm-flexipatch][DWM-Flexipatch]]
+- [[#důležité-odkazy][Důležité odkazy]]
+
+* Instalace Xorg a vysvětlení .xinitrc
+#+BEGIN_SRC bash
+sudo pacman -S xorg xorg-xinit xterm
+startx
+#+END_SRC
+
+Zobrazí se 3x xterms, vlevo je hlavní xterm. Pokud jej ukončíte zkratkou =ctrl+d=, dojde k ukončení celého xorg.
+
+* Instalace a kompilace DWM ručně
+*DWM* má domov zde [[https://suckless.org/][https://suckless.org/]]
+
++ Povídání o DWM na suckless stránkách [[https://dwm.suckless.org/][https://dwm.suckless.org/]]
++ Velmi důležitý tutoriál k DWM [[https://dwm.suckless.org/tutorial/][https://dwm.suckless.org/tutorial/]]
++ Arch wiki stránky [[https://wiki.archlinux.org/title/dwm][Arch Wiki DWM]]
++ Seriál na root.cz [[https://www.root.cz/clanky/suckless-dynamicky-spravce-oken-dwm/][Suckless: dynamický správce oken dwm ]] a [[https://www.root.cz/serialy/suckless-project/][https://www.root.cz/serialy/suckless-project/]]
+
+** DWM kompilace a instalace
+#+BEGIN_SRC bash
+sudo pacman -S git
+mkdir -R ~/git/github
+cd ~/git/github
+git clone git://git.suckless.org/dwm
+git clone git://git.suckless.org/st
+git clone git://git.suckless.org/dmenu
+cd dwm ## toto proved pro kazdy adresar dwm, st a dmenu
+sudo make clean install ## postupne nainstalovat dwm, st, dmenu
+#+END_SRC
+
+** Konfigurace .xinitrc a Xresources
+Zde již si připravíme .xinitrc komplexnější pro testy a spoštění WM (window managers) a DE (desktop environements) používaných v celém seriálu.
+Stažení provedeme z mých dofiles následujícím postupem.
+#+BEGIN_SRC bash
+cd ~/git/github
+git clone https://github.com/raven2cz/dotfiles dotfiles-raven2cz
+cd dotfiles-raven2cz
+cp .xinitrc ~
+cp .Xresources ~
+nvim ~/.xinitrc ## zakomentovat setxkbmap -layout "us,cz" - prekryva hodne kl.zkratek s DWM!
+#+END_SRC
+
+** Spuštění DWM
+#+BEGIN_SRC bash
+startx ~/.xinitrc dwm
+#+END_SRC
+
+* První Bash Script
+Ukázka prvního jednoduchého bash skriptu pro zobrazení hodin vpravo nahoře v =xsetroot= sekci.
+#+BEGIN_SRC bash
+nvim ~/.local/bin/dwm_time
+#!/bin/bash
+while true; do
+   xsetroot -name "$( date +"%F %R" )"
+   sleep 1m    # Update time every minute
+done
+
+chmod ug+x ~/.local/bin/dwm_time
+#+END_SRC
+
+Nutno přidat =$HOME/.local/bin= do =/etc/profile=
+Přidejte se sudo do tohoto souboru řádku: =appendpath '/home/box/.local/bin'= za ostatní již existující a soubor uložte.
+Nutný restart nebo zavolání z daného terminálu příkaz =source /etc/profile=.
+
+* První Wallpaper
+Provede alespoň základní nastavení pozadí, jsme suckless, víc zatím dělat nebudeme, záleží nám na efektivě a minimalismu.
+Stáhněte si své oblíbené obrázky pomocí firefox nebo přes =/mnt= sdílený adresář.
+Pro ostatní mohu nabídnout sbírku mých public wallpapers pro demonstraci.
+
+#+BEGIN_SRC bash
+cd ~/git/github
+git clone https://github.com/raven2cz/public-wallpapers
+#+END_SRC
+
+Použijeme prohlížeč obrázků =feh= pro nastavení pozadí. [[https://wiki.archlinux.org/title/feh#Set_the_wallpaper][Arch-Wiki FEH]]
+#+BEGIN_SRC bash
+sudo pacman -S feh
+feh --bg-scale ~/git/github/public-wallpapers/00007-minimal-forest.jpg
+#+END_SRC
+
+Později si ukážeme, jak tyto změny zahrnout do našeho =autorun= skriptu při spuštění DWM.
+
+* DWM-Flexipatch
+Zjednodušená možnost patches pro DWM pomocí flexipatch project.
+- [[https://github.com/bakkeby/dwm-flexipatch][https://github.com/bakkeby/dwm-flexipatch]]
+
+  Nutné provést git clone repository. Editovat soubor =config.def.h=. na hodnotu 1 nastavit patches, které chcete aktivovat, uložit soubor. Na závěř standardně zavolat ~sudo make install~, zkompiluje dwm a umístí jej do spouštěcích adresářů.
+
+* Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
