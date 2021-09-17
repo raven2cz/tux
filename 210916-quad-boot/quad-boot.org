@@ -1,0 +1,69 @@
+#+TITLE: Quad Boot
+#+DESCRIPTION: Dual Booting pro 4 operační systémy (Quad Boot)
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/quad-boot.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+* Obsah :toc:
+- [[#diskový-správce-gnome-disks][Diskový správce Gnome-Disks]]
+- [[#polkit-gnome][Polkit-Gnome]]
+- [[#support-ntfs-windows][Support NTFS (Windows)]]
+- [[#grub-editace][Grub Editace]]
+- [[#grub-rozlišení-a-themes][Grub rozlišení a themes]]
+  - [[#konfigurace-vhodného-rozlišení][Konfigurace vhodného rozlišení]]
+  - [[#instalace-grub2-themes][Instalace Grub2 Themes]]
+- [[#důležité-odkazy][Důležité odkazy]]
+
+* Diskový správce Gnome-Disks
+#+BEGIN_SRC bash
+sudo pacman -S gnome-disk-utility
+#+END_SRC
++ Moutovat diskové oddíly pomocí ikony ozubených kol, zvolit *Edit Mount Options*.
++ Nastavit =Display Name= a =Mount Point= ~/mnt/displayName~.
++ Ověřit, že změny se správně zapsaly do ~/etc/fstab~.
+
+* Polkit-Gnome
+#+BEGIN_SRC bash
+sudo pacman -S polkit-gnome
+#+END_SRC
+Spustit jej v =autorun.sh= skriptu.
+
+* Support NTFS (Windows)
+#+BEGIN_SRC bash
+sudo pacman -S ntfs-3g
+#+END_SRC
+Podpora NTFS a mountování win partitions.
+
+* Grub Editace
+#+BEGIN_SRC bash
+sudo nvim /etc/default/grub
+# V Grub přidat parameter GRUB_DISABLE_OS_PROBER=false
+sudo grub-mkconfig -o /etc/grub/grub.cfg
+
+sudo pacman -S grub-customizer
+#+END_SRC
+
+* Grub rozlišení a themes
+** Konfigurace vhodného rozlišení
++ restart, v grub tabulce stisk =C=, cmd grub line napsat ~videoinfo~, opsat si nejlepší rozlišení, např. =2048x1080x32=.
++ Edit opět stejně grub soubor v ~/etc/default/grub~, nastavit v ~GRUB_GFXMODE=2048x1080x32,auto~ vaše rozlišení, ne moje. A nezapomenout přegenerovat grub přes =grub-mkconfig=!
+
+** Instalace Grub2 Themes
+#+BEGIN_SRC bash
+cd ~/git/github
+git clone https://github.com/vinceliuice/grub2-themes.git
+sudo ./install.sh -t vimix -s 2k
+#+END_SRC
+
+* Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
