@@ -1,0 +1,36 @@
+#+TITLE: Paru (AUR) a Pacman
+#+DESCRIPTION: Správce balíčků Pacman a pomocníci pro správu AUR.
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/paru-aur-pacman.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+* Obsah :toc:
+- [[#pacman][Pacman]]
+- [[#aur][AUR]]
+  - [[#paru-yay--pomocníci-aur][Paru, Yay, ? pomocníci AUR]]
+- [[#důležité-odkazy][Důležité odkazy]]
+
+* Pacman
+
+#+BEGIN_SRC bash
+sudo pacman -S gnome-disk-utility
+#+END_SRC
++ Moutovat diskové oddíly pomocí ikony ozubených kol, zvolit *Edit Mount Options*.
++ Nastavit =Display Name= a =Mount Point= ~/mnt/displayName~.
++ Ověřit, že změny se správně zapsaly do ~/etc/fstab~.
+
+* AUR
+** Paru, Yay, ? pomocníci AUR
+
+* Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
