@@ -1,5 +1,5 @@
-#+TITLE: Paru (AUR) a Pacman
-#+DESCRIPTION: Správce balíčků Pacman a pomocníci pro správu AUR.
+#+TITLE: Pacman a AUR Helpers
+#+DESCRIPTION: Správce balíčků Pacman a pomocníci pro správu AUR
 #+AUTHOR: Antonin Fischer (raven2cz)
 #+STARTUP: inlineimages
 #+EXPORT_FILE_NAME: /home/box/org/export/paru-aur-pacman.org
