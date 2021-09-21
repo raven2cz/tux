@@ -32,10 +32,10 @@ Pacman je napsán v programovacím jazyce C a používá BSD tar formát pro bal
 sudo pacman -S awesome ## install package/meta-package
 sudo pacman -Syu ## System update
 sudo pacman -Syy ## sync database
-pacman -Ss gnome ## search package with text 'gnome'
-pacman -Qs gnome ## search installed packages
-pacman -Si plasma ## display extensive information
-pacman -Qii gnome ## info + list of backup files
+pacman -Ss awesome ## search package with text 'gnome'
+pacman -Qs awesome ## search installed packages
+pacman -Si plasma-meta ## display extensive information
+pacman -Qii awesome ## info + list of backup files
 pacman -Qdt ## list packages no longer reqs (orphans)
 sudo pacman -Sc ## clear packages in cached packages
 sudo pacman -Scc ## all files in cache, strong aggresive, nothing leave in cache
