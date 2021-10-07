@@ -1,0 +1,117 @@
+#+TITLE: Picom Compositor
+#+DESCRIPTION: picom je samostatný compositor pro Xorg.
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/picom-compositor.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+* Obsah :toc:
+- [[#picom][Picom]]
+  - [[#co-je-yshuipicom][Co je yshui/Picom?]]
+  - [[#picom-není-pouze-o-grafických-vychytávkách-a-animacích][Picom není pouze o grafických vychytávkách a animacích]]
+  - [[#doporučená-konfigurace-configpicompicomconf][Doporučená konfigurace (~/.config/picom/picom.conf)]]
+- [[#důležité-odkazy][Důležité odkazy]]
+
+* Picom
+** Co je yshui/Picom?
+[[https://wiki.archlinux.org/title/Picom][Picom-Compositor]]
+=Picom= je samostatný kompositor pro Xorg, vhodný pro použití se správci oken (Window Manager), kteří neposkytují kompozici.
+Picom vznikl jako fork z populárního ~compton~.
+#+BEGIN_SRC bash
+paru -S picom-git # git next version (snapshots, rolling)
+paru -S picom # released version
+#+END_SRC
+
+** Picom není pouze o grafických vychytávkách a animacích
+*** Jeho silnou podporou je kvalitní vsynch, glx mode (gpu rendering) a vyhlazování.
+*** Picom lze konfigurovat zcela minimalisticky pro striktně velmi svižné prostředí až po mnoho desítek grafických features a animací.
+*** Jeho animační schopnosti jsou fakt omezené oproti KWin a dalším DE kompositorům.
+*** Existují několik fork picoms, které se soustředí na skupinu animací, blur efektů a dalších grafických vylepšeních. Podívejte a sledujte toto issue [[https://github.com/yshui/picom/issues/217][Animation Support]].
+**** picom ibhagwan
+**** picom jonaburg
+**** picom dccsillag
+
+** Doporučená konfigurace (~/.config/picom/picom.conf)
+*** Minimalistické řešení (vysoce efektivní)
+#+BEGIN_SRC bash
+backend = "glx";
+fading = false
+vsync = true
+wintypes:
+{
+  tooltip = { fade = true; shadow = true; opacity = 0.9; focus = true; full-shadow = false; };
+  dock = { shadow = false; }
+  dnd = { shadow = false; }
+  popup_menu = { opacity = 0.9; }
+  dropdown_menu = { opacity = 0.9; }
+};
+#+END_SRC
+
+*** Zlatá střední cesta
+#+BEGIN_SRC bash
+backend = "glx";
+vsync = true
+fading = false
+round-borders = 15;
+detect-rounded-corners = true;
+shadow = true;
+# The blur radius for shadows. (default 12)
+shadow-radius = 14;
+# The left offset for shadows. (default -15)
+shadow-offset-x = -7;
+# The top offset for shadows. (default -15)
+shadow-offset-y = -7;
+# The translucency for shadows. (default .75)
+shadow-opacity = .5;
+# Dim inactive windows. (0.0 - 1.0)
+inactive-dim = 0.05;
+# Fade windows during opacity changes.
+fading = true;
+# Opacity change between steps while fading in. (default 0.028).
+fade-in-step = 0.056;
+# Opacity change between steps while fading out. (default 0.03).
+fade-out-step = 0.06;
+# Window type settings
+wintypes:
+{
+    tooltip =
+    {
+        # fade: Fade the particular type of windows.
+        fade = true;
+        # shadow: Give those windows shadow
+        shadow = false;
+        # opacity: Default opacity for the type of windows.
+        opacity = 0.85;
+        # focus: Whether to always consider windows of this type focused.
+        focus = true;
+    };
+};
+#+END_SRC
+
+*** Spouštění picom v autorun skriptech
+Picom nutno správně spouštět ve svých autorun skriptech s možností jeho opětovného spuštění v případě pádu.
+#+BEGIN_SRC bash
+run picom --experimental-backends --config $HOME/.config/picom/picom.conf
+# run bash function
+function run {
+  if ! pgrep -f $1 ;
+  then
+    $@&
+  fi
+}
+#+END_SRC
+
+*** Moje doporučení
+Používat základní =yshui/Picom=, který má největší množství oprav, je velmi rychlý a stabilní. Sice zatím v této době neobsahuje blurr efekty, ale rounding cornes již podporovány jsou (pro rounding corners mám ale ještě jiné řešení).
+
+* Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
