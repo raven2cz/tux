@@ -27,3 +27,6 @@ Toto Github repository slouží jako doplňkové podklady k [[https://www.youtub
 + [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
 + [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
 + [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
+
+* Licence
+MIT Licence - viz dokument LICENCE.
