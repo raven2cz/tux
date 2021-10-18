@@ -1,0 +1,55 @@
+#+TITLE: XFCE Instalace
+#+DESCRIPTION: Instalace desktopového prostředí XFCE
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/xfce-instalace.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+#+html: <p align="center"><img src="images/Xfce_logo.png" /></p>
+#+html: <p align="center"><b>Xfce is a lightweight desktop environment for UNIX-like operating systems.</b></p>
+#+html: <p align="center"><img src="images/xfce-trading-room.jpg" /></p>
+#+html: <p align="center"><b>Welcome to my Trading Room <a href="https://www.reddit.com/r/unixporn/comments/ojzwdw/xfce4_welcome_to_my_trading_room/">reddit-post</a></b></p>
+#+html: <p align="center"><img src="images/mx-xfce4-dracula-complete.png" /></p>
+#+html: <p align="center"><b>Variant for MX-Linux</b></p>
+
+* Obsah :toc:
+- [[#xfce][XFCE]]
+  - [[#co-je-xfce][Co je XFCE?]]
+  - [[#dokumentace][Dokumentace]]
+  - [[#moje-xfce-konfigurace][Moje Xfce Konfigurace]]
+- [[#základní-instalace][Základní Instalace]]
+- [[#důležité-odkazy][Důležité odkazy]]
+
+* XFCE
+** Co je XFCE?
+[[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)][Xfce]] je lehké a modulární desktopové prostředí, které je v současné době založeno na GTK 3. Pro zajištění úplného uživatelského komfortu obsahuje správce oken, správce souborů, plochu a panely. Xfce lze jednoduše rozšiřovat pomocí extra pluginů.
+
+** Dokumentace
++ https://docs.xfce.org/
++ https://www.xfce.org/
++ https://gitlab.xfce.org
++ [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)][Arch-Wiki:Xfce(čeština)]]
+
+** Moje Xfce Konfigurace
+Toto repo samozřejmě nemůže obsahovat veškeré nutné části, protože se jedná o DE, které by vyžadovalo spíše distro. Bylo by nutné použít několik konfiguračních adresářů a zdrojových témat. Nicméně kompletní základní xfce konfigurace je systematicky oddělena a uložena ve formátu XML, který zde přikládám s MIT licencí.
+
++ https://github.com/raven2cz/xfce-config
+
+* Základní Instalace
+Vše jsou meta balíky. Doporučuji nainstalovat celou tuto základnu meta balíků. Oproti jiným full DE, je toto pořád silně lightweight.
+#+BEGIN_SRC bash
+sudo pacman -S xfce4 xfce4-goodies
+#+END_SRC
+
+* Důležité odkazy
++ [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)][arch wiki:Xfce]]
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
