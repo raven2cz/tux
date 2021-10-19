@@ -92,7 +92,7 @@ Přidání extra pluginu do Panel1 instance na první místo v Items.
 Vytvoř klávosvé zkratky používané v profi window managers, jako je dwm, xmonad, awesome, qtile, i3, bspwm.
 + [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)#Kl%C3%A1vesov%C3%A9_zkratky][Klávesové zkratky Xfce ArchWiki]]
 
-#+html: <p align="center"><img src="images/xfce-effective-keybindings"/></p>
+#+html: <p align="center"><img src="images/xfce-effective-keybindings.png"/></p>
 
 * Důležité odkazy
 + [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)][arch wiki:Xfce]]
