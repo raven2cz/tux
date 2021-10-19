@@ -22,6 +22,12 @@
   - [[#dokumentace][Dokumentace]]
   - [[#moje-xfce-konfigurace][Moje Xfce Konfigurace]]
 - [[#základní-instalace][Základní Instalace]]
+- [[#xfce4-settings-manager][Xfce4 Settings Manager]]
+- [[#volba-sound-systemu][Volba Sound Systemu]]
+- [[#graphical-drivers-a-picom-aktivace][Graphical Drivers a Picom aktivace]]
+- [[#instalace-terminal-emulator-gpu-support][Instalace Terminal Emulator (GPU Support)]]
+- [[#přidání-whisker-menu][Přidání Whisker Menu]]
+- [[#klávesové-zkratky-buď-linux-pro][Klávesové zkratky, buď Linux Pro]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * XFCE
@@ -43,7 +49,50 @@ Toto repo samozřejmě nemůže obsahovat veškeré nutné části, protože se 
 Vše jsou meta balíky. Doporučuji nainstalovat celou tuto základnu meta balíků. Oproti jiným full DE, je toto pořád silně lightweight.
 #+BEGIN_SRC bash
 sudo pacman -S xfce4 xfce4-goodies
+
+nvim ~/.xinitrc
+# Overit umisteni radky
+exec startxfce4
 #+END_SRC
+
+* Xfce4 Settings Manager
+Spusťe z terminálu
+#+BEGIN_SRC bash
+xfce4-settings-manager
+#+END_SRC
+
+* Volba Sound Systemu
+Zvuk je velký topic. Stejně jako grafické karty na linuxu. Toto je pouze minimální zmínka o této problematice.
++ https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture
++ https://wiki.archlinux.org/title/PulseAudio
++ https://wiki.archlinux.org/title/PipeWire
+Doinstalovat uřčitě při ~pulseaudio~ ještě ~pavucontrol~, ~alsa-utils~. ~alsamixer~.
+[[https://wiki.archlinux.org/title/PipeWire][PipeWire]] je separátní topic a bylo by vhodné oddělené video, pokud bude zájem.
+
+* Graphical Drivers a Picom aktivace
+Grafické drivers byly instalovány při základní instalaci, odkazuji tak na video [[https://youtu.be/gpIFaCIB9Cg][základní instalace systému]].
+Nyní je potřeba nahradit defaultní kompozitor naším picom nastaveným dle zlaté střední cesty z minulého dílu.
++ Window Manager Tweaks > Compositor > Deaktivujte ~Enable display compositing~
++ Session and Startup > Application Autostart > + > přidejte name: ~picom~ command: ~picom --experimental-backends --config $HOME/.config/picom/picom.conf~
+Picom bude spuštěn v autostart xfce po novém spuštění xfce.
+
+* Instalace Terminal Emulator (GPU Support)
+Doporučuji tyto terminal emulatory. V mém případě používám oba, aby se nehádaly.
+#+BEGIN_SRC bash
+sudo pacman -S kitty
+sudo pacman -S alacritty
+#+END_SRC
+O terminálech si více povíme jindy. Nyní alespoň základní instalace a umět je spustit a používat v základní vanilla podobě.
+
+* Přidání Whisker Menu
+Whisker menu je základní Xfce kvalitní menu a spouštěč aplikací.
+Přidání extra pluginu do Panel1 instance na první místo v Items.
+
+* Klávesové zkratky, buď Linux Pro
+Vytvoř klávosvé zkratky používané v profi window managers, jako je dwm, xmonad, awesome, qtile, i3, bspwm.
++ [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)#Kl%C3%A1vesov%C3%A9_zkratky][Klávesové zkratky Xfce ArchWiki]]
+
+#+html: <p align="center"><img src="images/xfce-effective-keybindings"/></p>
 
 * Důležité odkazy
 + [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)][arch wiki:Xfce]]
