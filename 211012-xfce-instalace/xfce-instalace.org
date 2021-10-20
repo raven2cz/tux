@@ -10,11 +10,11 @@
 #+HTML_HEAD: <style> li{max-width:800px;}</style
 
 #+html: <p align="center"><img src="images/Xfce_logo.png" /></p>
-#+html: <p align="center"><b>Xfce is a lightweight desktop environment for UNIX-like operating systems.</b></p>
+#+html: <p align="center"><b>Xfce je lehké a modulární desktopové prostředí pro UNIX-like operační systémy.</b></p>
 #+html: <p align="center"><img src="images/xfce-trading-room.jpg" /></p>
-#+html: <p align="center"><b>Welcome to my Trading Room <a href="https://www.reddit.com/r/unixporn/comments/ojzwdw/xfce4_welcome_to_my_trading_room/">reddit-post</a></b></p>
+#+html: <p align="center"><b>Vítejte v mé obchodní místnosti.<a href="https://www.reddit.com/r/unixporn/comments/ojzwdw/xfce4_welcome_to_my_trading_room/">reddit-post</a></b></p>
 #+html: <p align="center"><img src="images/mx-xfce4-dracula-complete.png" /></p>
-#+html: <p align="center"><b>Variant for MX-Linux</b></p>
+#+html: <p align="center"><b>Varianta s MX-Linux</b></p>
 
 * Obsah :toc:
 - [[#xfce][XFCE]]
