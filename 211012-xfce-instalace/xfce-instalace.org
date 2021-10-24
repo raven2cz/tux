@@ -28,6 +28,12 @@
 - [[#instalace-terminal-emulator-gpu-support][Instalace Terminal Emulator (GPU Support)]]
 - [[#přidání-whisker-menu][Přidání Whisker Menu]]
 - [[#klávesové-zkratky-buď-linux-pro][Klávesové zkratky, buď Linux Pro]]
+- [[#xfce-ricing---dracula-ricing][XFCE Ricing - Dracula Ricing]]
+  - [[#co-je-ricing][Co je Ricing?]]
+  - [[#co-je-dracula-a-draculapro][Co je Dracula a DraculaPro?]]
+  - [[#aplikace-základních-themes-a-color-schemes][Aplikace základních themes a color schemes]]
+  - [[#změna-základního-panel1][Změna základního Panel1]]
+  - [[#public-wallpapers][Public-Wallpapers]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * XFCE
@@ -93,6 +99,28 @@ Vytvoř klávosvé zkratky používané v profi window managers, jako je dwm, xm
 + [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)#Kl%C3%A1vesov%C3%A9_zkratky][Klávesové zkratky Xfce ArchWiki]]
 
 #+html: <p align="center"><img src="images/xfce-effective-keybindings.png"/></p>
+
+* XFCE Ricing - Dracula Ricing
+** Co je Ricing?
+https://jie-fang.github.io/blog/basics-of-ricing
+
+** Co je Dracula a DraculaPro?
++ https://draculatheme.com/
++ https://draculatheme.com/pro ($49)
+
+#+html: <p align="center"><img src="images/dracula-color-palette.png" /></p>
+
+** Aplikace základních themes a color schemes
++ Postupujte podle pokynů na dracula stánkách pro jednotlivé aplikace a GTK3.
+
+** Změna základního Panel1
++ Použijte mojí konfiguraci panelu, nebo manuálně nastavte komponenty dle videa
++ Aplikujte/zkopírujte =gtk.css= styling do vašeho =~/.config/gtk-3.0=
++ Alternativně můžete použít polybar (pozor je to výhoda i nevýhoda), viz můj projekt [[https://github.com/raven2cz/polybar-config][Polybar-config]]
+
+** Public-Wallpapers
++ Stáhněte si moje public wallpapers [[https://github.com/raven2cz/public-wallpapers][public-wallpapers]]
++ Link public-wallpapers přes =mkdir ~/Pictures/wallpapers && ln -s ~/git/github/public-wallpapers ~/Pictures/wallpapers/=
 
 * Důležité odkazy
 + [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)][arch wiki:Xfce]]
