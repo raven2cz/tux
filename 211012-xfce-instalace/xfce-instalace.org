@@ -118,6 +118,10 @@ https://jie-fang.github.io/blog/basics-of-ricing
 ** Aplikace základních themes a color schemes
 + Postupujte podle pokynů na dracula stánkách pro jednotlivé aplikace a GTK3.
 
+** Icons a Mouse Cursors
++ =sudo paru -S papirus-icon-theme=
++ =sudo paru -S numix-cursor-theme xcursor-comix-opaque xcursor-comix=
+
 ** Změna základního Panel1
 + Použijte mojí konfiguraci panelu, nebo manuálně nastavte komponenty dle videa
 + Aplikujte/zkopírujte =gtk.css= styling do vašeho =~/.config/gtk-3.0=
