@@ -128,16 +128,16 @@ https://jie-fang.github.io/blog/basics-of-ricing
 + Link public-wallpapers přes =mkdir ~/Pictures/wallpapers && ln -s ~/git/github/public-wallpapers ~/Pictures/wallpapers/=
 
 ** Doplňková rožšíření
-*** Aplikace pro nastavení osobních uživatelských detailů =sudo pacman -S mugshot=
-*** Editor nabídek pro Gnome s podporou XFCE =sudo pacman -S alacarte=
-*** Odstranění ikon na ploše =xfconf-query -c xfce4-desktop -v --create -p /desktop-icons/style -t int -s 0= (obnova nastavit 2)
-*** Nastavení zvukového motivu Smooth
-**** Nainstalujte =libcanerra= pro PulseAudio
-**** Zahrnout =canerra-gtk-module= do proměnné prostředí ~GTK_MODULES~
-**** V =Settings Manager > Appearance > Settings= nastavit ="Enable event sounds"=
-**** Nainstalujte z AUR =paru -S sound-theme-smooth=
-**** V Editoru nastavení (~xfce4-settings-editor~) nastavte v =xsettings/Net/SoundThemeName= na =Smooth= (pozor na velké písmeno)
-**** Zapněte a zvyšte hlasitost u =System Sounds= v mixéru zvuku, např. ~pavucontrol~.
++ Aplikace pro nastavení osobních uživatelských detailů =sudo pacman -S mugshot=
++ Editor nabídek pro Gnome s podporou XFCE =sudo pacman -S alacarte=
++ Odstranění ikon na ploše =xfconf-query -c xfce4-desktop -v --create -p /desktop-icons/style -t int -s 0= (obnova nastavit 2)
++ Nastavení zvukového motivu Smooth
+  - Nainstalujte =libcanerra= pro PulseAudio
+  - Zahrnout =canerra-gtk-module= do proměnné prostředí ~GTK_MODULES~
+  - V =Settings Manager > Appearance > Settings= nastavit ="Enable event sounds"=
+  - Nainstalujte z AUR =paru -S sound-theme-smooth=
+  - V Editoru nastavení (~xfce4-settings-editor~) nastavte v =xsettings/Net/SoundThemeName= na =Smooth= (pozor na velké písmeno)
+  - Zapněte a zvyšte hlasitost u =System Sounds= v mixéru zvuku, např. ~pavucontrol~.
 
 * Důležité odkazy
 + [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)][arch wiki:Xfce]]
