@@ -28,12 +28,14 @@
 - [[#instalace-terminal-emulator-gpu-support][Instalace Terminal Emulator (GPU Support)]]
 - [[#přidání-whisker-menu][Přidání Whisker Menu]]
 - [[#klávesové-zkratky-buď-linux-pro][Klávesové zkratky, buď Linux Pro]]
+  - [[#klávesové-zkratky-pro-ovládání-hlasitosti][Klávesové zkratky pro ovládání hlasitosti]]
 - [[#xfce-ricing---dracula-ricing][XFCE Ricing - Dracula Ricing]]
   - [[#co-je-ricing][Co je Ricing?]]
   - [[#co-je-dracula-a-draculapro][Co je Dracula a DraculaPro?]]
   - [[#aplikace-základních-themes-a-color-schemes][Aplikace základních themes a color schemes]]
   - [[#změna-základního-panel1][Změna základního Panel1]]
   - [[#public-wallpapers][Public-Wallpapers]]
+  - [[#doplňková-rožšíření][Doplňková rožšíření]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * XFCE
@@ -100,6 +102,9 @@ Vytvoř klávosvé zkratky používané v profi window managers, jako je dwm, xm
 
 #+html: <p align="center"><img src="images/xfce-effective-keybindings.png"/></p>
 
+** Klávesové zkratky pro ovládání hlasitosti
+https://wiki.archlinux.org/title/PulseAudio#Keyboard_volume_control
+
 * XFCE Ricing - Dracula Ricing
 ** Co je Ricing?
 https://jie-fang.github.io/blog/basics-of-ricing
@@ -121,6 +126,18 @@ https://jie-fang.github.io/blog/basics-of-ricing
 ** Public-Wallpapers
 + Stáhněte si moje public wallpapers [[https://github.com/raven2cz/public-wallpapers][public-wallpapers]]
 + Link public-wallpapers přes =mkdir ~/Pictures/wallpapers && ln -s ~/git/github/public-wallpapers ~/Pictures/wallpapers/=
+
+** Doplňková rožšíření
+*** Aplikace pro nastavení osobních uživatelských detailů =sudo pacman -S mugshot=
+*** Editor nabídek pro Gnome s podporou XFCE =sudo pacman -S alacarte=
+*** Odstranění ikon na ploše =xfconf-query -c xfce4-desktop -v --create -p /desktop-icons/style -t int -s 0= (obnova nastavit 2)
+*** Nastavení zvukového motivu Smooth
+**** Nainstalujte =libcanerra= pro PulseAudio
+**** Zahrnout =canerra-gtk-module= do proměnné prostředí ~GTK_MODULES~
+**** V =Settings Manager > Appearance > Settings= nastavit ="Enable event sounds"=
+**** Nainstalujte z AUR =paru -S sound-theme-smooth=
+**** V Editoru nastavení (~xfce4-settings-editor~) nastavte v =xsettings/Net/SoundThemeName= na =Smooth= (pozor na velké písmeno)
+**** Zapněte a zvyšte hlasitost u =System Sounds= v mixéru zvuku, např. ~pavucontrol~.
 
 * Důležité odkazy
 + [[https://wiki.archlinux.org/title/Xfce_(%C4%8Ce%C5%A1tina)][arch wiki:Xfce]]
