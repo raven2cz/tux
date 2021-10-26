@@ -33,8 +33,10 @@
   - [[#co-je-ricing][Co je Ricing?]]
   - [[#co-je-dracula-a-draculapro][Co je Dracula a DraculaPro?]]
   - [[#aplikace-základních-themes-a-color-schemes][Aplikace základních themes a color schemes]]
+  - [[#icons-a-mouse-cursors][Icons a Mouse Cursors]]
   - [[#změna-základního-panel1][Změna základního Panel1]]
   - [[#public-wallpapers][Public-Wallpapers]]
+  - [[#qt-a-gtk-jednotný-vzhled-aplikací][Qt a Gtk jednotný vzhled aplikací]]
   - [[#doplňková-rožšíření][Doplňková rožšíření]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
@@ -117,6 +119,11 @@ https://jie-fang.github.io/blog/basics-of-ricing
 
 ** Aplikace základních themes a color schemes
 + Postupujte podle pokynů na dracula stánkách pro jednotlivé aplikace a GTK3.
++ Přejděte na záložku GTK na webu, nainstalujte =gtk-master.zip=
++ Použijte z mých dotfiles konfigurace pro =kitty= a =alacritty=. obsahují dracula pro kitty a postelové barvy pro alacritty
++ Nainstalujte a použijte fonty dle videa: =paru -S tty-droid tty-play=
++ Aplikujte theme pro Midnight Commander z webu =dracula256.ini=
++ Použijte zlatou střední cestu pro picom z dotfiles.
 
 ** Icons a Mouse Cursors
 + =sudo paru -S papirus-icon-theme=
@@ -131,12 +138,22 @@ https://jie-fang.github.io/blog/basics-of-ricing
 + Stáhněte si moje public wallpapers [[https://github.com/raven2cz/public-wallpapers][public-wallpapers]]
 + Link public-wallpapers přes =mkdir ~/Pictures/wallpapers && ln -s ~/git/github/public-wallpapers ~/Pictures/wallpapers/=
 
+** Qt a Gtk jednotný vzhled aplikací
++ pročíst [[https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications][Uniform look for Qt and GTK applications]]
++ Gtk již máme zařízeno, neboť xfce staví na gtk-3.0 a s dracula theme jsme toto pořešili pro gnome aplikace automaticky
++ Pro Qt aplikace nutno pořešit
+  - Nainstalujte =sudo pacman -S kvantum-qt5=
+  - Checkout git repozitář =cd ~/git/github && git clone https://github.com/dracula/gtk.git=
+  - Spustit Kvantum Manager, nainstalovat Dracula (dle svého vkusu)
+  - Aplikovat v aplikaci Dracula jako aktvní téma
+  - Zkontrolovat si svůj =~/.xinitrc= nastavení =export QT_STYLE_OVERRIDE=kvantum=
+
 ** Doplňková rožšíření
 + Aplikace pro nastavení osobních uživatelských detailů =sudo pacman -S mugshot=
 + Editor nabídek pro Gnome s podporou XFCE =sudo pacman -S alacarte=
 + Odstranění ikon na ploše =xfconf-query -c xfce4-desktop -v --create -p /desktop-icons/style -t int -s 0= (obnova nastavit 2)
 + Nastavení zvukového motivu Smooth
-  - Nainstalujte =libcanerra= pro PulseAudio
+  - Nainstalujte =libcanberra= pro PulseAudio
   - Zahrnout =canerra-gtk-module= do proměnné prostředí ~GTK_MODULES~
   - V =Settings Manager > Appearance > Settings= nastavit ="Enable event sounds"=
   - Nainstalujte z AUR =paru -S sound-theme-smooth=
