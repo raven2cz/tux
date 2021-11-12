@@ -1,0 +1,141 @@
+#+TITLE: Command-Line Shell
+#+DESCRIPTION: ZSH and Fish Shells and Alacritty and Kitty Terminals
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/shell-terminal.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+* Obsah :toc:
+- [[#command-line-shell][Command-Line Shell]]
+- [[#bash][Bash]]
+- [[#zsh][Zsh]]
+  - [[#zsh-instalace][Zsh Instalace]]
+  - [[#zsh-prompt-themes][Zsh Prompt Themes]]
+  - [[#instalace-zsh-plugins][Instalace Zsh plugins]]
+  - [[#instalace-colorscriptů][Instalace Colorscriptů]]
+- [[#fish][Fish]]
+  - [[#fish-instalace][Fish Instalace]]
+  - [[#starship-cross-shell-prompt-instalace][STARSHIP Cross-Shell Prompt Instalace]]
+  - [[#fish-jako-uživatelský-interaktivní-shell][Fish jako uživatelský interaktivní shell]]
+  - [[#fish-raven2cz-dotfiles][Fish Raven2cz Dotfiles]]
+- [[#důležité-odkazy][Důležité odkazy]]
+
+* Command-Line Shell
+Popis shellů je uveden na arch wiki [[https://wiki.archlinux.org/title/Command-line_shell][Command-Line Shell]].
+
+Základní shelly, které si ukážeme:
++ =Bash= - nejzákladnější shell v GNU/Linux. POSIX complient. Nutný znát v každém případě.https://www.gnu.org/software/bash/
++ =Zsh= - Interaktivní používání, silný skriptovací jazyk. POSIX complient. https://www.zsh.org/
++ =Fish= - Není POSIX, jde vlastní cestou. Inteligentní a uživatelsky přívětivý shell příkazového řádku. Fish provádí plnobarevné zvýraznění syntaxe příkazového řádku, stejně jako zvýraznění a dokončení příkazů a jejich argumentů, existence souboru a historie. Podporuje kompletní, jak píšete pro historii a příkazy. Fish je schopen analyzovat manuálové stránky systému, aby určil platné argumenty pro příkazy, což mu umožňuje zvýraznit a dokončit příkazy. Snadnou revizi posledního příkazu lze provést pomocí =Alt+Up= Pro další info https://fishshell.com/
+
+* Bash
+Bash byl prezentován po celou dobu instalace a používání až do této nahrávky. Pro bash existuje bezpočet návodů, příkladů, psaní skriptů. Určitě doporučuji českou knihu pro shell https://www.alza.cz/media/prikazovy-radek-v-linuxu-d2366810.htm
+Dokumentace je zde https://www.gnu.org/software/bash/manual/bash.html
+
+* Zsh
+** Zsh Instalace
+My použijeme jako náš systémový shell ZSH.
+#+BEGIN_SRC bash
+sudo pacman -S zsh
+chsh -s /usr/bin/zsh <user>
+nvim ~/.zshrc
+#+END_SRC
+
+Použijeme [[https://ohmyz.sh/][Oh My Zsh]]. Nebo [[https://github.com/ohmyzsh/ohmyzsh][GitHub OhMyZsh]].
+#+BEGIN_SRC bash
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#+END_SRC
+
+** Zsh Prompt Themes
+#+BEGIN_SRC bash
+# Change theme
+ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
+ZSH_THEME="dst"
+ZSH_THEME_RANDOM_CANDIDATES=(
+  "robbyrussell"
+  "agnoster"
+  "dst"
+)
+# Need install p10k!
+ZSH_THEME="powerlevel10k/powerlevel10k"
+#+END_SRC
+
+** Instalace Zsh plugins
+#+BEGIN_SRC bash
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting z fzf sudo pass)
+
+# Instalace plginu
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+#fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+#+END_SRC
+
+** Instalace Colorscriptů
+Colorscripty zkrášlují shell a uvozují danou instanci terminálu.
+
+#+BEGIN_SRC bash
+# DT Colorscript
+git clone https://gitlab.com/dwt1/shell-color-scripts.git
+makepkg -cf
+sudo pacman -U *.pkg.tar.zst
+
+# pokemon-colorscript
+paru -S pokemon-colorscripts-git
+#+END_SRC
+
+* Fish
+Arch wiki https://wiki.archlinux.org/title/Fish
+** Fish Instalace
+#+BEGIN_SRC bash
+sudo pacman -S fish
+# plugin manager
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+fisher list
+fisher update jorgebucaran/fisher
+fisher remove jorgebucaran/nvm.fish@2.1.0
+fisher list | fisher remove
+# next useful scripts
+paru -S lolcat exa
+#+END_SRC
+
+** STARSHIP Cross-Shell Prompt Instalace
+Hlavní stránka https://starship.rs/
+#+BEGIN_SRC bash
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+# add last line to your config.fish
+starship init fish | source
+#+END_SRC
+
+** Fish jako uživatelský interaktivní shell
+Fish budeme používat jako *uživatelský interaktivní shell*, nikoliv jako systémový (pro init si ponecháme POSIX support).
+Do našeho =.zshrc= vložíme na konec toto
+
+#+BEGIN_SRC bash
+# jump from zsh to fish
+if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]
+then
+	exec fish
+fi
+#+END_SRC
+
+** Fish Raven2cz Dotfiles
+Zkopírujte fish adresář do =~/.config/fish= z raven2cz dotfiles.
+
+#+BEGIN_SRC bash
+nvim ~/.config/fish/config.fish
+#+END_SRC
+
+* Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
