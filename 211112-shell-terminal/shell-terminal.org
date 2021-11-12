@@ -10,6 +10,7 @@
 #+HTML_HEAD: <style> li{max-width:800px;}</style
 
 #+html: <p align="left"><img src="images/shell-terminal-banner.png" /></p>
+#+html: <p align="left"><img src="images/starship.png" /></p>
 
 * Obsah :toc:
 - [[#command-line-shell][Command-Line Shell]]
