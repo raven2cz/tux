@@ -98,14 +98,14 @@ Arch wiki https://wiki.archlinux.org/title/Fish
 ** Fish Instalace
 #+BEGIN_SRC bash
 sudo pacman -S fish
-# plugin manager
+# plugin manager - nutno spoustet z fish shell
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 fisher list
 fisher update jorgebucaran/fisher
 fisher remove jorgebucaran/nvm.fish@2.1.0
 fisher list | fisher remove
 # next useful scripts
-paru -S lolcat exa
+paru -S lolcat exa fd bat timg p7zip glow
 #+END_SRC
 
 ** STARSHIP Cross-Shell Prompt Instalace
@@ -114,6 +114,32 @@ Hlavní stránka https://starship.rs/
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 # add last line to your config.fish
 starship init fish | source
+#+END_SRC
+
+*** Personal Starship Settings
+Moje osobní nastavení starship je v dotfiles uloženo v =~/.config/starship.toml=
+Toto moje nastavení nepoužívá dvě prompt řádky, ale pouze jednu, plus změnu symbolu. Nejprve zkuste defaultní nastavení a teprve potom můžete testovat tyto změny.
+#+BEGIN_SRC bash
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Make prompt a single line instead of two lines
+[line_break]
+disabled = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                         # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)"  # The "success_symbol" is set to "➜" with color "bold green"
+
+# Use custom format
+# format = """
+# [┌───────────────────>](bold green)
+# [│](bold green)$directory$rust$package
+# [└─>](bold green) """
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
 #+END_SRC
 
 ** Fish jako uživatelský interaktivní shell
