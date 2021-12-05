@@ -14,152 +14,125 @@
 
 * Obsah :toc:
 - [[#awesome-window-manager][Awesome Window Manager]]
-- [[#bash][Bash]]
-- [[#zsh][Zsh]]
-  - [[#zsh-instalace][Zsh Instalace]]
-  - [[#zsh-prompt-themes][Zsh Prompt Themes]]
-  - [[#instalace-zsh-plugins][Instalace Zsh plugins]]
-  - [[#instalace-colorscriptů][Instalace Colorscriptů]]
-- [[#fish][Fish]]
-  - [[#fish-instalace][Fish Instalace]]
-  - [[#starship-cross-shell-prompt-instalace][STARSHIP Cross-Shell Prompt Instalace]]
-  - [[#fish-jako-uživatelský-interaktivní-shell][Fish jako uživatelský interaktivní shell]]
-  - [[#fish-raven2cz-dotfiles][Fish Raven2cz Dotfiles]]
+- [[#lua---programovací-jazyk][LUA - Programovací jazyk]]
+  - [[#lua-wiki-info][Lua Wiki Info]]
+  - [[#the-eight-queen-in-programming-in-lua-fourth-edition-8-královen-z-knihy-programování-lua-4vydání][The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4.vydání)]]
+- [[#awesome-základní-instalace][Awesome základní instalace]]
+- [[#awesome-základní-konfigurace-před-spuštěním][Awesome základní konfigurace před spuštěním]]
+- [[#ověření-a-testování-awesomeww-sandbox][Ověření a testování AwesomeWW Sandbox]]
+- [[#defaultní-ovládání-awesome-awesomewm-default-keybindings][Defaultní ovládání awesome (AwesomeWM Default Keybindings)]]
+- [[#defaultní-rclua][Defaultní rc.lua]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * Awesome Window Manager
+=Awesome= je vysoce konfigurovatelný správce oken nové generace pro Xorg. Je velmi rychlý a rozšiřitelný pomocí perfektně zdokumentovaného API. Primárně se zaměřuje na pokročilé uživatele, vývojáře a všechny lidi, kteří se zabývají každodenními složitějšími úkoly a chtějí mít plnou kontrolu nad ovládáním jejich *vlastního grafického prostředí*.
 
+Základní stránka: https://awesomewm.org/
+Arch Wiki: https://wiki.archlinux.org/title/Awesome
+Screenshot Gallery: https://mipmip.github.io/awesomewm-screenshots/
+API Dokumentace: https://awesomewm.org/apidoc/
 
-Základní shelly, které si ukážeme:
-+ =Bash= - nejzákladnější shell v GNU/Linux. POSIX complient. Nutný znát v každém případě.https://www.gnu.org/software/bash/
-+ =Zsh= - Interaktivní používání, silný skriptovací jazyk. POSIX complient. https://www.zsh.org/
-+ =Fish= - Není POSIX, jde vlastní cestou. Inteligentní a uživatelsky přívětivý shell příkazového řádku. Fish provádí plnobarevné zvýraznění syntaxe příkazového řádku, stejně jako zvýraznění a dokončení příkazů a jejich argumentů, existence souboru a historie. Podporuje kompletní, jak píšete pro historii a příkazy. Fish je schopen analyzovat manuálové stránky systému, aby určil platné argumenty pro příkazy, což mu umožňuje zvýraznit a dokončit příkazy. Snadnou revizi posledního příkazu lze provést pomocí =Alt+Up= Pro další info https://fishshell.com/
+* LUA - Programovací jazyk
+#+html: <p align="left"><img src="images/lua-info.jpg" /></p>
 
-* Bash
-Bash byl prezentován po celou dobu instalace a používání až do této nahrávky. Pro bash existuje bezpočet návodů, příkladů, psaní skriptů. Určitě doporučuji českou knihu pro shell https://www.alza.cz/media/prikazovy-radek-v-linuxu-d2366810.htm
-Dokumentace je zde https://www.gnu.org/software/bash/manual/bash.html
+Základní web: https://www.lua.org/, https://www.lua.org/start.html
+Vynikající kniha (nutno přečíst): https://www.lua.org/pil/
 
-* Zsh
-** Zsh Instalace
-My použijeme jako náš systémový shell ZSH.
-#+BEGIN_SRC bash
-sudo pacman -S zsh
-chsh -s /usr/bin/zsh <user>
-nvim ~/.zshrc
+*Programming in Lua, fourth edition*
+
+** Lua Wiki Info
+*Lua* je odlehčený, reflexivní, imperativní a procedurální programovací jazyk navržený jako skriptovací jazyk s rozšiřitelnou sémantikou. Název je odvozen z portugalského slova pro měsíc.
+
+Jazyk Lua je určen jako rozšiřující nebo skriptovací jazyk a je dostatečně malý, aby se vešel na nejrůznější hostitelské platformy. Podporuje jen malé množství atomárních datových struktur jako jsou boolovské hodnoty, čísla (implicitně s dvojitou přesností plovoucí čárky) a řetězce. Běžné datové struktury jako jsou pole, množiny, hashovací tabulky, seznamy a záznamy mohou být reprezentovány použitím jediné nativní datové struktury – tabulky, která je v podstatě heterogenním asociativním polem. Jmenné prostory a objekty mohou být vytvořeny taktéž za použití tabulek. Zahrnutím minimálního počtu datových typů se Lua pokouší dosáhnout rovnováhy mezi sílou a velikostí.
+
+Sémantika Lua může být rozšiřována a měněna předefinováním některých zabudovaných funkcí v metatabulkách. Navíc podporuje Lua pokročilé vlastnosti, jako jsou funkce vyššího řádu a garbage collector. Kombinací mnoha těchto vlastností je možné v Lua psát i objektově orientované programy.
+
+Lua se uplatňuje především v mnoha hrách, jako je *World of Warcraft*, masivní onlinová multiplayerová hra na hrdiny, ve které si mohou uživatelé přizpůsobit uživatelské rozhraní, animace postav a vzhled světa právě v jazyku Lua, a sérii Baldur's Gate a videohře MDK2, kde je použit jako skriptovací jazyk pro moduly. Také se objevuje v některých open source hrách, jakými jsou Battle for Wesnoth, Daimonin a hry ve stylu Rogue: ToME a H-World. Skripty v jazyce Lua jsou také využity u her Worms 3D, Worms 4: Mayhem, Mafia II a v modifikaci pro GTA V, FiveM. Therescript, použitý k řízení vozidel a animací v There, je mírně upravená verze Lua. Správce oken Ion používá Lua pro své přizpůsobování a rozšiřování. Program Chat Mapper pro zapisování a ukládání rozhovorů (například mezi postavami ve hrách) používá jazyk Lua k řízení rozhovoru. Program LuaTeX rozšiřuje primitivní příkazy TeXu o možnost zadávání kódu v jazyce Lua.
+
+V našem případě budeme Lua používat pro =AwesomeWM= a =Neovim=.
+
+** The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4.vydání)
+#+BEGIN_SRC lua
+N = 8 -- board size
+
+-- check whether position (n, c) is free from attacks
+function isplaceok (a, n ,c)
+    for i = 1, n - 1 do -- for each queen already placed
+        if (a[i] == c) or           -- same column?
+        (a[i] - i == c - n) or      -- same diagonal?
+        (a[i] + i == c + n) then    -- same diagonal?
+            return false -- place can be attacked
+        end
+    end
+    return true -- no attacks; place is OK
+end
+
+-- print a board
+function printsolution (a)
+    for i = 1, N do                 -- for each row
+        for j = 1, N do             -- and for each column
+            -- write "X" or "-" plus a space
+            io.write(a[i] == j and "X" or "-", " ")
+        end
+        io.write("\n")
+    end
+    io.write("\n")
+end
+
+-- add to board 'a' all queens from 'n' to 'N'
+function addqueen (a, n)
+    if n > N then -- all queens have been placed?
+        printsolution(a)
+    else -- try to place n-th queen
+        for c = 1, N do
+            if isplaceok(a, n, c) then
+                a[n] = c -- place n-th queen at column 'c'
+                addqueen(a, n + 1)
+            end
+        end
+    end
+end
+
+-- run the program
+addqueen({}, 1)
 #+END_SRC
 
-Použijeme [[https://ohmyz.sh/][Oh My Zsh]]. Nebo [[https://github.com/ohmyzsh/ohmyzsh][GitHub OhMyZsh]].
+* Awesome základní instalace
 #+BEGIN_SRC bash
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+paru -S awesome-git
+mkdir -p ~/.config/awesome
+cp /etc/xdg/awesome/rc.lua ~/.config/awesome/
+nvim ~/.xinitrc
 #+END_SRC
 
-** Zsh Prompt Themes
-#+BEGIN_SRC bash
-# Change theme
-ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
-ZSH_THEME="dst"
-ZSH_THEME_RANDOM_CANDIDATES=(
-  "robbyrussell"
-  "agnoster"
-  "dst"
-)
-# Need install p10k!
-ZSH_THEME="powerlevel10k/powerlevel10k"
+* Awesome základní konfigurace před spuštěním
+Editujte =~/.config/awesome/rc.lua=
+Zkopírujte požadované themes do vašeho prostředí: =/usr/share/awesome/themes/ Copy it to ~/.config/awesome/themes/=
+#+BEGIN_SRC lua
+-- theme examples: default, zenburn
+-- beautiful.init(gears.filesystem.get_configuration_dir() .. "/themes/default/theme.lua")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
+beautiful.init(theme_path)
+-- terminal and editor settings
+terminal = "kitty"
+editor = os.getenv("EDITOR") or "nvim"
 #+END_SRC
 
-** Instalace Zsh plugins
-#+BEGIN_SRC bash
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting z fzf sudo pass)
-
-# Instalace plginu
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-#fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+* Ověření a testování AwesomeWW Sandbox
+Použijeme Xephyr pro testování Xorg.
+#+BEGIN_SRC lua
+paru -S xorg-server-xephyr
+Xephyr :1 -ac -br -noreset -screen 1980x1024 &
+DISPLAY=:1.0 awesome -c ~/.config/awesome/rc.lua
 #+END_SRC
 
-** Instalace Colorscriptů
-Colorscripty zkrášlují shell a uvozují danou instanci terminálu.
+Volitlně použít wrapper: =awmtt= (Awesome WM Testing Tool) z AUR
 
-#+BEGIN_SRC bash
-# DT Colorscript
-git clone https://gitlab.com/dwt1/shell-color-scripts.git
-makepkg -cf
-sudo pacman -U *.pkg.tar.zst
+* Defaultní ovládání awesome (AwesomeWM Default Keybindings)
+#+html: <p align="left"><img src="images/awesome-keybindings-default.png" /></p>
 
-# pokemon-colorscript
-paru -S pokemon-colorscripts-git
-#+END_SRC
-
-* Fish
-Arch wiki https://wiki.archlinux.org/title/Fish
-** Fish Instalace
-#+BEGIN_SRC bash
-sudo pacman -S fish
-# plugin manager - nutno spoustet z fish shell
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-fisher list
-fisher update jorgebucaran/fisher
-fisher remove jorgebucaran/nvm.fish@2.1.0
-fisher list | fisher remove
-# next useful scripts
-paru -S lolcat exa fd bat timg p7zip glow
-#+END_SRC
-
-** STARSHIP Cross-Shell Prompt Instalace
-Hlavní stránka https://starship.rs/
-#+BEGIN_SRC bash
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-# add last line to your config.fish
-starship init fish | source
-#+END_SRC
-
-*** Personal Starship Settings
-Moje osobní nastavení starship je v dotfiles uloženo v =~/.config/starship.toml=
-Toto moje nastavení nepoužívá dvě prompt řádky, ale pouze jednu, plus změnu symbolu. Nejprve zkuste defaultní nastavení a teprve potom můžete testovat tyto změny.
-#+BEGIN_SRC bash
-# Don't print a new line at the start of the prompt
-add_newline = false
-
-# Make prompt a single line instead of two lines
-[line_break]
-disabled = true
-
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                         # The name of the module we are configuring is "character"
-success_symbol = "[➜](bold green)"  # The "success_symbol" is set to "➜" with color "bold green"
-
-# Use custom format
-# format = """
-# [┌───────────────────>](bold green)
-# [│](bold green)$directory$rust$package
-# [└─>](bold green) """
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = false
-#+END_SRC
-
-** Fish jako uživatelský interaktivní shell
-Fish budeme používat jako *uživatelský interaktivní shell*, nikoliv jako systémový (pro init si ponecháme POSIX support).
-Do našeho =.zshrc= vložíme na konec toto
-
-#+BEGIN_SRC bash
-# jump from zsh to fish
-if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]
-then
-	exec fish
-fi
-#+END_SRC
-
-** Fish Raven2cz Dotfiles
-Zkopírujte fish adresář do =~/.config/fish= z raven2cz dotfiles.
-
-#+BEGIN_SRC bash
-nvim ~/.config/fish/config.fish
-#+END_SRC
+* Defaultní rc.lua
+Pojďme si projít základní sekce a organizaci =nvim ~/.config/awesome/rc.lua=
 
 * Důležité odkazy
 + [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
