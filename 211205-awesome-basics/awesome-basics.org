@@ -16,7 +16,7 @@
 - [[#awesome-window-manager][Awesome Window Manager]]
 - [[#lua---programovací-jazyk][LUA - Programovací jazyk]]
   - [[#lua-wiki-info][Lua Wiki Info]]
-  - [[#the-eight-queen-in-programming-in-lua-fourth-edition-8-královen-z-knihy-programování-lua-4vydání][The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4.vydání)]]
+  - [[#the-eight-queen-in-programming-in-lua-fourth-edition-8-královen-z-knihy-programování-lua-4-vydání][The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4. vydání)]]
 - [[#awesome-základní-instalace][Awesome základní instalace]]
 - [[#awesome-základní-konfigurace-před-spuštěním][Awesome základní konfigurace před spuštěním]]
 - [[#ověření-a-testování-awesomeww-sandbox][Ověření a testování AwesomeWW Sandbox]]
@@ -33,7 +33,7 @@ Screenshot Gallery: https://mipmip.github.io/awesomewm-screenshots/
 API Dokumentace: https://awesomewm.org/apidoc/
 
 * LUA - Programovací jazyk
-#+html: <p align="left"><img src="images/lua-info.jpg" /></p>
+#+html: <p align="left"><img src="images/lua-info.png" /></p>
 
 Základní web: https://www.lua.org/, https://www.lua.org/start.html
 Vynikající kniha (nutno přečíst): https://www.lua.org/pil/
@@ -51,7 +51,7 @@ Lua se uplatňuje především v mnoha hrách, jako je *World of Warcraft*, masi
 
 V našem případě budeme Lua používat pro =AwesomeWM= a =Neovim=.
 
-** The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4.vydání)
+** The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4. vydání)
 #+BEGIN_SRC lua
 N = 8 -- board size
 
