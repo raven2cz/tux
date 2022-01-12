@@ -1,8 +1,8 @@
-#+TITLE: AwesomeWM Basics
-#+DESCRIPTION: AwesomeWM základy
+#+TITLE: AwesomeWM Ricing
+#+DESCRIPTION: AwesomeWM ricing pokročilá konfigurace
 #+AUTHOR: Antonin Fischer (raven2cz)
 #+STARTUP: inlineimages
-#+EXPORT_FILE_NAME: /home/box/org/export/awesome-basics.org
+#+EXPORT_FILE_NAME: /home/box/org/export/awesome-ricing.org
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
 #+HTML_HEAD: <style> #content{max-width:1800px;}</style>
@@ -13,9 +13,7 @@
 #+html: <p align="left"><img src="images/awesomewm-2.jpg" /></p>
 
 * Obsah :toc:
-- [[#awesome-window-manager][Awesome Window Manager]]
-- [[#lua---programovací-jazyk][LUA - Programovací jazyk]]
-  - [[#lua-wiki-info][Lua Wiki Info]]
+- [[#awesome-ricing---pokročilá-konfigurace][Awesome Ricing - Pokročilá Konfigurace]]
   - [[#the-eight-queen-in-programming-in-lua-fourth-edition-8-královen-z-knihy-programování-lua-4-vydání][The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4. vydání)]]
 - [[#awesome-základní-instalace][Awesome základní instalace]]
 - [[#awesome-základní-konfigurace-před-spuštěním][Awesome základní konfigurace před spuštěním]]
@@ -24,32 +22,8 @@
 - [[#defaultní-rclua][Defaultní rc.lua]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
-* Awesome Window Manager
-=Awesome= je vysoce konfigurovatelný správce oken nové generace pro Xorg. Je velmi rychlý a rozšiřitelný pomocí perfektně zdokumentovaného API. Primárně se zaměřuje na pokročilé uživatele, vývojáře a všechny lidi, kteří se zabývají každodenními složitějšími úkoly a chtějí mít plnou kontrolu nad ovládáním jejich *vlastního grafického prostředí*.
+* Awesome Ricing - Pokročilá Konfigurace
 
-+ Základní stránka: https://awesomewm.org/
-+ Arch Wiki: https://wiki.archlinux.org/title/Awesome
-+ Screenshot Gallery: https://mipmip.github.io/awesomewm-screenshots/
-+ API Dokumentace: https://awesomewm.org/apidoc/
-+ Ukázka mého ricing YouTube nahrávka: [[https://youtu.be/-Fo7mB6_Wtg ][Awesome není pouze Tiling Window Manager]]
-
-* LUA - Programovací jazyk
-#+html: <p align="left"><img src="images/lua-info.png" /></p>
-
-+ Základní web: https://www.lua.org/, https://www.lua.org/start.html
-+ Vynikající kniha (nutno přečíst): https://www.lua.org/pil/
-+ *Programming in Lua, fourth edition*
-
-** Lua Wiki Info
-*Lua* je odlehčený, reflexivní, imperativní a procedurální programovací jazyk navržený jako skriptovací jazyk s rozšiřitelnou sémantikou. Název je odvozen z portugalského slova pro měsíc.
-
-Jazyk Lua je určen jako rozšiřující nebo skriptovací jazyk a je dostatečně malý, aby se vešel na nejrůznější hostitelské platformy. Podporuje jen malé množství atomárních datových struktur jako jsou boolovské hodnoty, čísla (implicitně s dvojitou přesností plovoucí čárky) a řetězce. Běžné datové struktury jako jsou pole, množiny, hashovací tabulky, seznamy a záznamy mohou být reprezentovány použitím jediné nativní datové struktury – tabulky, která je v podstatě heterogenním asociativním polem. Jmenné prostory a objekty mohou být vytvořeny taktéž za použití tabulek. Zahrnutím minimálního počtu datových typů se Lua pokouší dosáhnout rovnováhy mezi sílou a velikostí.
-
-Sémantika Lua může být rozšiřována a měněna předefinováním některých zabudovaných funkcí v metatabulkách. Navíc podporuje Lua pokročilé vlastnosti, jako jsou funkce vyššího řádu a garbage collector. Kombinací mnoha těchto vlastností je možné v Lua psát i objektově orientované programy.
-
-Lua se uplatňuje především v mnoha hrách, jako je *World of Warcraft*, masivní onlinová multiplayerová hra na hrdiny, ve které si mohou uživatelé přizpůsobit uživatelské rozhraní, animace postav a vzhled světa právě v jazyku Lua, a sérii Baldur's Gate a videohře MDK2, kde je použit jako skriptovací jazyk pro moduly. Také se objevuje v některých open source hrách, jakými jsou Battle for Wesnoth, Daimonin a hry ve stylu Rogue: ToME a H-World. Skripty v jazyce Lua jsou také využity u her Worms 3D, Worms 4: Mayhem, Mafia II a v modifikaci pro GTA V, FiveM. Therescript, použitý k řízení vozidel a animací v There, je mírně upravená verze Lua. Správce oken Ion používá Lua pro své přizpůsobování a rozšiřování. Program Chat Mapper pro zapisování a ukládání rozhovorů (například mezi postavami ve hrách) používá jazyk Lua k řízení rozhovoru. Program LuaTeX rozšiřuje primitivní příkazy TeXu o možnost zadávání kódu v jazyce Lua.
-
-V našem případě budeme Lua používat pro =AwesomeWM= a =Neovim=.
 
 ** The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4. vydání)
 #+BEGIN_SRC lua
