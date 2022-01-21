@@ -25,6 +25,8 @@
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * Awesome Window Manager
+English document variant [[awesome-basics-en.org][here]].
+
 =Awesome= je vysoce konfigurovatelný správce oken nové generace pro Xorg. Je velmi rychlý a rozšiřitelný pomocí perfektně zdokumentovaného API. Primárně se zaměřuje na pokročilé uživatele, vývojáře a všechny lidi, kteří se zabývají každodenními složitějšími úkoly a chtějí mít plnou kontrolu nad ovládáním jejich *vlastního grafického prostředí*.
 
 + Základní stránka: https://awesomewm.org/
