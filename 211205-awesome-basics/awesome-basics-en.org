@@ -1,0 +1,143 @@
+#+TITLE: AwesomeWM Basics
+#+DESCRIPTION: AwesomeWM basics
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/awesome-basics-en.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+#+html: <p align="left"><img src="images/awesomewm-1.jpg" /></p>
+#+html: <p align="left"><img src="images/awesomewm-2.jpg" /></p>
+
+* Content :toc:
+- [[#awesome-window-manager][Awesome Window Manager]]
+- [[#lua---programming-language][LUA - Programming Language]]
+  - [[#lua-wiki-info][Lua Wiki Info]]
+  - [[#the-eight-queen-in-programming-in-lua-fourth-edition][The Eight-Queen in Programming in Lua Fourth Edition]]
+- [[#awesome-basic-installation][Awesome basic installation]]
+- [[#awesome-basic-configuration-before-launch][Awesome basic configuration before launch]]
+- [[#validate-and-test-awesomeww-sandbox][Validate and test AwesomeWW Sandbox]]
+- [[#awesomewm-default-keybindings][AwesomeWM Default Keybindings]]
+- [[#default-rclua][Default rc.lua]]
+- [[#important-links][Important Links]]
+
+* Awesome Window Manager
+=Awesome= is a highly configurable, next generation (dwm, xmonad) framework window manager for Xorg. It is very fast, extensible with perfectly documented API. Licensed under GNU GPL v2. It is primarily targeted at power users, developers and any people dealing with every day computing tasks and who want to have *fine-grained control* on their graphical environment.
+
++ Home page: https://awesomewm.org/
++ Arch Wiki: https://wiki.archlinux.org/title/Awesome
++ Screenshot Gallery: https://mipmip.github.io/awesomewm-screenshots/
++ API Documentation: https://awesomewm.org/apidoc/
++ My AwesomeWM ricing YoutTube record: [[https://youtu.be/-Fo7mB6_Wtg ][Awesome není pouze Tiling Window Manager]]
+
+* LUA - Programming Language
+#+html: <p align="left"><img src="images/lua-info.png" /></p>
+
++ Home page: https://www.lua.org/, https://www.lua.org/start.html
++ Best book (must read): https://www.lua.org/pil/
++ *Programming in Lua, fourth edition*
+
+** Lua Wiki Info
+*Lua* (/ˈluːə/ LOO-ə; from Portuguese: lua [ˈlu.(w)ɐ] meaning moon) is a lightweight, high-level, multi-paradigm programming language designed primarily for embedded use in applications. Lua is cross-platform, since the interpreter of compiled bytecode is written in ANSI C, and Lua has a relatively simple C API to embed it into applications.
+
+Lua is intended as an extension or scripting language and is small enough to fit on a variety of host platforms. It supports only a small number of atomic data structures such as Boolean values, numbers (implicitly with double-precision floating point) and strings. Common data structures such as arrays, sets, hash tables, lists, and records can be represented using a single native data structure — a table that is essentially a heterogeneous associative array. Namespaces and objects can also be created using tables. By including a minimum number of data types, Lua attempts to strike a balance between strength and size.
+
+Lua semantics can be extended and changed by redefining some of the built-in functions in the metatables. In addition, Lua supports advanced features such as higher order functions and a garbage collector. By combining many of these features, it is possible to write object-oriented programs in Lua.
+
+Lua is used mainly in many games, such as *World of Warcraft*, a massive online multiplayer hero game in which users can customize the user interface, character animations and world appearance in Lua, and the *Baldur's Gate* series and MDK2 video game, where it is used as a scripting language for modules. It also appears in some open source games, such as Battle for Wesnoth, Daimonin, and Rogue-style games: ToME and H-World. Lua scripts are also used in Worms 3D, Worms 4: Mayhem, *Mafia II* and modified for *GTA V*, FiveM. Therescript, used to control vehicles and animations in There, is a slightly modified version of Lua. Ion Window Manager uses Lua for its customization and extensions. Chat Mapper uses Lua to control conversations (for example, between in-game characters). LuaTeX extends primitive TeX commands with the ability to enter Lua code.
+
+In our case we are using Lua for =AwesomeWM= and =Neovim=.
+
+** The Eight-Queen in Programming in Lua Fourth Edition
+#+BEGIN_SRC lua
+N = 8 -- board size
+
+-- check whether position (n, c) is free from attacks
+function isplaceok (a, n ,c)
+    for i = 1, n - 1 do -- for each queen already placed
+        if (a[i] == c) or           -- same column?
+        (a[i] - i == c - n) or      -- same diagonal?
+        (a[i] + i == c + n) then    -- same diagonal?
+            return false -- place can be attacked
+        end
+    end
+    return true -- no attacks; place is OK
+end
+
+-- print a board
+function printsolution (a)
+    for i = 1, N do                 -- for each row
+        for j = 1, N do             -- and for each column
+            -- write "X" or "-" plus a space
+            io.write(a[i] == j and "X" or "-", " ")
+        end
+        io.write("\n")
+    end
+    io.write("\n")
+end
+
+-- add to board 'a' all queens from 'n' to 'N'
+function addqueen (a, n)
+    if n > N then -- all queens have been placed?
+        printsolution(a)
+    else -- try to place n-th queen
+        for c = 1, N do
+            if isplaceok(a, n, c) then
+                a[n] = c -- place n-th queen at column 'c'
+                addqueen(a, n + 1)
+            end
+        end
+    end
+end
+
+-- run the program
+addqueen({}, 1)
+#+END_SRC
+
+* Awesome basic installation
+#+BEGIN_SRC bash
+paru -S awesome-git
+mkdir -p ~/.config/awesome
+cp /etc/xdg/awesome/rc.lua ~/.config/awesome/
+nvim ~/.xinitrc
+#+END_SRC
+
+* Awesome basic configuration before launch
+Edit =~/.config/awesome/rc.lua=
+Copy required themes to your environment: =/usr/share/awesome/themes/ Copy it to ~/.config/awesome/themes/=
+#+BEGIN_SRC lua
+-- theme examples: default, zenburn
+-- beautiful.init(gears.filesystem.get_configuration_dir() .. "/themes/default/theme.lua")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
+beautiful.init(theme_path)
+-- terminal and editor settings
+terminal = "kitty"
+editor = os.getenv("EDITOR") or "nvim"
+#+END_SRC
+
+* Validate and test AwesomeWW Sandbox
+Use Xephyr for Xorg testing.
+#+BEGIN_SRC lua
+paru -S xorg-server-xephyr
+Xephyr :1 -ac -br -noreset -screen 1980x1024 &
+DISPLAY=:1.0 awesome -c ~/.config/awesome/rc.lua
+#+END_SRC
+
+Optional testing wrapper: =awmtt= (Awesome WM Testing Tool) from AUR
+
+* AwesomeWM Default Keybindings
+#+html: <p align="left"><img src="images/awesome-keybindings-default.png" /></p>
+
+* Default rc.lua
+Let's go to basic sections and config organization =nvim ~/.config/awesome/rc.lua=
+
+* Important Links
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Linux World]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
