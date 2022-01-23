@@ -14,104 +14,171 @@
 
 * Obsah :toc:
 - [[#awesome-ricing---pokročilá-konfigurace][Awesome Ricing - Pokročilá Konfigurace]]
-  - [[#the-eight-queen-in-programming-in-lua-fourth-edition-8-královen-z-knihy-programování-lua-4-vydání][The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4. vydání)]]
-- [[#awesome-základní-instalace][Awesome základní instalace]]
-- [[#awesome-základní-konfigurace-před-spuštěním][Awesome základní konfigurace před spuštěním]]
-- [[#ověření-a-testování-awesomeww-sandbox][Ověření a testování AwesomeWW Sandbox]]
-- [[#defaultní-ovládání-awesome-awesomewm-default-keybindings][Defaultní ovládání awesome (AwesomeWM Default Keybindings)]]
-- [[#defaultní-rclua][Defaultní rc.lua]]
+  - [[#pattern-mvc---model-view-controller][Pattern MVC - Model, View, Controller]]
+- [[#awesomewm-multicolor-theme-instalace][AwesomeWM Multicolor Theme Instalace]]
+  - [[#zajištění-resources-a-podpůrných-skriptů-pro-spolupráci-systémového-prostředí-external-resources][Zajištění resources a podpůrných skriptů pro spolupráci systémového prostředí (external resources)]]
+- [[#prohlídka-prostředí-a-programového-lua-řešení][Prohlídka prostředí a programového Lua řešení]]
+- [[#základní-ovládání][Základní ovládání]]
+- [[#změna-barevných-schémat-a-aplikací][Změna barevných schémat a aplikací]]
+- [[#změna-wallpapers-pro-jednotlivé-tagy][Změna wallpapers pro jednotlivé tagy]]
+  - [[#random-wallpaper-for-1st-tag][random wallpaper for 1st tag]]
+  - [[#different-wallpaper-per-actual-shown-tag][different wallpaper per actual shown tag]]
+  - [[#user-wallpaper-tags][user wallpaper tags]]
+  - [[#dev-tag-uses-as-default-colorscheme-wallpaper][dev tag uses as default colorscheme wallpaper]]
+- [[#propojení-aplikací-do-awesomewm-prostředí][Propojení aplikací do awesomewm prostředí]]
+  - [[#ukázka-s-tmux-a-nvim-propojení-s-awesomewm][ukázka s tmux a nvim propojení s awesomewm]]
+  - [[#propjení-barevných-schémat-a-unifikace-gnulinux-aplikací-s-prostředím-awesomewm-a-jeho-model-view-schématem][propjení barevných schémat a unifikace GNU/Linux aplikací s prostředím awesomewm a jeho model-view schématem]]
+  - [[#napojení-událostí-aplikací-s-naughty][napojení událostí aplikací s naughty]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * Awesome Ricing - Pokročilá Konfigurace
+Nyní již můžeme přikročit k plné a pokročilé konfiguraci AwesomeWM. Cest je nekonečné množství. *Já jsem zvolil cestu pro jednoduchou údržbu, vysokou efektivitu práce a kvalitní grafický design, který nesníží performance systému*. Podobně jako u xfce v minulých dílech. Zde je navíc možné vše integrovat dohromady, jakoukoliv věc si přizpůsobit svému workflow a propojit WM s vašimi pracovními skripty a nástroji.
 
+Vše, co tady bude probíráno je moje aktuální řešení problematiky. Je nutné pochopit, že ve chvíli, kdy máte framework awesomewm k dispozici, můžete si vše vytvořit podle vlastní představy, variant je tedy nekončné množství, toto je největší rozdíl od fixních WMs nebo DEs, které lze pouze omezeně konfigurovat.
 
-** The Eight-Queen in Programming in Lua Fourth Edition (8 královen z knihy programování Lua 4. vydání)
-#+BEGIN_SRC lua
-N = 8 -- board size
+#+html: <p align="left"><img src="images/mvc.png" /></p>
 
--- check whether position (n, c) is free from attacks
-function isplaceok (a, n ,c)
-    for i = 1, n - 1 do -- for each queen already placed
-        if (a[i] == c) or           -- same column?
-        (a[i] - i == c - n) or      -- same diagonal?
-        (a[i] + i == c + n) then    -- same diagonal?
-            return false -- place can be attacked
-        end
-    end
-    return true -- no attacks; place is OK
-end
+** Pattern MVC - Model, View, Controller
+Tento návrhový vzor umožňuje rozdělit funkcionalitu do 3 základních celků, které mezi sebou navzájem komunikují. Jeho nespornou výhodou je oddělení business logic od grafického zpracování a doménové vrstvy. Stav aplikace je držen v modelu, který je zpravováván controllerem, ve finále je předán model komponentě view, která jej zobrazí. Pro frontend je toto základ, kdy views může být celá řada, business logiky mají různou implementaci a je jednoduché udržovat a zprovávvat doménové objekty v rámci modelu i zcela jiným procovním teamem. Tento pattern je již starší, takže existuje řada modifikací a pokročilých nápadů, které jej doplňují, nicméně základní myšlenka zůstavá.
 
--- print a board
-function printsolution (a)
-    for i = 1, N do                 -- for each row
-        for j = 1, N do             -- and for each column
-            -- write "X" or "-" plus a space
-            io.write(a[i] == j and "X" or "-", " ")
-        end
-        io.write("\n")
-    end
-    io.write("\n")
-end
+My si tento pattern půjčíme a pomocí něj si myšlenkově upravíme defaultní ~rc.lua~, který již používáte z předchozí nahrávky. Defaultní konfigurace je tvořena pouze jedním konfiguračním souborem ~rc.lua~ a doplňkovým souborem ~theme.lua~, která umoňuje záměnu dle zvoleného theme. Myšlenka je správná, ale implementace je nevhodná. Brzy zjistíte, že jakákoliv větší grafická úprava zasahuje zejména do ~rc.lua~, neboť je velmi nekvalitně odděleno řízení controller a view. Naše první kroky tedy musí nutně vést k základnímu oddělení controller a model-view části.
 
--- add to board 'a' all queens from 'n' to 'N'
-function addqueen (a, n)
-    if n > N then -- all queens have been placed?
-        printsolution(a)
-    else -- try to place n-th queen
-        for c = 1, N do
-            if isplaceok(a, n, c) then
-                a[n] = c -- place n-th queen at column 'c'
-                addqueen(a, n + 1)
-            end
-        end
-    end
-end
+Provedeme zjednodušení na controller část a model-view část. Stav systému/grafického prostředí necháme držet ve vhodných sdílených lua tabulkách, které jsou sdíleny mezi oběma částmi. View část musíme nutně oddělit od ~rc.lua~, kde ponecháme striktně pouze controller.
 
--- run the program
-addqueen({}, 1)
-#+END_SRC
+*** *Model-View* - themes/.../theme.lua
+část je dobré rozdělit si na 3 základní podčásti:
++ *View Common Libs* - použitelné části, které budeme používat i dalších našich themes a views, toto přesuneme do vlastní lua knihovny
++ *View Color Schemes* - barevná schémata, která lze aplikovat na naše views a která jsou rovněž obecná.
++ *View Theme* - specifická část pro každé vaše jednotlivé theme. Definice a konfigurace všech grafických komponent a jejich chování, aplikace základních view coomon libs a color schemat do těchto komponent. Tato třetí část je jako jediná definována vždy od začátku pro každé vaše nové theme.
+**** View Common Libs
+Tato knihovna byla založena a uložena v adresáři =~/.config/awesome/fishlive=. Obsahuje colorschemes, nové layouts, wallpaper různorodá ovládání, widgety a utility.
+**** View Color Schemes
+Jsou zavedena pomocí vytvořeného příkazu =local theme = fishlive.colorscheme.default=, který do modelu/tabulky =theme= nastaví všechny důležité barvy, základní proměnné pro grafické view pro zvolené poslední barevné schéma, které lze dynamicky měnit.
+**** View Theme
+Je uloženo v každém =theme.lua= souboru. Tento soubor mám principiálně tvořen touto strukturou:
+- ~theme = fishlive.colorscheme.default~ Defaultní naplnění modelu daným barevných schématem a přípravou atributů modelu
+- ~model attribute settings~ Další specifické nastavení modelu dle zvoleného theme, okraje, fonty, notifikační události, taglist, layouts, menu
+- ~wallpaper support~ Nastavení adresářů a základních atributů pro ovládání wallpapers v awesomewm
+- ~widget declaration~ Vytvoření instanací widgetů a jejich specifické nakonfigurování do wibox grafických prvků, které lze umístit do prostředí
+- ~menu a application launcher declaration~ Deklarace grafické části menu dle modelu a controlleru
+- ~screen.connect_signal("request::desktop_decoration"~ Hlavní funkce, která provádí zavádění a hlavní činnost každého theme při jeho inicializačním procesu. Další body jsou již součástí tohoto procesu, volání této funkce, listenera.
+- ~tags and layout settings~ Nastavení tagů a layotů, taglistu pro dané theme
+- ~tasklist configuration~ Nastavení tasklistu pro zobrazování aktivně běžících aplikací systému
+- ~main panel configuration~ Sestavení hlavního top panelu ze všech wiboxes, taglistu, tasklistu, systray apod.
+- ~naughty configuration~ Nastavení notifikačních událostí a notification center a error handling support
+- ~wallpaper handling~ Nastavení wallpaper ovládání a propojení s controllerem. V mém případě mám rád wallpapers, takže mám i velmi silnou podporu vytvořenou v awesomewm.
 
-* Awesome základní instalace
+*** *Controller* - rc.lua
+je možné taky rovněž dělit na další celky. Nicméně já mám v tomto ohledu rád minimalismus a lepší údržbu, neměl jsem tedy důvod tento soubor rozdělovat, naopak jej strukturalizuji pomoci folding sekcí a používám jednotlivé listenery, které awesome API nabízí k oddělení jednotlivých funkcionálních bloků. Soubor je tedy pořád jeden ~rc.lua~, obsahuje však pouze vše co není grafika nebo grafická komponenta. Obsahuje tedy veškerou business logiku a workflow. Konkrétně obsahuje:
+- ~naughty.connect_signal("request::display_error"~ Error handling (zpracování výjimek a chyb v awesome a spojených aplikacích)
+- ~modkey, terminal, editor, menus...~ Definice základních proměnných pro základní klávesy, terminaly, editory, menu modely
+- ~tag.connect_signal("request::default_layouts"~ Definice základních layouts, které budete používat
+- ~beautiful.init~ Výběr model-view (theme), které bude napojedno a zobrazováno
+- ~awful.mouse.append_global_mousebindings~ Nadefinování myších událostí a chování myši
+- ~awful.keyboard.append_global_keybindings~ Definice globálních keybindings pro váš systém, rozděleno dle kategorií a účelu (folding style a separátní listeners)
+- ~client.connect_signal("request::default_keybindings"~ Clientská konfigurace keybindings pro jednotlivá zobrazovaná okna (client == běžící aplikace v okně)
+- ~ruled.client.connect_signal("request::rules" ...)~ Definice pravidel (rules) pro zobrazování aplikací, druhů aplikací a reakce oken na speciální events
+- ~special connect_signal events for specific handling~ Poslech dalších několik speciálních událostí pro specifické změny v awesomewm prostředí. Patří sem titlebars (horní lišta na okně), zpracování událostí, další chování myši apod.
+- ~awful.spawn.with_shell("~/.config/awesome/autorun.sh")~ Poslední částí ~rc.lua~ souboru je spuštění vašeho ~autorun.sh~ skriptu pro aplikace, služby a další přednastavení prostředí, ve kterém awesomewm běží.
+
+* AwesomeWM Multicolor Theme Instalace
+Demostraci principů si předvedeme na mém github projektu [[https://github.com/raven2cz/awesomewm-config][raven2cz/awesomewm-config]].
+** Zajištění resources a podpůrných skriptů pro spolupráci systémového prostředí (external resources)
 #+BEGIN_SRC bash
-paru -S awesome-git
-mkdir -p ~/.config/awesome
-cp /etc/xdg/awesome/rc.lua ~/.config/awesome/
-nvim ~/.xinitrc
+# 1. backup your awesomewm configuration first
+# 2. git clone repository to ~/.config/awesome
+git clone git@github.com:raven2cz/awesomewm-config.git ~/.config/awesome
+# 3. ensure prerequsities and dependencies
+paru -S rofi # rofi similar app like d-menu
+# my used wallpapers and event images
+mkdir ~/Pictures/wallpapers && git clone git@github.com:raven2cz/public-wallpapers.git
+# my global colorscheme switcher script
+# make steps which are described in the raven2cz/global-colorscheme.git project, you need themes for your terminal mainly
+mkdir ~/git/github && git clone git@github.com:raven2cz/global-colorscheme.git && cd ~/git/github/global-colorscheme && ./install.sh
+# rofi project themes
+mkdir ~/.config/rofi && git clone https://github.com/raven2cz/rofi-themes ~/.config/rofi
 #+END_SRC
 
-* Awesome základní konfigurace před spuštěním
-Editujte =~/.config/awesome/rc.lua=
-Zkopírujte požadované themes do vašeho prostředí: =/usr/share/awesome/themes/ Copy it to ~/.config/awesome/themes/=
-#+BEGIN_SRC lua
--- theme examples: default, zenburn
--- beautiful.init(gears.filesystem.get_configuration_dir() .. "/themes/default/theme.lua")
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
-beautiful.init(theme_path)
--- terminal and editor settings
-terminal = "kitty"
-editor = os.getenv("EDITOR") or "nvim"
+Těmito několika kroky jsme si připravili celé prostředí a zajistili potřebné grafické resources, které jsou v projektu používány. Nejedná se tedy pouze o jeden projekt, ale řadu několika projektů, které spolu spolupracují. Pamatujte, že vždy v GNU/Linux platí, každá věc musí dělat jednu dílčí činnost a dělat ji správně. Nedělejte multi věci, pak se to nabaluje na sebe a nefunguje. Dělejte malé komponenty, které se navzájem používají a dají se použít i pro další linuxová prostředí a uživatele...
+
+Já ještě používám externí aplikaci [[https://github.com/phillbush/xmenu][xmenu]], pro rychlé restartování, vypnutí počítače, oblíbené aplikace, kernel nástroje a skupiny aplikací. Nicméně to není podmínkou. Mám jej na klávesové zkratce ~super+w~. Viz například nahrávka [[https://youtu.be/wMrdCbrQjnQ][DistroTube XMenu]].
+
+Nyní již máte připraveno celé prostředí pro spuštění. Jediné co chybí je zkontrolovat váš =~/.xinitrc=, který by měl být nastaven již z minulé nahrávky a ~autorun.sh~, který pouze jako ukázku zde prezentuji.
+
+#+BEGIN_SRC bash
+#!/usr/bin/env bash
+function run {
+  if ! pgrep -f $1 ;
+  then
+    $@&
+  fi
+}
+
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+run /usr/lib/kactivitymanagerd
+#run /use/lib/polkit-kde-authentication-agent-1
+run /usr/lib/pam_kwallet_init
+run nm-applet
+run pamac-tray
+if ! pgrep -f cloud-drive-ui; then synology-drive start; fi
+run parcellite
+run clipmenud
+run volctl
+run /usr/bin/emacs --daemon
+run ~/.config/conky/start_conky ~/.config/conky/MX-CoreBlue/conkyrc2core
+run remmina -i
+run picom --experimental-backends --config $HOME/.config/picom/picom.conf
 #+END_SRC
 
-* Ověření a testování AwesomeWW Sandbox
-Použijeme Xephyr pro testování Xorg.
-#+BEGIN_SRC lua
-paru -S xorg-server-xephyr
-Xephyr :1 -ac -br -noreset -screen 1980x1024 &
-DISPLAY=:1.0 awesome -c ~/.config/awesome/rc.lua
+Autorun běžících aplikací a služeb je nespočet. Tento berte jako můj základ, pokud budou nejasnosti, napište to do youtube vlákna k nahrávce.
+
+Nyní již můžete spustit awesomewm: =startx ~/.xinitrc awesome=
+
+* Prohlídka prostředí a programového Lua řešení
+Po spuštění multicolor theme awesomewm projektu si můžeme prohlédnout detailněji strukturu projektu.
+#+BEGIN_SRC bash
+nvim ~/.config/awesome/rc.lua
+nvim ~/.config/awesmoe/themes/multicolor/theme.lua
 #+END_SRC
 
-Volitlně použít wrapper: =awmtt= (Awesome WM Testing Tool) z AUR
+Zde se opět vraťe k první kapitole a postupně projděte seznam ~rc.lua~ a ~theme.lua~ přímo v kódu si mozkově propojit, které části kódu patří k daným strukturám.
 
-* Defaultní ovládání awesome (AwesomeWM Default Keybindings)
-#+html: <p align="left"><img src="images/awesome-keybindings-default.png" /></p>
+Toto část je popsána primárně ve video nahrávce...
 
-* Defaultní rc.lua
-Pojďme si projít základní sekce a organizaci =nvim ~/.config/awesome/rc.lua=
+* Základní ovládání
+=super+ctrl+s=
+#+html: <p align="left"><img src="images/awesome-multicolor-keybindings.jpg" /></p>
+
+[TODO] Popis základních kláves a jejich organizace...
+
+* Změna barevných schémat a aplikací
+=super+c -> change color scheme, super+alt+c -> next colorschme wallpaper, super+ctrl+c -> previous colorscheme wallpaper=
+#+html: <p align="left"><img src="images/awesome-multicolor-theme.jpg" /></p>
+
+[TODO] Popis o co se jedná, jak změna probíhá.
+
+* Změna wallpapers pro jednotlivé tagy
+** random wallpaper for 1st tag
+** different wallpaper per actual shown tag
+** user wallpaper tags
+=super+alt+w next user wallpaper, super+ctrl+w previous user wallpaper=
+** dev tag uses as default colorscheme wallpaper
+=super+c -> change color scheme, super+alt+c -> next colorschme wallpaper, super+ctrl+c -> previous colorscheme wallpaper=
+
+* Propojení aplikací do awesomewm prostředí
+** ukázka s tmux a nvim propojení s awesomewm
+Spustit tmux, nvim a zobrazit =super+ctrl+s=, napojení na awesomewm a jeho klávesové propojení a možnosti controlleru
+** propjení barevných schémat a unifikace GNU/Linux aplikací s prostředím awesomewm a jeho model-view schématem
+** napojení událostí aplikací s naughty
+dokončená kompilace nebo testy vašich projektů v maven, komprimací, událostí z browseru, napojení cron tasků, stavů běhu aplikací na pozadí bash terminálu, dokončení kdenlive vytvoření videií a mnoho dalšího.
 
 * Důležité odkazy
++ [[https://github.com/raven2cz/awesomewm-config][raven2cz/awesomewm-config]]
 + [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
 + [[https://archlinux.org/][archlinux.org]]
 + [[https://wiki.archlinux.org/][wiki.achlinux.org]]
 + [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
 + [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
 + [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
++ [[https://github.com/raven2cz/public-wallpapers][raven2cz/public-wallpapers]]
++ [[https://github.com/raven2cz/global-colorscheme][raven2cz/global-colorschemes]]
