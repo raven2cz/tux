@@ -17,18 +17,11 @@
   - [[#pattern-mvc---model-view-controller][Pattern MVC - Model, View, Controller]]
 - [[#awesomewm-multicolor-theme-instalace][AwesomeWM Multicolor Theme Instalace]]
   - [[#zajištění-resources-a-podpůrných-skriptů-pro-spolupráci-systémového-prostředí-external-resources][Zajištění resources a podpůrných skriptů pro spolupráci systémového prostředí (external resources)]]
-- [[#prohlídka-prostředí-a-programového-lua-řešení][Prohlídka prostředí a programového Lua řešení]]
 - [[#základní-ovládání][Základní ovládání]]
 - [[#změna-barevných-schémat-a-aplikací][Změna barevných schémat a aplikací]]
 - [[#změna-wallpapers-pro-jednotlivé-tagy][Změna wallpapers pro jednotlivé tagy]]
-  - [[#random-wallpaper-for-1st-tag][random wallpaper for 1st tag]]
-  - [[#different-wallpaper-per-actual-shown-tag][different wallpaper per actual shown tag]]
-  - [[#user-wallpaper-tags][user wallpaper tags]]
-  - [[#dev-tag-uses-as-default-colorscheme-wallpaper][dev tag uses as default colorscheme wallpaper]]
+- [[#prohlídka-prostředí-a-programového-lua-řešení][Prohlídka prostředí a programového Lua řešení]]
 - [[#propojení-aplikací-do-awesomewm-prostředí][Propojení aplikací do awesomewm prostředí]]
-  - [[#ukázka-s-tmux-a-nvim-propojení-s-awesomewm][ukázka s tmux a nvim propojení s awesomewm]]
-  - [[#propjení-barevných-schémat-a-unifikace-gnulinux-aplikací-s-prostředím-awesomewm-a-jeho-model-view-schématem][propjení barevných schémat a unifikace GNU/Linux aplikací s prostředím awesomewm a jeho model-view schématem]]
-  - [[#napojení-událostí-aplikací-s-naughty][napojení událostí aplikací s naughty]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * Awesome Ricing - Pokročilá Konfigurace
@@ -134,17 +127,6 @@ Autorun běžících aplikací a služeb je nespočet. Tento berte jako můj zá
 
 Nyní již můžete spustit awesomewm: =startx ~/.xinitrc awesome=
 
-* Prohlídka prostředí a programového Lua řešení
-Po spuštění multicolor theme awesomewm projektu si můžeme prohlédnout detailněji strukturu projektu.
-#+BEGIN_SRC bash
-nvim ~/.config/awesome/rc.lua
-nvim ~/.config/awesmoe/themes/multicolor/theme.lua
-#+END_SRC
-
-Zde se opět vraťe k první kapitole a postupně projděte seznam ~rc.lua~ a ~theme.lua~ přímo v kódu si mozkově propojit, které části kódu patří k daným strukturám.
-
-Toto část je popsána primárně ve video nahrávce...
-
 * Základní ovládání
 =super+ctrl+s=
 #+html: <p align="left"><img src="images/awesome-multicolor-keybindings.jpg" /></p>
@@ -158,18 +140,29 @@ Toto část je popsána primárně ve video nahrávce...
 [TODO] Popis o co se jedná, jak změna probíhá.
 
 * Změna wallpapers pro jednotlivé tagy
-** random wallpaper for 1st tag
-** different wallpaper per actual shown tag
-** user wallpaper tags
++ random wallpaper for 1st tag
++ different wallpaper per actual shown tag
++ user wallpaper tags
 =super+alt+w next user wallpaper, super+ctrl+w previous user wallpaper=
-** dev tag uses as default colorscheme wallpaper
++ dev tag uses as default colorscheme wallpaper
 =super+c -> change color scheme, super+alt+c -> next colorschme wallpaper, super+ctrl+c -> previous colorscheme wallpaper=
 
+* Prohlídka prostředí a programového Lua řešení
+Po spuštění multicolor theme awesomewm projektu si můžeme prohlédnout detailněji strukturu projektu.
+#+BEGIN_SRC bash
+nvim ~/.config/awesome/rc.lua
+nvim ~/.config/awesmoe/themes/multicolor/theme.lua
+#+END_SRC
+
+Zde se opět vraťe k první kapitole a postupně projděte seznam ~rc.lua~ a ~theme.lua~ přímo v kódu si mozkově propojit, které části kódu patří k daným strukturám.
+
+Toto část je popsána primárně *ve druhé* video nahrávce věnované awesomewm ricing...
+
 * Propojení aplikací do awesomewm prostředí
-** ukázka s tmux a nvim propojení s awesomewm
++ ukázka s tmux a nvim propojení s awesomewm
 Spustit tmux, nvim a zobrazit =super+ctrl+s=, napojení na awesomewm a jeho klávesové propojení a možnosti controlleru
-** propjení barevných schémat a unifikace GNU/Linux aplikací s prostředím awesomewm a jeho model-view schématem
-** napojení událostí aplikací s naughty
++ propjení barevných schémat a unifikace GNU/Linux aplikací s prostředím awesomewm a jeho model-view schématem
++ napojení událostí aplikací s naughty
 dokončená kompilace nebo testy vašich projektů v maven, komprimací, událostí z browseru, napojení cron tasků, stavů běhu aplikací na pozadí bash terminálu, dokončení kdenlive vytvoření videií a mnoho dalšího.
 
 * Důležité odkazy
