@@ -32,6 +32,9 @@
 + Screenshot Gallery: https://mipmip.github.io/awesomewm-screenshots/
 + API Documentation: https://awesomewm.org/apidoc/
 + My AwesomeWM ricing YoutTube record: [[https://youtu.be/-Fo7mB6_Wtg ][Awesome není pouze Tiling Window Manager]]
++ Awesome Discord: https://discord.gg/BPat4F87dg
++ StackOverflow: https://stackoverflow.com/questions/tagged/awesome-wm
++ Reddit: https://www.reddit.com/r/awesomewm/
 
 * LUA - Programming Language
 #+html: <p align="left"><img src="images/lua-info.png" /></p>
@@ -122,6 +125,7 @@ editor = os.getenv("EDITOR") or "nvim"
 Use Xephyr for Xorg testing.
 #+BEGIN_SRC lua
 paru -S xorg-server-xephyr
+unset XDG_SEAT
 Xephyr :1 -ac -br -noreset -screen 1980x1024 &
 DISPLAY=:1.0 awesome -c ~/.config/awesome/rc.lua
 #+END_SRC
