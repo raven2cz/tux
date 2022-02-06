@@ -49,30 +49,30 @@ Tato knihovna byla založena a uložena v adresáři =~/.config/awesome/fishlive
 Jsou zavedena pomocí vytvořeného příkazu =local theme = fishlive.colorscheme.default=, který do modelu/tabulky =theme= nastaví všechny důležité barvy, základní proměnné pro grafické view pro zvolené poslední barevné schéma, které lze dynamicky měnit.
 **** View Theme
 Je uloženo v každém =theme.lua= souboru. Tento soubor mám principiálně tvořen touto strukturou:
-- ~theme = fishlive.colorscheme.default~ Defaultní naplnění modelu daným barevných schématem a přípravou atributů modelu
-- ~model attribute settings~ Další specifické nastavení modelu dle zvoleného theme, okraje, fonty, notifikační události, taglist, layouts, menu
-- ~wallpaper support~ Nastavení adresářů a základních atributů pro ovládání wallpapers v awesomewm
-- ~widget declaration~ Vytvoření instanací widgetů a jejich specifické nakonfigurování do wibox grafických prvků, které lze umístit do prostředí
-- ~menu a application launcher declaration~ Deklarace grafické části menu dle modelu a controlleru
-- ~screen.connect_signal("request::desktop_decoration"~ Hlavní funkce, která provádí zavádění a hlavní činnost každého theme při jeho inicializačním procesu. Další body jsou již součástí tohoto procesu, volání této funkce, listenera.
-- ~tags and layout settings~ Nastavení tagů a layotů, taglistu pro dané theme
-- ~tasklist configuration~ Nastavení tasklistu pro zobrazování aktivně běžících aplikací systému
-- ~main panel configuration~ Sestavení hlavního top panelu ze všech wiboxes, taglistu, tasklistu, systray apod.
-- ~naughty configuration~ Nastavení notifikačních událostí a notification center a error handling support
-- ~wallpaper handling~ Nastavení wallpaper ovládání a propojení s controllerem. V mém případě mám rád wallpapers, takže mám i velmi silnou podporu vytvořenou v awesomewm.
+- =theme = fishlive.colorscheme.default= Defaultní naplnění modelu daným barevných schématem a přípravou atributů modelu
+- =model attribute settings= Další specifické nastavení modelu dle zvoleného theme, okraje, fonty, notifikační události, taglist, layouts, menu
+- =wallpaper support= Nastavení adresářů a základních atributů pro ovládání wallpapers v awesomewm
+- =widget declaration= Vytvoření instanací widgetů a jejich specifické nakonfigurování do wibox grafických prvků, které lze umístit do prostředí
+- =menu a application launcher declaration= Deklarace grafické části menu dle modelu a controlleru
+- =screen.connect_signal("request::desktop_decoration"= Hlavní funkce, která provádí zavádění a hlavní činnost každého theme při jeho inicializačním procesu. Další body jsou již součástí tohoto procesu, volání této funkce, listenera.
+- =tags and layout settings= Nastavení tagů a layotů, taglistu pro dané theme
+- =tasklist configuration= Nastavení tasklistu pro zobrazování aktivně běžících aplikací systému
+- =main panel configuration= Sestavení hlavního top panelu ze všech wiboxes, taglistu, tasklistu, systray apod.
+- =naughty configuration= Nastavení notifikačních událostí a notification center a error handling support
+- =wallpaper handling= Nastavení wallpaper ovládání a propojení s controllerem. V mém případě mám rád wallpapers, takže mám i velmi silnou podporu vytvořenou v awesomewm.
 
 *** *Controller* - rc.lua
 je možné taky rovněž dělit na další celky. Nicméně já mám v tomto ohledu rád minimalismus a lepší údržbu, neměl jsem tedy důvod tento soubor rozdělovat, naopak jej strukturalizuji pomoci folding sekcí a používám jednotlivé listenery, které awesome API nabízí k oddělení jednotlivých funkcionálních bloků. Soubor je tedy pořád jeden ~rc.lua~, obsahuje však pouze vše co není grafika nebo grafická komponenta. Obsahuje tedy veškerou business logiku a workflow. Konkrétně obsahuje:
-- ~naughty.connect_signal("request::display_error"~ Error handling (zpracování výjimek a chyb v awesome a spojených aplikacích)
-- ~modkey, terminal, editor, menus...~ Definice základních proměnných pro základní klávesy, terminaly, editory, menu modely
-- ~tag.connect_signal("request::default_layouts"~ Definice základních layouts, které budete používat
-- ~beautiful.init~ Výběr model-view (theme), které bude napojedno a zobrazováno
-- ~awful.mouse.append_global_mousebindings~ Nadefinování myších událostí a chování myši
-- ~awful.keyboard.append_global_keybindings~ Definice globálních keybindings pro váš systém, rozděleno dle kategorií a účelu (folding style a separátní listeners)
-- ~client.connect_signal("request::default_keybindings"~ Clientská konfigurace keybindings pro jednotlivá zobrazovaná okna (client == běžící aplikace v okně)
-- ~ruled.client.connect_signal("request::rules" ...)~ Definice pravidel (rules) pro zobrazování aplikací, druhů aplikací a reakce oken na speciální events
-- ~special connect_signal events for specific handling~ Poslech dalších několik speciálních událostí pro specifické změny v awesomewm prostředí. Patří sem titlebars (horní lišta na okně), zpracování událostí, další chování myši apod.
-- ~awful.spawn.with_shell("~/.config/awesome/autorun.sh")~ Poslední částí ~rc.lua~ souboru je spuštění vašeho ~autorun.sh~ skriptu pro aplikace, služby a další přednastavení prostředí, ve kterém awesomewm běží.
+- =naughty.connect_signal("request::display_error"= Error handling (zpracování výjimek a chyb v awesome a spojených aplikacích)
+- =modkey, terminal, editor, menus...= Definice základních proměnných pro základní klávesy, terminaly, editory, menu modely
+- =tag.connect_signal("request::default_layouts"= Definice základních layouts, které budete používat
+- =beautiful.init= Výběr model-view (theme), které bude napojedno a zobrazováno
+- =awful.mouse.append_global_mousebindings= Nadefinování myších událostí a chování myši
+- =awful.keyboard.append_global_keybindings= Definice globálních keybindings pro váš systém, rozděleno dle kategorií a účelu (folding style a separátní listeners)
+- =client.connect_signal("request::default_keybindings"= Clientská konfigurace keybindings pro jednotlivá zobrazovaná okna (client == běžící aplikace v okně)
+- =ruled.client.connect_signal("request::rules" ...)= Definice pravidel (rules) pro zobrazování aplikací, druhů aplikací a reakce oken na speciální events
+- =special connect_signal events for specific handling= Poslech dalších několik speciálních událostí pro specifické změny v awesomewm prostředí. Patří sem titlebars (horní lišta na okně), zpracování událostí, další chování myši apod.
+- =awful.spawn.with_shell("~/.config/awesome/autorun.sh")= Poslední částí ~rc.lua~ souboru je spuštění vašeho ~autorun.sh~ skriptu pro aplikace, služby a další přednastavení prostředí, ve kterém awesomewm běží.
 
 * AwesomeWM Multicolor Theme Instalace
 Demostraci principů si předvedeme na mém github projektu [[https://github.com/raven2cz/awesomewm-config][raven2cz/awesomewm-config]].
@@ -131,13 +131,18 @@ Nyní již můžete spustit awesomewm: =startx ~/.xinitrc awesome=
 =super+ctrl+s=
 #+html: <p align="left"><img src="images/awesome-multicolor-keybindings.jpg" /></p>
 
-[TODO] Popis základních kláves a jejich organizace...
+Základní ovládání se točí kolem klávesy =Super= (modkey), která je výhdardně určena pro AW prostředí. Samostatné =alt, ctrl a shift= nikdy nejsou použity, pouze ve vazbě. Toto je nezbytné pro další všechna programová prostředí a aplikace. Výhradně se snažte nastavovat ve svých prostředích X11 bindingkeys. Například DWM svůj default používá velmi nevhodně.
+
+S učením klávesových zkratek nespěchejte, doporučuji se je osvojit, jsou totiž sebrány z nejlepších WM současnosti a nastaveny pro nejlepší ergonomii a efektivní práci. Několik rad bude uvedeno ve videu.
 
 * Změna barevných schémat a aplikací
 =super+c -> change color scheme, super+alt+c -> next colorschme wallpaper, super+ctrl+c -> previous colorscheme wallpaper=
 #+html: <p align="left"><img src="images/awesome-multicolor-theme.jpg" /></p>
 
-[TODO] Popis o co se jedná, jak změna probíhá.
+Změna barevného schématu probíhá na třech úrovních:
++ Nejprve se zavolá globální skript =global_colorscheme.sh=, který změní podporované externí aplikace. V aktuální verzi mezi ně patří kitty, alacritty, doom emacs, atom. Dojde k okamžité dynamické změně.
++ Pak dojde ke změně základních barev pro conky aplikaci. Ta vytváří změnu v konfiguračním souboru, který je načítán conky knihovnou. Dojde k okamžité dynamické změně.
++ Naposled dojde k přepsání souboru =last.lua= v multicolor scheme AW, kam se nastaví aktuální zvolené schéma a dojde k restartu AW. Celkově se tak završí celkové přenastavení všech schémat celého systému.
 
 * Změna wallpapers pro jednotlivé tagy
 + random wallpaper for 1st tag
