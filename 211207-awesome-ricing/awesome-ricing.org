@@ -15,6 +15,7 @@
 * Obsah :toc:
 - [[#awesome-ricing---pokročilá-konfigurace][Awesome Ricing - Pokročilá Konfigurace]]
   - [[#pattern-mvc---model-view-controller][Pattern MVC - Model, View, Controller]]
+  - [[#základ-dobrého-designu-a-dlouhodobého-úspěšného-programování][Základ dobrého designu a dlouhodobého úspěšného programování]]
 - [[#awesomewm-multicolor-theme-instalace][AwesomeWM Multicolor Theme Instalace]]
   - [[#zajištění-resources-a-podpůrných-skriptů-pro-spolupráci-systémového-prostředí-external-resources][Zajištění resources a podpůrných skriptů pro spolupráci systémového prostředí (external resources)]]
 - [[#základní-ovládání][Základní ovládání]]
@@ -73,6 +74,20 @@ je možné taky rovněž dělit na další celky. Nicméně já mám v tomto ohl
 - =ruled.client.connect_signal("request::rules" ...)= Definice pravidel (rules) pro zobrazování aplikací, druhů aplikací a reakce oken na speciální events
 - =special connect_signal events for specific handling= Poslech dalších několik speciálních událostí pro specifické změny v awesomewm prostředí. Patří sem titlebars (horní lišta na okně), zpracování událostí, další chování myši apod.
 - =awful.spawn.with_shell("~/.config/awesome/autorun.sh")= Poslední částí ~rc.lua~ souboru je spuštění vašeho ~autorun.sh~ skriptu pro aplikace, služby a další přednastavení prostředí, ve kterém awesomewm běží.
+
+** Základ dobrého designu a dlouhodobého úspěšného programování
+Úspěchem dobrého programování a nejlepšího designu jsou 3 věci:
++ Jednoduchost a přehlednost
++ Vlastní knihovna / framework
++ Omezení a minimalismus třetích stran
+
+Vždy nejlepší řešení je to nejjednodušší. Je velmi obtížné se k němu dostat, protože lidé přemýšlí komplexně. Vždy dbejte na tom se k němu dostat a mít vše přehledné i pro další lidi, je to v podstatě zásada free open source.
+
+Obecné věci, které používáte a určtiě budete používat i dále si ukládejte do svého frameworku a knihoven. Toto je nutný základ. Vlastní přehledný framework je naprostým základem pro každého programátora, ať už děláte v jakémkoliv jazyce. Správná správa balíčků a knihoven je základ, pouze takto lze se neustále zdokonalovat, vyvíjet a minimalizovat chyby, stabilizací frameworku.
+
+Používání 3 stran je potřeba minimalizovat na rozumnou úroveň. Knihovny musí být otevřené, aktivní a opět jednoduché. Nikdy neberte nic komplikovaného. Vždy dejte přednost svému řešení, pokud je v časovém rámci. Pečlivě volte knihovny, které potom již velmi težce lze opouštět!
+
+V našem případě je zde vytvořen základní lua balíček =fishlive=, který slouží k rozšíření frameworku awesome pro moje osobní potřeby a přístupy. **Vytvořte si svůj vlastní.**
 
 * AwesomeWM Multicolor Theme Instalace
 Demostraci principů si předvedeme na mém github projektu [[https://github.com/raven2cz/awesomewm-config][raven2cz/awesomewm-config]].
