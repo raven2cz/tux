@@ -30,8 +30,6 @@ Nyní již můžeme přikročit k plné a pokročilé konfiguraci AwesomeWM. Ces
 
 Vše, co tady bude probíráno je moje aktuální řešení problematiky. Je nutné pochopit, že ve chvíli, kdy máte framework awesomewm k dispozici, můžete si vše vytvořit podle vlastní představy, variant je tedy nekončné množství, toto je největší rozdíl od fixních WMs nebo DEs, které lze pouze omezeně konfigurovat.
 
-#+html: <p align="left"><img src="images/mvc.png" /></p>
-
 ** Základ dobrého designu a dlouhodobého úspěšného programování
 Úspěchem dobrého programování a nejlepšího designu jsou 3 věci:
 + Jednoduchost a přehlednost
@@ -45,6 +43,8 @@ Obecné věci, které používáte a určtiě budete používat i dále si uklá
 Používání 3 stran je potřeba minimalizovat na rozumnou úroveň. Knihovny musí být otevřené, aktivní a opět jednoduché. Nikdy neberte nic komplikovaného. Vždy dejte přednost svému řešení, pokud je v časovém rámci. Pečlivě volte knihovny, které potom již velmi težce lze opouštět!
 
 V našem případě je zde vytvořen základní lua balíček =fishlive=, který slouží k rozšíření frameworku awesome pro moje osobní potřeby a přístupy. **Vytvořte si svůj vlastní.**
+
+#+html: <p align="left"><img src="images/mvc.png" /></p>
 
 ** Pattern MVC - Model, View, Controller
 Tento návrhový vzor umožňuje rozdělit funkcionalitu do 3 základních celků, které mezi sebou navzájem komunikují. Jeho nespornou výhodou je oddělení business logic od grafického zpracování a doménové vrstvy. Stav aplikace je držen v modelu, který je zpravováván controllerem, ve finále je předán model komponentě view, která jej zobrazí. Pro frontend je toto základ, kdy views může být celá řada, business logiky mají různou implementaci a je jednoduché udržovat a zprovávvat doménové objekty v rámci modelu i zcela jiným procovním teamem. Tento pattern je již starší, takže existuje řada modifikací a pokročilých nápadů, které jej doplňují, nicméně základní myšlenka zůstavá.
