@@ -26,6 +26,8 @@
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * Awesome Ricing - Pokročilá Konfigurace
+English document variant [[awesome-ricing-en.org][here]].
+
 Nyní již můžeme přikročit k plné a pokročilé konfiguraci AwesomeWM. Cest je nekonečné množství. *Já jsem zvolil cestu pro jednoduchou údržbu, vysokou efektivitu práce a kvalitní grafický design, který nesníží performance systému*. Podobně jako u xfce v minulých dílech. Zde je navíc možné vše integrovat dohromady, jakoukoliv věc si přizpůsobit svému workflow a propojit WM s vašimi pracovními skripty a nástroji.
 
 Vše, co tady bude probíráno je moje aktuální řešení problematiky. Je nutné pochopit, že ve chvíli, kdy máte framework awesomewm k dispozici, můžete si vše vytvořit podle vlastní představy, variant je tedy nekončné množství, toto je největší rozdíl od fixních WMs nebo DEs, které lze pouze omezeně konfigurovat.

@@ -12,7 +12,7 @@
 #+html: <p align="left"><img src="images/awesomewm-1.jpg" /></p>
 #+html: <p align="left"><img src="images/awesomewm-2.jpg" /></p>
 
-* Obsah :toc:
+* Content:toc:
 - [[#awesome-ricing---advanced-configuration][Awesome Ricing - Advanced Configuration]]
   - [[#the-basis-of-good-design-and-long-term-successful-programming][The basis of good design and long-term successful programming]]
   - [[#pattern-mvc---model-view-controller][Pattern MVC - Model, View, Controller]]
