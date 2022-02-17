@@ -1,0 +1,197 @@
+#+TITLE: AwesomeWM Ricing
+#+DESCRIPTION: AwesomeWM ricing pokročilá konfigurace
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/awesome-ricing.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+#+html: <p align="left"><img src="images/awesomewm-1.jpg" /></p>
+#+html: <p align="left"><img src="images/awesomewm-2.jpg" /></p>
+
+* Obsah :toc:
+- [[#awesome-ricing---advanced-configuration][Awesome Ricing - Advanced Configuration]]
+  - [[#the-basis-of-good-design-and-long-term-successful-programming][The basis of good design and long-term successful programming]]
+  - [[#pattern-mvc---model-view-controller][Pattern MVC - Model, View, Controller]]
+- [[#awesomewm-multicolor-theme-installation][AwesomeWM Multicolor Theme Installation]]
+  - [[#ensure-resources-and-support-scripts-for-system-environment-cooperation-external-resources][Ensure resources and support scripts for system environment cooperation (external resources)]]
+- [[#basic-control][Basic Control]]
+- [[#change-of-color-schemes-and-applications][Change of Color Schemes and Applications]]
+- [[#change-of-wallpapers-for-each-tag][Change of Wallpapers for each Tag]]
+- [[#first-look-environment-and-software-lua-solution][First Look: Environment and Software Lua Solution]]
+- [[#connection-of-application-to-the-awesomewm-environment][Connection of Application to the AwesomeWM Environment]]
+- [[#important-links][Important Links]]
+
+* Awesome Ricing - Advanced Configuration
+We can move on to the full and advanced configuration of AwesomeWM now. There are the infinite possible ways. *I have chosen the path for easy maintenance, high work efficiency and quality graphic design, which does not reduce the performance of the system.* Similar to xfce in previous episodes. In addition, it is possible to integrate everything together, adapt any thing to your workflow and connect WM with your work scripts and tools.
+
+Everything what will be discussed here is my current solution to the problem. It is necessary to understand that this moment you have the awesomewm framework available, you can create everything according to your own ideas, so there are the infinite number of variants, this is the biggest difference from fixed WMs or DEs, which can be configured to a limited extent only.
+
+** The basis of good design and long-term successful programming
+There are 3 points to success programming and the best design:
++ Simplicity and clarity (documented!)
++ Personal library / framework
++ Third party restrictions and minimalism
+
+The best solution is always the easiest. It is very difficult to get to it because people think comprehensively. Always make sure to get to simplicity and have everything clear to other people, it is basically the principle of free open source.
+
+Store the implemented general common tools, components and services in your framework and libraries (personal open/private libs). This is a necessary basis! The clear your framework itself is the absolute basis for every programmer, no matter what language you do. Proper management of packages and libraries is essential, only in this way can errors be constantly fixed, developed and minimized by stabilizing the framework.
+
+The usage of 3rd party libs needs to be minimized to a reasonable level. Libraries must be open, active and simple. Never take anything complicated. Always prioritize your solution if it is within the accepted time frame. Carefully choose the libraries, which are then very difficult to leave!
+
+In our case, the basic lua package =fishlive= is created here, which is used to extend the awesome framework for my personal needs and approaches. **Create your own.**
+
+#+html: <p align="left"><img src="images/mvc.png" /></p>
+
+** Pattern MVC - Model, View, Controller
+This design pattern allows you to divide the functionality into 3 basic units that communicate with each other. Its undeniable advantage is the separation of business logic from graphics processing and domain layer. The state of the application is held in the model, which is managed by the controller, in the final the model is passed to the view component, which displays it. For the front-end, this is the basis where view styles can be infinite, business logics have different implementations, and it is easy to maintain and manage domain objects within the model and by a completely different work team. This pattern is older, so there are a number of modifications and advanced ideas that complement it, but the basic idea remains.
+
+We will borrow this pattern and use it to mentally modify the default ~rc.lua~, which you already use from the previous youtube recording. The default configuration consists of one configuration file ~rc.lua~ only and an additional file ~theme.lua~, which allows replacement according to the selected theme. The idea of default file is correct, but the implementation is inappropriate. You will soon find that any major graphical design mainly affects ~rc.lua~, as the controller and view control are separated very poorly. Our first steps must therefore necessarily lead to a basic separation of the controller and model-view parts.
+
+We will make a simplification on the controller part and the model-view part. We keep the state of the system / graphical environment in suitable shared lua tables (model), which are shared between the two parts. We must necessarily separate the view part from ~rc.lua~, where we strictly leave only the controller.
+
+*** *Model-View* - themes/.../theme.lua
+this part is good to divide into 3 basic subsections:
++ *View Common Libs* - usable parts that we will use in our other themes and views, we will move this to our own lua library.
++ *View Color Schemes* - color schemes that can be applied to our views and are also general.
++ *View Theme* - specific section for each your individual themes. Definition and configuration of all graphical components and their behavior, application of basic view common libs and color schemes to these components. This third part is just one defined from the beginning for each of your new theme.
+
+**** View Common Libs
+This library was created and stored in the =~/.config/awesome/fishlive= directory. Contains colorschemes, new layouts, miscellaneous wallpaper controls, widgets and utilities.
+**** View Color Schemes
+They are introduced using the created lua command ~local theme = fishlive.colorscheme.default~, which sets all important colors in the model / table =theme=, basic variables for the graphical view for the ~selected last color scheme~, which can be changed dynamically.
+**** View Theme
+It is stored in each =theme.lua= file. This file basically consists of this structure:
+- ~theme = fishlive.colorscheme.default~ Default filling of the model with the given color scheme and preparation of model attributes.
+- =model attribute settings= Other specific model settings according to the selected theme, borders, fonts, notification events, taglist, layouts, menu.
+- =wallpaper support= Setting directories and basic attributes for controlling wallpapers in ~awesomewm~.
+- =widget declaration= Creating widget instances and its specific configuration into wibox graphical elements that can be placed in the environment.
+- =menu and application launcher declaration= Declaration of the graphical part of the menu according to the model and controller.
+- =screen.connect_signal ("request desktop_decoration")= The main function that performs the loading and main operation of each theme during its initialization process. Other points are already part of this process, calling this function, the listener.
+- =tags and layout settings= Tag and layout settings, taglist for the given theme.
+- =tasklist configuration= Tasklist configuration for displaying actively running system applications.
+- =main panel configuration= Build the main top panel from all wiboxes, taglist, tasklist, systray, etc.
+- =naughty configuration= Notification event settings and notification center and error handling support.
+- =wallpaper handling= Wallpaper control settings and connection to the controller. In my case, I like wallpapers, so I have very strong support for wallpapers in awesomewm.
+
+*** *Controller* - rc.lua
+it is also possible to divide it into smaller other units. However, I like minimalism and better maintenance, so I had no reason to divide this file, on the contrary, I structure it with the help of folding sections (neovim support) and use individual listeners, which awesome API offers to separate individual functional blocks. So the file is still one ~rc.lua~, but it contains only everything that is *NOT* a graphic or graphic component. It therefore contains all the business logic and workflow. Specifically, it contains:
+- =naughty.connect_signal("request display_error")= Error handling (handling exceptions and errors in awesome and connected applications).
+- =modkey, terminal, editor, menus= Definition of basic variables for basic keys, terminals, editors, menu models.
+- =tag.connect_signal("request default_layouts")= Definitions of basic layouts to use.
+- =beautiful.init= Select model-view (theme) to be connected and displayed.
+- =awful.mouse.append_global_mousebindings= Defining mouse events and mouse behavior.
+- =awful.keyboard.append_global_keybindings= Definition of global keybindings for your system, divided by categories and purpose (folding style and separate listeners).
+- =client.connect_signal("request default_keybindings")= Client configuration of keybindings for individual displayed windows (client == running applications in the window).
+- =ruled.client.connect_signal("request rules", ...)= Defining rules for displaying applications, application types and window responses to special events.
+- =special connect_signal events for specific handling= Listen to some other special events for specific handling in awesomewm environment. These include titlebars (top bar on the window), event handling, other mouse behavior, etc.
+- =awful.spawn.with_shell("$HOME/.config/awesome/autorun.sh")= The last part of the ~rc.lua~ file is to run your ~autorun.sh~ script for applications, services and other environment presets in which awesomewm running.
+
+* AwesomeWM Multicolor Theme Installation
+I will demonstrate the principles on my github project [[https://github.com/raven2cz/awesomewm-config][raven2cz/awesomewm-config.]]
+** Ensure resources and support scripts for system environment cooperation (external resources)
+#+BEGIN_SRC bash
+# 1. backup your awesomewm configuration first
+# 2. git clone repository to ~/.config/awesome
+git clone git@github.com:raven2cz/awesomewm-config.git ~/.config/awesome
+# 3. ensure prerequsities and dependencies
+paru -S rofi # rofi similar app like d-menu
+# my used wallpapers and event images
+mkdir ~/Pictures/wallpapers && git clone git@github.com:raven2cz/public-wallpapers.git
+# my global colorscheme switcher script
+# make steps which are described in the raven2cz/global-colorscheme.git project, you need themes for your terminal mainly
+mkdir ~/git/github && git clone git@github.com:raven2cz/global-colorscheme.git && cd ~/git/github/global-colorscheme && ./install.sh
+# rofi project themes
+mkdir ~/.config/rofi && git clone https://github.com/raven2cz/rofi-themes ~/.config/rofi
+#+END_SRC
+
+With these few steps, we prepared the entire environment and provided the necessary graphical resources that are used in the project. So it is not just one project, but a series of several projects that work together. Remember that in GNU/Linux, every thing has to do is just one thing and do it right. Don't do multi things, then it packs on itself and doesn't work. Make small components that use each other and can be used for other Linux environments and users ...
+
+I still use an external application [[https://github.com/phillbush/xmenu][xmenu]], for quick reboots, computer shutdowns, favorite applications, kernel tools and application groups. However, this is not a condition. I have it on the keyboard shortcut ~super+w~. See, for example, the recording [[https://youtu.be/wMrdCbrQjnQ][DistroTube XMenu]].
+
+You have the entire environment ready to run now. The only thing missing is to check your =~/.xinitrc=, which should be set from the last youtube recording, and ~autorun.sh~, which I present here as an example only.
+#+BEGIN_SRC bash
+#!/usr/bin/env bash
+function run {
+  if ! pgrep -f $1 ;
+  then
+    $@&
+  fi
+}
+
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+run /usr/lib/kactivitymanagerd
+#run /use/lib/polkit-kde-authentication-agent-1
+run /usr/lib/pam_kwallet_init
+run nm-applet
+run pamac-tray
+if ! pgrep -f cloud-drive-ui; then synology-drive start; fi
+run parcellite
+run clipmenud
+run volctl
+run /usr/bin/emacs --daemon
+run ~/.config/conky/start_conky ~/.config/conky/MX-CoreBlue/conkyrc2core
+run remmina -i
+run picom --experimental-backends --config $HOME/.config/picom/picom.conf
+#+END_SRC
+
+Autorun running applications and services is innumerable. Take this as my basis, if there is any ambiguity, write it in the youtube thread under recording.
+
+You can run awesomewm now: =startx ~/.xinitrc awesome=
+
+* Basic Control
+=super+ctrl+s=
+#+html: <p align="left"><img src="images/awesome-multicolor-keybindings.jpg" /></p>
+
+The basic control is based on =Super= (modkey) key, which is ideal for AW environments. Separate =alt, ctrl and shift= are never used, only in binding with modkey. This is necessary for all other programming environments and applications. Try keep this X11 bindingkeys in your environments. For example, DWM =alt= key uses its default very inappropriately.
+
+Do not rush to learn keyboard shortcuts, I recommend mastering them, because they are collected from the best WMs and setup for the best ergonomics and efficient work. Some advice will be given in the video.
+
+* Change of Color Schemes and Applications
+=super+c -> change color scheme, super+alt+c -> next colorschme wallpaper, super+ctrl+c -> previous colorscheme wallpaper=
+#+html: <p align="left"><img src="images/awesome-multicolor-theme.jpg" /></p>
+
+The color scheme changes at three levels:
++ First, a global script =global_colorscheme.sh= is called to change the supported external applications. In the current version, these include kitty, alacritty, doom emacs, atom, neovim. It perfoms an immediate dynamic change.
++ Then the base colors for the conky application will change. This creates a change in the configuration file that is loaded by the conky lua library. It performs an immediate dynamic change.
++ The file =last.lua= in the multicolor scheme AW will be overwritten as last, where the currently selected scheme will be set and AW will be restarted. Overall, this completes the overall reconfiguration of all schemes of the entire system.
+
+* Change of Wallpapers for each Tag
++ random wallpaper for 1st tag
++ different wallpaper per actual shown tag
++ user wallpaper tags
+=super+alt+w next user wallpaper, super+ctrl+w previous user wallpaper=
++ dev tag uses as default colorscheme wallpaper
+=super+c -> change color scheme, super+alt+c -> next colorschme wallpaper, super+ctrl+c -> previous colorscheme wallpaper=
+
+* First Look: Environment and Software Lua Solution
+After launching the multicolor theme awesomewm project, we can look at the project structure in more detail.
+#+BEGIN_SRC bash
+nvim ~/.config/awesome/rc.lua
+nvim ~/.config/awesmoe/themes/multicolor/theme.lua
+#+END_SRC
+
+Here we return to the first chapter and gradually go through the list of ~rc.lua~ and ~theme.lua~ directly in the code to brain-tune which parts of the code belong to the given structures.
+
+This part is described primarily *in the second* video dedicated to awesomewm ricing...
+
+* Connection of Application to the AwesomeWM Environment
++ demo with tmux and nvim link with awesomewm
+Run tmux, nvim and show help =super + ctrl + s=, connection to awesomewm and its keyboard connection and controller options
++ integration of color schemes and unification of GNU/Linux applications with the awesomewm environment and its model-view scheme
++ linking application events with naughty
+completed compilation or testing of your projects in maven, compression, browser events, connection of cron tasks, running states of applications in the background of the bash terminal, completion of kdenlive video creation and much more.
+
+* Important Links
++ [[https://github.com/raven2cz/awesomewm-config][raven2cz/awesomewm-config]]
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Linux World]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
++ [[https://github.com/raven2cz/public-wallpapers][raven2cz/public-wallpapers]]
++ [[https://github.com/raven2cz/global-colorscheme][raven2cz/global-colorschemes]]
