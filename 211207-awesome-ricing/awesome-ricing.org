@@ -44,7 +44,7 @@ Obecné věci, které používáte a určtiě budete používat i dále si uklá
 
 Používání 3 stran je potřeba minimalizovat na rozumnou úroveň. Knihovny musí být otevřené, aktivní a opět jednoduché. Nikdy neberte nic komplikovaného. Vždy dejte přednost svému řešení, pokud je v časovém rámci. Pečlivě volte knihovny, které potom již velmi težce lze opouštět!
 
-V našem případě je zde vytvořen základní lua balíček =fishlive=, který slouží k rozšíření frameworku awesome pro moje osobní potřeby a přístupy. **Vytvořte si svůj vlastní.**
+V našem případě je zde vytvořen základní lua balíček =fishlive=, který slouží k rozšíření frameworku awesome pro moje osobní potřeby a přístupy. *Vytvořte si svůj vlastní.*
 
 #+html: <p align="left"><img src="images/mvc.png" /></p>
 
@@ -145,6 +145,9 @@ Autorun běžících aplikací a služeb je nespočet. Tento berte jako můj zá
 Nyní již můžete spustit awesomewm: =startx ~/.xinitrc awesome=
 
 * Základní ovládání
+
+Complete Guide [[awesome-keybindings-en.org][here]].
+
 =super+ctrl+s=
 #+html: <p align="left"><img src="images/awesome-multicolor-keybindings.jpg" /></p>
 

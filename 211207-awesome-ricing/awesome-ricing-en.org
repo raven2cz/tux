@@ -1,8 +1,8 @@
 #+TITLE: AwesomeWM Ricing
-#+DESCRIPTION: AwesomeWM ricing pokročilá konfigurace
+#+DESCRIPTION: AwesomeWM ricing advanced configuration
 #+AUTHOR: Antonin Fischer (raven2cz)
 #+STARTUP: inlineimages
-#+EXPORT_FILE_NAME: /home/box/org/export/awesome-ricing.org
+#+EXPORT_FILE_NAME: /home/box/org/export/awesome-ricing-en.org
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
 #+HTML_HEAD: <style> #content{max-width:1800px;}</style>
@@ -42,7 +42,7 @@ Store the implemented general common tools, components and services in your fram
 
 The usage of 3rd party libs needs to be minimized to a reasonable level. Libraries must be open, active and simple. Never take anything complicated. Always prioritize your solution if it is within the accepted time frame. Carefully choose the libraries, which are then very difficult to leave!
 
-In our case, the basic lua package =fishlive= is created here, which is used to extend the awesome framework for my personal needs and approaches. **Create your own.**
+In our case, the basic lua package =fishlive= is created here, which is used to extend the awesome framework for my personal needs and approaches. *Create your own.*
 
 #+html: <p align="left"><img src="images/mvc.png" /></p>
 
@@ -143,6 +143,9 @@ Autorun running applications and services is innumerable. Take this as my basis,
 You can run awesomewm now: =startx ~/.xinitrc awesome=
 
 * Basic Control
+
+Complete Guide [[awesome-keybindings-en.org][here]].
+
 =super+ctrl+s=
 #+html: <p align="left"><img src="images/awesome-multicolor-keybindings.jpg" /></p>
 

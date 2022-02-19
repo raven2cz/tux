@@ -1,0 +1,186 @@
+#+TITLE: AwesomeWM Control Introduction
+#+DESCRIPTION: AwesomeWM Keybindings and Demonstration Project
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/awesome-keybindings-en.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+#+html: <p align="left"><img src="images/awesomewm-2.jpg" /></p>
+
+* AwesomeWM Control Introduction [2022-02-18]
+
+Welcome to Awesome Window Manager!
+
+Text-to-Speech Guide helps you with translations and introduction to awesome features.
+
+Awesome has been designed as a framework window manager. It's extremely fast, small, dynamic and heavily extensible using the Lua programming language.
+
+Visit official site [[https://awesomewm.org][awesomewm.org]] and documentation pages [[https://awesomewm.org/apidoc/][awesomewm.org/apidoc]].
+
+** Content :toc:
+- [[#awesomewm-control-introduction-2022-02-18][AwesomeWM Control Introduction [2022-02-18]]]
+  - [[#raven2czawesome-config-multicolor-theme][Raven2cz/awesome-config Multicolor Theme]]
+  - [[#keybindings-help-superctrls][Keybindings Help [Super+Ctrl+s]]]
+  - [[#client-keybindings-and-floating-layout][Client Keybindings and Floating Layout]]
+  - [[#basic-awesome-keybindings][Basic Awesome Keybindings]]
+  - [[#basic-tiling-layouts][Basic Tiling Layouts]]
+  - [[#machi-layout][Machi Layout]]
+  - [[#tags][Tags]]
+  - [[#multi-screen][Multi-Screen]]
+  - [[#rofi-and-d-menu][Rofi and d-menu]]
+  - [[#menus-support][Menus Support]]
+  - [[#colorscheme-changes][Colorscheme Changes]]
+  - [[#wallpaper-support][Wallpaper Support]]
+  - [[#naughty-notifications-and-apps-integration][Naughty Notifications and Apps Integration]]
+- [[#important-links][Important Links]]
+
+** Raven2cz/awesome-config Multicolor Theme
+This video is fast introduction to customized awesome environment by project raven2cz/awesome-config - Multicolor Theme.
+
+** Keybindings Help [Super+Ctrl+s]
+Organized by groups awsome, clients (application windows), tags, screen, layouts and specific dynamic application keybindings.
+This demonstration video shows just main keybindings. For complete details visit ~rc.lua~ file and help popup window.
+
+#+html: <p align="left"><img src="images/awesome-multicolor-keybindings.jpg" /></p>
+
+** Client Keybindings and Floating Layout
+Look to the top right corner, there is shown keybindings for demonstrated features.
++ Floating Layout ~(Super+Space)~
++ Titlebar Toggle ~(Super+t)~
++ Maximize, Fullscreen ~(Super+m, Super+f)~
++ Client Close / Exit ~(Super+Shift+c)~
++ Urgent Client ~(Super+u)~
++ Minimize Client ~(Super+n)~
++ Client to next screen ~(Super+o)~
++ Focus Rotation:
+  - One Tag  ~(Super+j or Super+k)~
+  - Previous Client ~(Super+Tab)~
+  - All Tags ~(Alt+Tab)~
++ Magnet Layout ~(with mouse move to sides)~
++ Transparency Inc/Dec ~(Super+PageUp, Super+PageDown)~
++ Windows Gaps Inc/Dec ~(Super+Ctrl+=, Super+Ctrl+-)~
++ Suspend Session ~(Super+F12)~
++ Lock Screen ~(Super+Home)~
+
+** Basic Awesome Keybindings
++ Popup Dynamic Help ~(Super+Ctrl+s)~
++ Alacritty Terminal ~(Super+Enter)~
++ Kitty Terminal ~(Super+Alt+Enter)~
++ Volume increasing/decreasing, mute ~(Super+Alt+k, Super+Alt+j, Super+Alt+0)~
++ TextToSpeech Support ~(Super+Alt+t, Super+Ctrl+t, Super+Ctrl+Shift+t)~
++ Quit Awesome ~(Super+Shift+q)~
++ Reload Awesome ~(Super+Ctrl+r)~
+
+** Basic Tiling Layouts
+25 Basics Layouts Supported. Demo for 7 dynamic and hybrid layouts.
+Keybindings are present in the top-right corner.
+
+*Keybindings:*
++ Next/Prev layout ~(Super+Space, Super+Shift+Space)~
++ Directly select layout ~(Super+NumKeyboardKeys)~
++ Master Inc/Dec ~(Super+h, Super+l)~
++ Client in Master Inc/Dec ~(Super+Shift+h, Super+Shift+l)~
++ Swap Clients ~(Super+Shift+arrows)~
++ Cycling Client ~(Super+j, Super+k vim keys)~
++ Focus Client ~(Super+Ctrl+arrows)~
++ Number of columns ~(Super+Ctrl+h, Super+Ctrl+l)~
+
+*Layout Examples:*
++ Tile Layout
++ Centerwork (Lain FRM)
++ Spiral Layout
++ Magnifier Layout
++ Max Layout
++ Tile Bottom Layout
++ Treetile (Hybrid Layout from i3) ~(Super+x vertical split, Super+z horizontal split, Super+Shift+r/s rotate, swap)~
+
+#+BEGIN_SRC lua
+-- Lain Layouts Configuration
+lain.layout.termfair.nmaster           = 3
+lain.layout.termfair.ncol              = 1
+lain.layout.termfair.center.nmaster    = 3
+lain.layout.termfair.center.ncol       = 1
+lain.layout.cascade.tile.offset_x      = dpi(2)
+lain.layout.cascade.tile.offset_y      = dpi(32)
+lain.layout.cascade.tile.extra_padding = dpi(5)
+lain.layout.cascade.tile.nmaster       = 5
+lain.layout.cascade.tile.ncol          = 2
+#+END_SRC
+
+** Machi Layout
+A manual layout for Awesome with a rapid interactive editor.
+Demos: https://imgur.com/a/OlM60iw
+Draft mode: https://imgur.com/a/BOvMeQL
+
++ Machi Editor ~(Super+.)~
++ Machi Draft Mode ~(Super+,)~
+
+*Examples*
+- 46v3w2h.
+- 131h2v-12v
+- w443113132231
+- dw88.  (draft mode ~d~)
+
+#+BEGIN_SRC lua
+-- Machi Configuration - more possibilities and choices
+machi.default_layout,
+machi.layout.create{ new_placement_cb = machi.layout.placement.empty_then_fair },
+#+END_SRC
+
+** Tags
++ Basic Movement ~(Super+Left, Super+Right)~
++ Go Back ~(Super+Esc)~
++ Specific Focus Tag ~(Super+number)~
++ Toggle Focused Tags ~(Super+Ctrl+number)~
++ Move Focus Client to Tag ~(Super+Shift+number)~
++ Toggle Focus Client to Tags (see small squares in tag icon) ~(Super+Shift+Ctrl+number)~
+
+** Multi-Screen
+Cannot be demonstrated. For advanced multi-screen support use library ~shared-tags~.
++ Focus to screen Next, Previous ~(Super+Ctrl+j, Super+Ctrl+k)~
+
+** Rofi and d-menu
++ rofi drun ~(Super+s)~
++ rofi dmenu history ~(Super+a)~
++ notification center ~(Super+d)~
++ d-menu ~(Super+p)~
+
+** Menus Support
+Example of basic usage of menus. Radical Menu library is not used.
++ awful.menu (color scheme menu, main menu)
++ xmenu (independent C app) ~(Super+w)~
+
+** Colorscheme Changes
+Support 15 colorschemes: eighties one dark, one dark, gruvbox dark soft, gruvbox light soft, darcula, dracula, nord, material, material palenight, tomorrow night, solarized dark, solarized light, doom one, monokai pro, oceanic next.
++ Change Colorscheme Menu ~(Super+c)~
++ Change Colorschme Wallpaper Next ~(Super+Alt+c)~
++ Change Colorschme Wallpaper Previous ~(Super+Ctrl+c)~
+
+** Wallpaper Support
+Wallpaper enhanced usage:
++ Specific different wallpaper per Tag (defined in ~theme.lua~)
++ Random wallpaper for 1st Tag (defined in ~theme.lua~)
++ User Wallpaper from user dir Next, Previous ~(Super+Alt+w, Suprt+Ctrl+w)~
++ Colorscheme Wallpaper dirs Next, Preivous  ~(Super+Alt+c, Suprt+Ctrl+c)~
+
+** Naughty Notifications and Apps Integration
+Integrate your apps with ~notify-send~ and ~awesome-client~ cli commands.
+Use building supports from your build environments, e.g. ~java = maven notify integration~.
+Integrate application keybindigns with awesome popup help window: firefox, nvim, tmux
+
+DONE! Welcome to AwesomeWM!
+
+* Important Links
++ [[https://github.com/raven2cz/awesomewm-config][raven2cz/awesomewm-config]]
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Linux World]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
++ [[https://github.com/raven2cz/public-wallpapers][raven2cz/public-wallpapers]]
++ [[https://github.com/raven2cz/global-colorscheme][raven2cz/global-colorschemes]]
