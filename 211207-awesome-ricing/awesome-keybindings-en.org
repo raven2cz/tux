@@ -24,7 +24,7 @@ Visit official site [[https://awesomewm.org][awesomewm.org]] and documentation p
 ** Content :toc:
 - [[#awesomewm-control-introduction-2022-02-18][AwesomeWM Control Introduction [2022-02-18]]]
   - [[#raven2czawesome-config-multicolor-theme][Raven2cz/awesome-config Multicolor Theme]]
-  - [[#keybindings-help-superctrls][Keybindings Help [Super+Ctrl+s]]]
+  - [[#keybindings-help][Keybindings Help]]
   - [[#client-keybindings-and-floating-layout][Client Keybindings and Floating Layout]]
   - [[#basic-awesome-keybindings][Basic Awesome Keybindings]]
   - [[#basic-tiling-layouts][Basic Tiling Layouts]]
@@ -41,7 +41,8 @@ Visit official site [[https://awesomewm.org][awesomewm.org]] and documentation p
 ** Raven2cz/awesome-config Multicolor Theme
 This video is fast introduction to customized awesome environment by project raven2cz/awesome-config - Multicolor Theme.
 
-** Keybindings Help [Super+Ctrl+s]
+** Keybindings Help
+~(Super+Ctrl+s)~
 Organized by groups awsome, clients (application windows), tags, screen, layouts and specific dynamic application keybindings.
 This demonstration video shows just main keybindings. For complete details visit ~rc.lua~ file and help popup window.
 
