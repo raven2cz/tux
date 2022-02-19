@@ -11,9 +11,9 @@
 
 #+html: <p align="left"><img src="images/awesomewm-2.jpg" /></p>
 
-* AwesomeWM Control Introduction [2022-02-18]
+* AwesomeWM Control Introduction
 
-Welcome to Awesome Window Manager!
+*Welcome to Awesome Window Manager!*
 
 Text-to-Speech Guide helps you with translations and introduction to awesome features.
 
@@ -22,7 +22,7 @@ Awesome has been designed as a framework window manager. It's extremely fast, sm
 Visit official site [[https://awesomewm.org][awesomewm.org]] and documentation pages [[https://awesomewm.org/apidoc/][awesomewm.org/apidoc]].
 
 ** Content :toc:
-- [[#awesomewm-control-introduction-2022-02-18][AwesomeWM Control Introduction [2022-02-18]]]
+- [[#awesomewm-control-introduction][AwesomeWM Control Introduction]]
   - [[#raven2czawesome-config-multicolor-theme][Raven2cz/awesome-config Multicolor Theme]]
   - [[#keybindings-help][Keybindings Help]]
   - [[#client-keybindings-and-floating-layout][Client Keybindings and Floating Layout]]
@@ -39,11 +39,15 @@ Visit official site [[https://awesomewm.org][awesomewm.org]] and documentation p
 - [[#important-links][Important Links]]
 
 ** Raven2cz/awesome-config Multicolor Theme
-This video is fast introduction to customized awesome environment by project raven2cz/awesome-config - Multicolor Theme.
+This video is fast introduction to customized awesome environment by project
+
+=raven2cz/awesome-config Multicolor Theme.=
 
 ** Keybindings Help
 ~(Super+Ctrl+s)~
+
 Organized by groups awsome, clients (application windows), tags, screen, layouts and specific dynamic application keybindings.
+
 This demonstration video shows just main keybindings. For complete details visit ~rc.lua~ file and help popup window.
 
 #+html: <p align="left"><img src="images/awesome-multicolor-keybindings.jpg" /></p>
@@ -114,9 +118,10 @@ lain.layout.cascade.tile.ncol          = 2
 
 ** Machi Layout
 A manual layout for Awesome with a rapid interactive editor.
-Demos: https://imgur.com/a/OlM60iw
-Draft mode: https://imgur.com/a/BOvMeQL
+- Demos: https://imgur.com/a/OlM60iw
+- Draft mode: https://imgur.com/a/BOvMeQL
 
+*Control*
 + Machi Editor ~(Super+.)~
 + Machi Draft Mode ~(Super+,)~
 
@@ -156,7 +161,24 @@ Example of basic usage of menus. Radical Menu library is not used.
 + xmenu (independent C app) ~(Super+w)~
 
 ** Colorscheme Changes
-Support 15 colorschemes: eighties one dark, one dark, gruvbox dark soft, gruvbox light soft, darcula, dracula, nord, material, material palenight, tomorrow night, solarized dark, solarized light, doom one, monokai pro, oceanic next.
+Support 15 colorschemes:
+- eighties one dark,
+- one dark,
+- gruvbox dark soft,
+- gruvbox light soft,
+- darcula,
+- dracula,
+- nord,
+- material,
+- material palenight,
+- tomorrow night,
+- solarized dark,
+- solarized light,
+- doom one,
+- monokai pro,
+- oceanic next.
+
+*Control*
 + Change Colorscheme Menu ~(Super+c)~
 + Change Colorschme Wallpaper Next ~(Super+Alt+c)~
 + Change Colorschme Wallpaper Previous ~(Super+Ctrl+c)~
@@ -169,11 +191,11 @@ Wallpaper enhanced usage:
 + Colorscheme Wallpaper dirs Next, Preivous  ~(Super+Alt+c, Suprt+Ctrl+c)~
 
 ** Naughty Notifications and Apps Integration
-Integrate your apps with ~notify-send~ and ~awesome-client~ cli commands.
-Use building supports from your build environments, e.g. ~java = maven notify integration~.
-Integrate application keybindigns with awesome popup help window: firefox, nvim, tmux
++ Integrate your apps with ~notify-send~ and ~awesome-client~ cli commands.
++ Use building supports from your build environments, e.g. ~java = maven notify integration~.
++ Integrate application keybindigns with awesome popup help window: firefox, nvim, tmux
 
-DONE! Welcome to AwesomeWM!
+=DONE! Welcome to AwesomeWM!=
 
 * Important Links
 + [[https://github.com/raven2cz/awesomewm-config][raven2cz/awesomewm-config]]
