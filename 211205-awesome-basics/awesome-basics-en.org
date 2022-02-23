@@ -22,6 +22,8 @@
 - [[#validate-and-test-awesomeww-sandbox][Validate and test AwesomeWW Sandbox]]
 - [[#awesomewm-default-keybindings][AwesomeWM Default Keybindings]]
 - [[#default-rclua][Default rc.lua]]
+- [[#user-transitions][User Transitions]]
+  - [[#i3-to-aw][i3 to AW]]
 - [[#important-links][Important Links]]
 
 * Awesome Window Manager
@@ -137,6 +139,19 @@ Optional testing wrapper: =awmtt= (Awesome WM Testing Tool) from AUR
 
 * Default rc.lua
 Let's go to basic sections and config organization =nvim ~/.config/awesome/rc.lua=
+
+* User Transitions
+** i3 to AW
++ AW is a framework with advanced API. I3 is a configurable application, not framework.
++ AW is built on higher programming language Lua. Learning curve is fast around 1-2 weeks for basic syntax and functionality.
++ AW creates complete ecosystem - advantage against i3, qtile, xmonad. Components and libraries are provided mainly from github server.
++ AW default settings is dynamic tiling system not i3 manual tiling. But you can create anything if you have framework.
++ AW advanced configuration and components supports treetile (simplified i3 manual tiling), machi-layout advanced manual tiling component.
++ I3 users need sufficient time for adaptation around 2-3 months. Do not map your workflow exactly, try to use different scope of view too.
++ I3 users love manual tiling and tab supports. Try experiments with dynamic tiling layouts first, next treetile and last machi-layout possbilities.
++ I3 users want quick and fast easy configuration - AW cannot directly provided it because it is framework. You can use some prepared demo projects.
++ I3 users hate lua or programming. Lua is required. Do not drop this fantastic language, if you want to speak with your computer fluently.
++ I3 users try few days or just few hours, after first problems return back. GNU/Linux doesn't work this way. The fantastic features come with YOUR knowledge.
 
 * Important Links
 + [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Linux World]]
