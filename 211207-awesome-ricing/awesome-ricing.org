@@ -82,11 +82,11 @@ Je uloženo v každém =theme.lua= souboru. Tento soubor mám principiálně tvo
 je možné taky rovněž dělit na další celky. Nicméně já mám v tomto ohledu rád minimalismus a lepší údržbu, neměl jsem tedy důvod tento soubor rozdělovat, naopak jej strukturalizuji pomoci folding sekcí a používám jednotlivé listenery, které awesome API nabízí k oddělení jednotlivých funkcionálních bloků. Soubor je tedy pořád jeden ~rc.lua~, obsahuje však pouze vše co není grafika nebo grafická komponenta. Obsahuje tedy veškerou business logiku a workflow. Konkrétně obsahuje:
 - =naughty.connect_signal(request:display_error)= Error handling (zpracování výjimek a chyb v awesome a spojených aplikacích)
 - =modkey, terminal, editor, menus= Definice základních proměnných pro základní klávesy, terminaly, editory, menu modely
-- =tag.connect_signal(request:default_layouts)"= Definice základních layouts, které budete používat
+- =tag.connect_signal(request:default_layouts)= Definice základních layouts, které budete používat
 - =beautiful.init= Výběr model-view (theme), které bude napojedno a zobrazováno
 - =awful.mouse.append_global_mousebindings= Nadefinování myších událostí a chování myši
 - =awful.keyboard.append_global_keybindings= Definice globálních keybindings pro váš systém, rozděleno dle kategorií a účelu (folding style a separátní listeners)
-- =client.connect_signal("request:default_keybindings"= Clientská konfigurace keybindings pro jednotlivá zobrazovaná okna (client = běžící aplikace v okně)
+- =client.connect_signal(request:default_keybindings)= Clientská konfigurace keybindings pro jednotlivá zobrazovaná okna (client = běžící aplikace v okně)
 - =ruled.client.connect_signal("request:rules" ...)= Definice pravidel (rules) pro zobrazování aplikací, druhů aplikací a reakce oken na speciální events
 - =special connect_signal events for specific handling= Poslech dalších několik speciálních událostí pro specifické změny v awesomewm prostředí. Patří sem titlebars (horní lišta na okně), zpracování událostí, další chování myši apod.
 - =awful.spawn.with_shell("~/.config/awesome/autorun.sh")= Poslední částí ~rc.lua~ souboru je spuštění vašeho ~autorun.sh~ skriptu pro aplikace, služby a další přednastavení prostředí, ve kterém awesomewm běží.
