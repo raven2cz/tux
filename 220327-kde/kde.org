@@ -9,8 +9,8 @@
 #+HTML_HEAD: <style> p{max-width:800px;}</style>
 #+HTML_HEAD: <style> li{max-width:800px;}</style
 
+#+html: <p align="left"><img src="images/kde-1.jpg" /></p>
 #+html: <p align="left"><img src="images/kde-bismuth.jpg" /></p>
-#+html: <p align="left"><img src="images/awesomewm-2.jpg" /></p>
 
 * Obsah :toc:
 - [[#kde---pracovní-prostředí-nové-generace-pro-linux][KDE - Pracovní prostředí nové generace pro Linux]]
