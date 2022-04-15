@@ -24,6 +24,8 @@
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * KDE - Pracovní prostředí nové generace pro Linux
+English document variant [[kde-en.org][here]].
+
 Mocné, multiplatformní a pro všechny. Používejte software KDE pro brouzdání na webu, komunikaci s kolegy, přáteli a rodinou, spravování svých souborů, poslech hudby a sledování videí nebo pro kreativní a produktivní práci. Komunita KDE vyvíjí a udržuje více než 200 aplikací, které běží na kterémkoliv počítači s Linuxem a často i na jiných platformách.
 
 Takto je představováno KDE na svých hlavních stránkách [[https://kde.org/cs/][kde.org]]. Určitě lze souhlasit, že KDE patří mezi velmi dobrá plná desktopová prostředí. Společně s Gnome tvoří pár základních DE, které používají hlavní masy uživatelů GNU/Linux. Plně konfigurovatelné pomocí GUI s mnoha grafickými efekty pomocí kwin. Konfigurovatelnost tohoto DE je daleko značnější než zmiňovaný Gnome, který naopak má uživateli přinést lehkost a jednoducho použití bez nutných zdlouhavých nastavování.

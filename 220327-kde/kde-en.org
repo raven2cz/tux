@@ -1,0 +1,113 @@
+#+TITLE: KDE Plasma - The next generation desktop for Linux
+#+DESCRIPTION: KDE Plasma - The next generation desktop for Linux
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/kde-en.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+#+html: <p align="left"><img src="images/kde-1.jpg" /></p>
+#+html: <p align="left"><img src="images/kde-bismuth.jpg" /></p>
+
+* Content :toc:
+- [[#kde---plasma-the-next-generation-desktop-for-linux][KDE - Plasma the next generation desktop for Linux]]
+- [[#kde-installation][KDE Installation]]
+- [[#qt5ct-a-kvantum-manager][Qt5ct a Kvantum Manager]]
+- [[#usage-of-graphical-themes][Usage of Graphical Themes]]
+- [[#adaptation-of-basic-components-for-effective-work][Adaptation of basic components for effective work]]
+- [[#bismut---tiling-support-for-kde][Bismut - Tiling Support for KDE]]
+- [[#ergonomic-setting-of-keyboard-shortcuts][Ergonomic setting of keyboard shortcuts]]
+- [[#considerations-for-possible-improvements][Considerations for possible improvements]]
+- [[#important-links][Important Links]]
+
+* KDE - Plasma the next generation desktop for Linux
+Powerful, cross-platform and for everyone. Use KDE software for web browsing, communicating with colleagues, friends and family, managing your files, listening to music and watching videos, or for creative and productive work. The KDE community develops and maintains more than 200 applications that run on any Linux computer and often on other platforms.
+
+This is how KDE is presented on its main site [[https://kde.org/cs/][kde.org]]. I can certainly agree that KDE is one of the very good full desktop environments. Together with Gnome, they form DEs basement that are used by the mainstream GNU/Linux users. Fully configurable with GUI with many graphical effects using kwin. The configurability of this DE is far greater than the aforementioned Gnome, which, in turn, is intended to bring the user lightness and simplicity of use without the need for lengthy setups.
+
+We have already talked many times in this series about work efficiency, ergonomics and the reduction of touches on the mouse and back. Everyone who has taken this course already knows that efficiency is hidden elsewhere and it is necessary to gradually work towards it. Of course, this can also be achieved with KDE and its configuration capabilities. So let's take a look at tricks and tips on how to customize KDE in terms of ergonomics and work efficiency, as well as enable the usage of KDE applications in other DE and WM environments with the right settings and theme.
+
+* KDE Installation
+You need to install KDE first. KDE contains a thousand packages, so it is possible to use a group or meta group. See [[https://wiki.archlinux.org/title/Meta_package_and_package_group][meta package and package group]] for the difference. I will use the older method with group here, but feel free to use the newer meta package.
+
+Second, you need to install a group of KDE applications that you want to use or don't have to, it's up to you. Again, there is the option of group and meta-package, or choose only the part of the meta-package that you install separately. If you install wayland, you still need to install wayland support. But here I have to refer to a thorough reading of the arch wiki and the wayland dependency page [[https://wiki.archlinux.org/title/KDE][Arch Wiki KDE]].
+
+#+BEGIN_SRC bash
+# egl-wayland just for Nvidia cards, not necessary for AMD
+sudo pacman -S plasma kde-applications plasma-wayland-session eql-wayland
+# next variants:
+sudo pacman -S plasma-meta kde-applications-meta
+sudo pacman -S plasma-meta kde-utilities-meta kde-network-meta kde-multimedia-meta
+#+END_SRC
+
+Spouštěč pro X11 a wayland je již připraven v mém =.xinitrc=, který používáme v celém našem seriálu. Viz dolní odkaz .dotfiles na Githubu. Stačí tedy pouze s příkazové řádky spustit =startx ~/.xinitrc kde=, nebo pomocí display manageru vybrat =xinitrc-kde= z mých sessions souborů v adresáři =.root=.
+
+The launcher for X11 and wayland is already ready in my =.xinitrc=, which we use throughout our series. See the .dotfiles link below for Github. So all you have to do is run =startx ~/.xinitrc kde=, or use the display manager to select =xinitrc-kde= from my sessions files in the =.root= directory.
+
+* Qt5ct a Kvantum Manager
+For full support of topics it is necessary to install Quantum Manager. To support KDE applications for other WM and DE, it is advisable to connect Kvantum Manager to qt5ct and configure the configuration in Qt5 Config application.
+
+#+BEGIN_SRC bash
+paru -S qt5ct kvantum
+
+# Environment variables settings (e.g.in .xinitrc)
+export QT_QPA_PLATFORMTHEME=qt5ct
+export DESKTOP_SESSION=plasma
+export XDG_CURRENT_DESKTOP=kde
+#+END_SRC
+
+For example, set theme: =KvGnomeDark= in the Quantum Manager.
+
+In the Qt5 Settings application, set Style =kvantum=! Standard Dialogs: =KDE=. Set Favorite Fonts and Icon Theme according to KDE System Settings settings.
+
+* Usage of Graphical Themes
+System Settings > Global Theme > Get New Global Themes > Install =Layan=. Other options =Arc Dark, Sweet-Mars, Nordic=. However, it is necessary to google monitor the relevant theme (often github repository) and clone it, because it will be necessary to import the necessary part for Kvantum Manager, unfortunately we will not order without it and this is not part of the standard installation in System Settings!
+
+Switch the global schema to =Layan=. Now we will be able to reset the color scheme, fonts, icons, windows decorations, etc. See the video for details.
+
+* Adaptation of basic components for effective work
+We can now fully configure all KDE components to suit our needs. There will be no exaggeration, KDE can be configured very powerfully, we will stick to the golden mean again, which will not be so prone to possible errors during future KDE updates, which is unfortunately a common cause of sudden problems.
+
+We will adapt:
++  Main panel and its components
++ HiDpi and fonts
++ Backgrounds
++ Desktop for effective work
+
+* Bismut - Tiling Support for KDE
+[[https://github.com/Bismuth-Forge/bismuth][Bismit Github Link]]
+
+Add support for tiling window layout. A very advanced and flexible extension to KDE.
+
++ System Settings > Window Behaviour > Focus > =Focus follows mouse=
++ Window Management > Window Tiling > Enable window tiling (check it), tab Appearance (top) > Inner Gaps set to =10px=
++ Shortcuts > Window Tiling > Push Active to Master Area set to: =Meta + Shift + Return=, cycle windows: =Meta + Space=
+
+* Ergonomic setting of keyboard shortcuts
+Most changes. KDE is not ready for proper keyboard control. See especially video recording.
+
++ Shortcuts > Kwin > set to Close Window, Quick Tile Window (all directions), Maximize, Minimize, Fullscreen window (similar as AwesomeWM in previous youtube video)
++ Shortcuts > KRunner > add =Alt+Space= or =Meta+Space= (Meta recommended)
++ Shortcuts > press button Add Application > add Konsole > Konsole row set to =Alt+Return= or =Meta+Return= (Meta recommended)
+
+* Considerations for possible improvements
++ There are many ways to improve KDE. Often a very desirable setting is MacOS, where the top panel is also used as a menu for applications and applications do not have any menu that is thrown into this panel. This is also possible with KDE.
++ Any major enhancements or changes bring potential issues after the KDE upgrade. This is not an AwesomeWM API and framework that you can configure, many times in the past I have encountered that KDE has dropped or all functionality has stopped working. KDE stability is much worse if you do too many customizations. So be careful with that and if you want big changes it is better to choose WM with programming skills.
++ Selecting some custom components or even themes can cause a strong performance issue, most recently the Dracula scheme has rapidly reduced animation and window maximization, so always check the functionality first on the Breeze theme and only then use a customized solution for comparison.
++ Beware of some widgets. Overall, many widgets are very outdated and can have strong performance impacts. Verify the load on the processor again, also reduce the time cycles for reading values.
++ Wayland vs X11. KDE is now fully prepared for wayland. Many users, especially players, have switched to wayland. I originally wanted to make this record purely on wayland, but HiDpi 4K is definitely not ready, many small things don't work properly and problems with basic applications. I've spent a lot of time on it, but I definitely can't recommend this to newcomers yet. This may change quickly in the next "years".
+
+* Important Links
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://forum.arch-linux.cz/][Forum Arch Linux CZ]] - our forum for Czech Community of Arch!
++ [[https://arch-linux.cz/][Arch Linux CZ]] - web server for Arch CZ
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
++ [[https://github.com/raven2cz/public-wallpapers][raven2cz/public-wallpapers]]
++ [[https://github.com/raven2cz/global-colorscheme][raven2cz/global-colorschemes]]
