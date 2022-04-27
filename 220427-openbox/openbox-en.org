@@ -1,0 +1,113 @@
+#+TITLE: Openbox - lightweight and highly configurable window manager
+#+DESCRIPTION: Openbox - lightweight and highly configurable window manager
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/openbox.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+#+html: <p align="left"><img src="images/openbox-screen.jpg" /></p>
+
+* Obsah :toc:
+- [[#openbox---lightweight-and-highly-configurable-window-manager][Openbox - lightweight and highly configurable window manager]]
+- [[#openbox-installation][Openbox Installation]]
+- [[#openbox-lego][Openbox Lego]]
+- [[#openbox-ergonomic-settings][Openbox Ergonomic Settings]]
+- [[#openbox-powerful-menus][Openbox Powerful Menus]]
+- [[#important-links][Important Links]]
+
+* Openbox - lightweight and highly configurable window manager
+Openbox is a highly configurable window manager with extensive standards support ICCCM and EWMH.
+
++ The ~*box~ visual style is well known for its minimalistic appearance. Openbox uses the ~*box~ visual style, while providing a greater number of options for theme developers than previous ~*box~ implementations. The theme documentation describes the full range of options found in Openbox themes.
++ Openbox lets you bring the latest applications outside of a full desktop environment. Most modern applications have been written with GNOME and KDE in mind. With support for the latest freedesktop.org standards, as well as careful adherence to previous standards, Openbox provides an environment where applications work the way they were designed to.
++ Openbox allows you to change almost every aspect of how you interact with your desktop and invent completely new ways to use and control it. It can be like a video game for controlling windows. But Openbox can also be kept extremely simple, as it is in the default setup, meaning that it can suit just about anybody. Openbox gives you control without making you do everything.
++ Openbox makes desktop environments better. By running Openbox inside the GNOME or KDE, you can combine their ease and functionality with the power of Openbox. Your desktop becomes cleaner and faster, and is in your control, when you use Openbox.
++ Take a look at the getting started guide and change how you manage your desktop. See open box main pages [[http://openbox.org/wiki/Main_Page][openbox.org]].
++ *Openbox official documentation* is [[http://openbox.org/wiki/Help:Contents][here]].
+
+* Openbox Installation
+Follow [[https://wiki.archlinux.org/title/Openbox][Arch Wiki Openbox]] page. Read details about installation steps and OB components.
+
+#+BEGIN_SRC bash
+paru -S openbox ttf-dejavu ttf-liberation obfilebrowser
+# Optional Dependencies
+paru -S picom nitrogen tint2 polybar volctl clipmenu parcellite xfce4-notify
+#+END_SRC
+
+Before start, edit your =~/.config/openbox/autostart=, defines your services and apps which will be used with openbox session.
+
+Default Openbox settings - use this commands
+#+BEGIN_SRC bash
+$ mkdir -p ~/.config/openbox
+$ cp -a /etc/xdg/openbox/ ~/.config/
+#+END_SRC
+
+If you plan use my openbox project, follow instructions in [[https://github.com/raven2cz/openbox-config][GitHub Openbox Project]].
+#+BEGIN_SRC bash
+git clone git@github.com:raven2cz/openbox-config.git ~/.config/openbox
+#+END_SRC
+
+The openbox launcher is ready in my =.xinitrc=, which we use throughout our series. See the .dotfiles link below for Github. So all you have to do is run =startx ~/.xinitrc openbox=, or use the display manager to select =xinitrc-openbox= from my sessions files in the =.root= directory.
+
+* Openbox Lego
+Best and fast reading is [[https://wiki.archlinux.org/title/Openbox][Arch Wiki Openbox]], start from it. Openbox documentation is [[http://openbox.org/wiki/Help:Contents][here]].
+
+My example lego (set of components) is following:
++ *WM:* openbox-session with autostart and environment files
++ *Compositor:* picom
++ *Bar:* polybar [[https://github.com/raven2cz/polybar-config][polybar-config]]
++ *Conky:* [[https://github.com/raven2cz/dotfiles/tree/main/.config/conky/MX-CoreBlue][MX-CoreBlue]]
++ *Menu:* openbox static, generators and pipe-menus support, obfilebrowser
++ *Navigation:* rofi, [[https://github.com/raven2cz/rofi-themes][rofi-themes]]
++ *Wallpaper app:* nitrogen
++ *Sound service:* [[https://github.com/buzz/volctl][volctl]]
++ *Notfication service:* xfce4-notify
++ *Wallpaper:* [[https://github.com/raven2cz/public-wallpapers][public-wallpapers]] - [[https://github.com/raven2cz/public-wallpapers/blob/main/00046-openbox-1.jpg][openbox wallpaper]]
+
+You have many choices to select different lego. If you have more questions about this topic; you can create issue or discussed this in the [[https://forum.arch-linux.cz/category/26/openbox][forum]].
+
+* Openbox Ergonomic Settings
+All keybinds must be added to the =~/.config/openbox/rc.xml= file, and below the =<!-- Keybindings for running aplications -->= heading. Although a brief overview has been provided here, a more in-depth explanation of keybindings can be found at [[http://openbox/org][openbox.org]].
+
+Keybinds can be added to the configuration file using the following syntax:
+#+BEGIN_SRC xml
+<keybind key="my-key-combination">
+  <action name="my-action">
+    ...
+  </action>
+</keybind>
+#+END_SRC
+
+The action name for running an external command is Execute. Use the following syntax to define an external command to execute:
+#+BEGIN_SRC xml
+<action name="Execute">
+  <command>my-command</command>
+</action>
+#+END_SRC
+
+See the [[http://openbox.org/wiki/Help:Actions][Openbox wiki]] for a list of all available actions.
+
+Full ergonomic settings are prepared in my  [[https://github.com/raven2cz/openbox-config][GitHub Openbox Project]] in =rc.xml=. Full guide and handling is explained in the video. The ergonomic corresponds with previous video series for other WMs.
+
+* Openbox Powerful Menus
+Main *box powerful features are menus. Whole control of this WM are based on the menus.
+
+It is possible to employ three types of menu in Openbox: ~static~, ~pipes (dynamic)~, and ~generators (static or dynamic)~. They may also be used alone or in any combination. More details in the OB Docs and [[https://wiki.archlinux.org/title/Openbox#Menus][Arch Wiki]].
+
+For our example I used updated menu structure in =menu.xml= file. In addition, there is usage of pipes menu with application =obfilebrowser= for browsing your home folder - update the menu file and change it according to your reqs.
+
+* Important Links
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://forum.arch-linux.cz/][Forum Arch Linux CZ]] - our forum for Czech Community of Arch!
++ [[https://arch-linux.cz/][Arch Linux CZ]] - web server for Arch CZ
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
++ [[https://github.com/raven2cz/public-wallpapers][raven2cz/public-wallpapers]]
++ [[https://github.com/raven2cz/global-colorscheme][raven2cz/global-colorschemes]]
