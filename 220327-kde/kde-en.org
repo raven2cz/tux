@@ -15,7 +15,7 @@
 * Content :toc:
 - [[#kde---plasma-the-next-generation-desktop-for-linux][KDE - Plasma the next generation desktop for Linux]]
 - [[#kde-installation][KDE Installation]]
-- [[#qt5ct-a-kvantum-manager][Qt5ct a Kvantum Manager]]
+- [[#qt5ct-and-kvantum-manager][Qt5ct and Kvantum Manager]]
 - [[#usage-of-graphical-themes][Usage of Graphical Themes]]
 - [[#adaptation-of-basic-components-for-effective-work][Adaptation of basic components for effective work]]
 - [[#bismut---tiling-support-for-kde][Bismut - Tiling Support for KDE]]
@@ -43,11 +43,9 @@ sudo pacman -S plasma-meta kde-applications-meta
 sudo pacman -S plasma-meta kde-utilities-meta kde-network-meta kde-multimedia-meta
 #+END_SRC
 
-Spouštěč pro X11 a wayland je již připraven v mém =.xinitrc=, který používáme v celém našem seriálu. Viz dolní odkaz .dotfiles na Githubu. Stačí tedy pouze s příkazové řádky spustit =startx ~/.xinitrc kde=, nebo pomocí display manageru vybrat =xinitrc-kde= z mých sessions souborů v adresáři =.root=.
-
 The launcher for X11 and wayland is already ready in my =.xinitrc=, which we use throughout our series. See the .dotfiles link below for Github. So all you have to do is run =startx ~/.xinitrc kde=, or use the display manager to select =xinitrc-kde= from my sessions files in the =.root= directory.
 
-* Qt5ct a Kvantum Manager
+* Qt5ct and Kvantum Manager
 For full support of topics it is necessary to install Quantum Manager. To support KDE applications for other WM and DE, it is advisable to connect Kvantum Manager to qt5ct and configure the configuration in Qt5 Config application.
 
 #+BEGIN_SRC bash
@@ -72,7 +70,7 @@ Switch the global schema to =Layan=. Now we will be able to reset the color sche
 We can now fully configure all KDE components to suit our needs. There will be no exaggeration, KDE can be configured very powerfully, we will stick to the golden mean again, which will not be so prone to possible errors during future KDE updates, which is unfortunately a common cause of sudden problems.
 
 We will adapt:
-+  Main panel and its components
++ Main panel and its components
 + HiDpi and fonts
 + Backgrounds
 + Desktop for effective work
@@ -81,14 +79,12 @@ We will adapt:
 [[https://github.com/Bismuth-Forge/bismuth][Bismit Github Link]]
 
 Add support for tiling window layout. A very advanced and flexible extension to KDE.
-
 + System Settings > Window Behaviour > Focus > =Focus follows mouse=
 + Window Management > Window Tiling > Enable window tiling (check it), tab Appearance (top) > Inner Gaps set to =10px=
 + Shortcuts > Window Tiling > Push Active to Master Area set to: =Meta + Shift + Return=, cycle windows: =Meta + Space=
 
 * Ergonomic setting of keyboard shortcuts
 Most changes. KDE is not ready for proper keyboard control. See especially video recording.
-
 + Shortcuts > Kwin > set to Close Window, Quick Tile Window (all directions), Maximize, Minimize, Fullscreen window (similar as AwesomeWM in previous youtube video)
 + Shortcuts > KRunner > add =Alt+Space= or =Meta+Space= (Meta recommended)
 + Shortcuts > press button Add Application > add Konsole > Konsole row set to =Alt+Return= or =Meta+Return= (Meta recommended)
