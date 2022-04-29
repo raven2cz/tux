@@ -13,26 +13,26 @@
 
 * Obsah :toc:
 - [[#openbox---velikostně-malý-rychlý-window-manager-plně-v-souladu-s-icccm-a-ewmh][Openbox - velikostně malý, rychlý window manager plně v souladu s ICCCM a EWMH]]
-- [[#openbox-installation][Openbox Installation]]
+- [[#openbox-instalace][Openbox Instalace]]
 - [[#openbox-lego][Openbox Lego]]
 - [[#openbox-ergonomic-settings][Openbox Ergonomic Settings]]
-- [[#openbox-powerful-menus][Openbox Powerful Menus]]
+- [[#openbox-výkonná-menu][Openbox Výkonná Menu]]
 - [[#důležité-odkazy][Důležité odkazy]]
 
 * Openbox - velikostně malý, rychlý window manager plně v souladu s ICCCM a EWMH
 English document variant [[openbox-en.org][here]].
 
-Openbox is a highly configurable window manager with extensive standards support ICCCM and EWMH.
+Openbox je vysoce konfigurovatelný správce oken s rozsáhlou podporou standardů ICCCM a EWMH.
 
-+ The ~*box~ visual style is well known for its minimalistic appearance. Openbox uses the ~*box~ visual style, while providing a greater number of options for theme developers than previous ~*box~ implementations. The theme documentation describes the full range of options found in Openbox themes.
-+ Openbox lets you bring the latest applications outside of a full desktop environment. Most modern applications have been written with GNOME and KDE in mind. With support for the latest freedesktop.org standards, as well as careful adherence to previous standards, Openbox provides an environment where applications work the way they were designed to.
-+ Openbox allows you to change almost every aspect of how you interact with your desktop and invent completely new ways to use and control it. It can be like a video game for controlling windows. But Openbox can also be kept extremely simple, as it is in the default setup, meaning that it can suit just about anybody. Openbox gives you control without making you do everything.
-+ Openbox makes desktop environments better. By running Openbox inside the GNOME or KDE, you can combine their ease and functionality with the power of Openbox. Your desktop becomes cleaner and faster, and is in your control, when you use Openbox.
-+ Take a look at the getting started guide and change how you manage your desktop. See open box main pages [[http://openbox.org/wiki/Main_Page][openbox.org]].
-+ *Openbox official documentation* is [[http://openbox.org/wiki/Help:Contents][here]].
++ Vizuální styl ~*box~ je dobře známý pro svůj minimalistický vzhled. Openbox používá vizuální styl ~*box~ a zároveň poskytuje větší počet možností pro vývojáře témat než předchozí implementace ~*box~. Dokumentace k tématu popisuje celou řadu možností, které lze nalézt v Openbox tématech.
++ Openbox vám umožňuje přenést nejnovější aplikace mimo plnohodnotné desktopové prostředí. Většina moderních aplikací byla napsána s ohledem na GNOME a KDE. S podporou standardů freedesktop.org a pečlivým dodržováním předchozích standardů poskytuje Openbox prostředí, kde aplikace fungují tak, jak byly navrženy.
++ Openbox vám umožňuje změnit téměř každý aspekt vaší interakce s vaším desktopem a vymýšlet zcela nové způsoby, jak jej používat a ovládat. Pro ovládání oken to může být jako videohra. Ale Openbox může být také extrémně jednoduchý, protože je ve výchozím nastavení, což znamená, že může vyhovovat téměř každému. Openbox vám dává kontrolu, aniž byste museli dělat všechno.
++ Openbox vylepšuje desktopová prostředí. Spuštěním Openboxu v GNOME nebo KDE můžete spojit jejich snadnost a funkčnost se silou Openboxu. Když používáte Openbox, vaše plocha bude čistší a rychlejší a máte ji pod kontrolou.
++ Podívejte se na příručku Začínáme a změňte způsob správy pracovní plochy. Viz hlavní stránky [[http://openbox.org/wiki/Main_Page][openbox.org]].
++ *Oficiální dokumentace Openboxu* je [[http://openbox.org/wiki/Help:Contents][zde]].
 
-* Openbox Installation
-Follow [[https://wiki.archlinux.org/title/Openbox][Arch Wiki Openbox]] page. Read details about installation steps and OB components.
+* Openbox Instalace
+Prostudujte stránku [[https://wiki.archlinux.org/title/Openbox][Arch Wiki Openbox]]. Přečtěte si podrobnosti o krocích instalace a komponentách OB.
 
 #+BEGIN_SRC bash
 paru -S openbox ttf-dejavu ttf-liberation obfilebrowser
@@ -40,42 +40,42 @@ paru -S openbox ttf-dejavu ttf-liberation obfilebrowser
 paru -S picom nitrogen tint2 polybar volctl clipmenu parcellite xfce4-notify
 #+END_SRC
 
-Before start, edit your =~/.config/openbox/autostart=, defines your services and apps which will be used with openbox session.
+Než začnete, upravte svůj =~/.config/openbox/autostart=, definujte své služby a aplikace, které budou použity s relací openboxu.
 
-Default Openbox settings - use this commands
+Výchozí nastavení Openboxu - použijte tyto příkazy
 #+BEGIN_SRC bash
 $ mkdir -p ~/.config/openbox
 $ cp -a /etc/xdg/openbox/ ~/.config/
 #+END_SRC
 
-If you plan use my openbox project, follow instructions in [[https://github.com/raven2cz/openbox-config][GitHub Openbox Project]].
+Pokud plánujete používat můj projekt openbox, postupujte podle pokynů v [[https://github.com/raven2cz/openbox-config][GitHub Openbox Project]].
 #+BEGIN_SRC bash
 git clone git@github.com:raven2cz/openbox-config.git ~/.config/openbox
 #+END_SRC
 
-The openbox launcher is ready in my =.xinitrc=, which we use throughout our series. See the .dotfiles link below for Github. So all you have to do is run =startx ~/.xinitrc openbox=, or use the display manager to select =xinitrc-openbox= from my sessions files in the =.root= directory.
+Spouštěč openboxu je připraven v mém =.xinitrc=, který používáme v celé naší video sérii. Viz níže uvedený odkaz =.dotfiles= pro Github. Takže vše, co musíte udělat, je spustit =startx ~/.xinitrc openbox= nebo použít správce zobrazení k výběru =xinitrc-openbox= ze souborů mých sessions (relací) v adresáři =.root=.
 
 * Openbox Lego
-Best and fast reading is [[https://wiki.archlinux.org/title/Openbox][Arch Wiki Openbox]], start from it. Openbox documentation is [[http://openbox.org/wiki/Help:Contents][here]].
+Nejlepší a rychlé čtení je [[https://wiki.archlinux.org/title/Openbox][Arch Wiki Openbox]], začněte od něj. Dokumentace k Openboxu je [[http://openbox.org/wiki/Help:Contents][zde]].
 
-My example lego (set of components) is following:
-+ *WM:* openbox-session with autostart and environment files
-+ *Compositor:* picom
+Můj příklad lega (sada komponentů) je následující:
++ *WM:* openbox-session s automatickým spuštěním a soubory prostředí
++ *Kompositor:* picom
 + *Bar:* polybar [[https://github.com/raven2cz/polybar-config][polybar-config]]
 + *Conky:* [[https://github.com/raven2cz/dotfiles/tree/main/.config/conky/MX-CoreBlue][MX-CoreBlue]]
-+ *Menu:* openbox static, generators and pipe-menus support, obfilebrowser
-+ *Navigation:* rofi, [[https://github.com/raven2cz/rofi-themes][rofi-themes]]
++ *Menu:* static menu openbox, podpora generátorů a pipes menu, obfilebrowser
++ *Navigace:* rofi, [[https://github.com/raven2cz/rofi-themes][rofi-themes]]
 + *Wallpaper app:* nitrogen
-+ *Sound service:* [[https://github.com/buzz/volctl][volctl]]
-+ *Notfication service:* xfce4-notify
-+ *Wallpaper:* [[https://github.com/raven2cz/public-wallpapers][public-wallpapers]] - [[https://github.com/raven2cz/public-wallpapers/blob/main/00046-openbox-1.jpg][openbox wallpaper]]
++ *Zvukový systém:* [[https://github.com/buzz/volctl][volctl]]
++ *Notifikační služba:* xfce4-notify
++ *Wallpaper:* [[https://github.com/raven2cz/public-wallpapers][public-wallpapers]] - [[https://github.com/raven2cz/public-wallpapers/blob/main/00046- openbox-1.jpg][tapeta openbox]]
 
-You have many choices to select different lego. If you have more questions about this topic; you can create issue or discussed this in the [[https://forum.arch-linux.cz/category/26/openbox][forum]].
+Máte mnoho možností, jak vybrat různé lego. Máte-li k tomuto tématu další dotazy; Issue můžete vytvořit pro Github nebo o něm diskutovat na [[https://forum.arch-linux.cz/category/26/openbox][forum]].
 
 * Openbox Ergonomic Settings
-All keybinds must be added to the =~/.config/openbox/rc.xml= file, and below the =<!-- Keybindings for running aplications -->= heading. Although a brief overview has been provided here, a more in-depth explanation of keybindings can be found at [[http://openbox/org][openbox.org]].
+Všechny klávesové zkratky musí být přidány do souboru =~/.config/openbox/rc.xml= a pod nadpis =<!-- Klávesové zkratky pro spouštění aplikací -->=. Ačkoli zde byl uveden stručný přehled, podrobnější vysvětlení klávesových zkratek lze nalézt na [[http://openbox/org][openbox.org]].
 
-Keybinds can be added to the configuration file using the following syntax:
+Klávesové zkratky lze přidat do konfiguračního souboru pomocí následující syntaxe:
 #+BEGIN_SRC xml
 <keybind key="my-key-combination">
   <action name="my-action">
@@ -84,23 +84,23 @@ Keybinds can be added to the configuration file using the following syntax:
 </keybind>
 #+END_SRC
 
-The action name for running an external command is Execute. Use the following syntax to define an external command to execute:
+Název akce pro spuštění externího příkazu je =Execute=. K definování externího příkazu, který se má provést, použijte následující syntaxi:
 #+BEGIN_SRC xml
 <action name="Execute">
   <command>my-command</command>
 </action>
 #+END_SRC
 
-See the [[http://openbox.org/wiki/Help:Actions][Openbox wiki]] for a list of all available actions.
+Seznam všech dostupných akcí naleznete na [[http://openbox.org/wiki/Help:Actions][Openbox wiki]].
 
-Full ergonomic settings are prepared in my  [[https://github.com/raven2cz/openbox-config][GitHub Openbox Project]] in =rc.xml=. Full guide and handling is explained in the video. The ergonomic corresponds with previous video series for other WMs.
+Kompletní ergonomická nastavení jsou připravena v mém [[https://github.com/raven2cz/openbox-config][GitHub Openbox Project]] v =rc.xml=. Kompletní průvodce a manipulace je vysvětlena ve videu. Ergonomie odpovídá předchozí sérii videí pro ostatní WM.
 
-* Openbox Powerful Menus
-Main *box powerful features are menus. Whole control of this WM are based on the menus.
+* Openbox Výkonná Menu
+Hlavní předností =*box= jsou výkonná a kvalitní menu. Celé ovládání tohoto WM je založeno na nabídkách a menu.
 
-It is possible to employ three types of menu in Openbox: ~static~, ~pipes (dynamic)~, and ~generators (static or dynamic)~. They may also be used alone or in any combination. More details in the OB Docs and [[https://wiki.archlinux.org/title/Openbox#Menus][Arch Wiki]].
+V Openboxu je možné použít tři typy menu: ~static~, ~pipes (dynamické)~ a ~generátory (statické nebo dynamické)~. Mohou být také použity samostatně nebo v jakékoli kombinaci. Více podrobností v OB Docs a [[https://wiki.archlinux.org/title/Openbox#Menus][Arch Wiki]].
 
-For our example I used updated menu structure in =menu.xml= file. In addition, there is usage of pipes menu with application =obfilebrowser= for browsing your home folder - update the menu file and change it according to your reqs.
+Pro náš příklad jsem použil aktualizovanou strukturu menu v souboru =menu.xml=. Kromě toho je zde použití menu pipes s aplikací =obfilebowser= pro procházení vaší domovské složky - aktualizujte soubor =menu.xml= nabídky a upravte jej podle vašich požadavků.
 
 * Důležité odkazy
 + [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
