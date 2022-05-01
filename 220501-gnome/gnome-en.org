@@ -9,16 +9,18 @@
 #+HTML_HEAD: <style> p{max-width:800px;}</style>
 #+HTML_HEAD: <style> li{max-width:800px;}</style
 
+#+html: <p align="left"><img src="images/gnome-logo.png"/></p>
 #+html: <p align="left"><img src="images/gnome-screenshot1.jpg"/></p>
-#+html: <p align="left"><img src="images/gnome-screenshot2.jpg"/></p>
+#+html: <p align="left"><img src="images/gnome-screenshot3.jpg"/></p>
 
 * Obsah :toc:
 - [[#gnome---simple-beautiful-elegant][GNOME - Simple, beautiful, elegant.]]
+  - [[#nostalgia-gnome-2][Nostalgia Gnome 2]]
   - [[#important-gnome-links][Important GNOME Links]]
 - [[#gnome-installation][GNOME Installation]]
 - [[#gnome-optional-extensions][GNOME Optional Extensions]]
 - [[#gnome-fly-pie-extension][GNOME Fly-Pie Extension]]
-- [[#gnome-popos-shell-extensions][GNOME PopOS Shell Extensions]]
+- [[#gnome-pop_os-shell-extensions][GNOME Pop!_OS Shell Extensions]]
 - [[#gnome-environment-configuration][GNOME Environment Configuration]]
 - [[#gnome-ergonomic-settings][GNOME Ergonomic Settings]]
 - [[#important-links][Important Links]]
@@ -29,6 +31,11 @@ GNOME (/(ɡ)noʊm/, GNU Network Object Model Environment) is a desktop environme
 + *GNOME*, the default, runs GNOME Shell on Wayland. Traditional X applications are run through Xwayland.
 + *GNOME Classic* provides a "traditional desktop experience" (with an interface similar to GNOME 2) by using certain extensions and values. Thus, it is a customized form of GNOME Shell rather than a truly distinct mode.
 + *GNOME on Xorg* runs GNOME Shell using Xorg.
+
+** Nostalgia Gnome 2
+=GNOME 2.20= is the latest version of the GNOME Desktop: a popular, multi-platform desktop environment. GNOME's focus is ease of use, stability, and first class internationalization and accessibility support.
+
+#+html: <p align="left"><img src="images/gnome2.png"/></p>
 
 ** Important GNOME Links
 + [[https://wiki.archlinux.org/title/GNOME][GNOME Arch Wiki]]
@@ -56,7 +63,14 @@ The gnome launcher is ready in my =.xinitrc=, which we use throughout our series
 
 * GNOME Optional Extensions
 I'm using these extensions for our demo project. Install Gnome Extensions from https://extensions.gnome.org/#
-=TODO Extensions=
+
+*GNOME Extensions List*
++ Dash to Panel
++ Fly-Pie
++ System-monitor-next
++ Unite
++ Pop Shell
++ Many Built-In Extensions: Pamac Updates Indicator, Places Status Indicator, Workspace Indicator, Applications Menu
 
 * GNOME Fly-Pie Extension
 #+html: <p align="left"><img src="images/fly-pie.jpg"/></p>
@@ -69,18 +83,25 @@ Add this fly-pie extension to your project, install it.
 
 Configuration, run Extension app, select Fly-pie Configuration Button. Configure your fly-pie menus and activity shortcut with =ctrl+space= and =super+mouse-right-button=.
 
-* GNOME PopOS Shell Extensions
+* GNOME Pop!_OS Shell Extensions
+#+html: <p align="left"><img src="images/popos-shell-1.jpg"/></p>
+
 Source code [[https://github.com/pop-os/shell][here]]. Now it works with GNOME >=42.
 
-Introduced by System76. Focus to [[https://pop.system76.com/][PopOS! Page]].
+Introduced by System76. Focus to [[https://pop.system76.com/][Pop!_OS Page]].
 
 [[https://www.youtube.com/watch?v=-fltwBKsMY0][Auto-Tiling Pop!_OS feature here.]]
 
 [[https://www.youtube.com/watch?v=1TSdFWY_U9A][Stacking support here.]]
+#+html: <p align="left"><img src="images/popos-shell-2.jpg"/></p>
 
-See details in our video.
+See details in our video for full configuration and handling.
+#+html: <p align="left"><img src="images/gnome-screenshot3.jpg"/></p>
+#+html: <p align="left"><img src="images/gnome-screenshot2.jpg"/></p>
 
 * GNOME Environment Configuration
+#+html: <p align="left"><img src="images/gnome-screenshot1.jpg"/></p>
+
 Configure recommended extensions and customize Gnome Environment. See video.
 
 Finally we will reach the top screenshots.
@@ -88,9 +109,13 @@ Finally we will reach the top screenshots.
 * GNOME Ergonomic Settings
 Pop!_OS shell extension rewrite shortcuts by calling =/usr/share/gnome-shell/extensions/pop-shell@system76.com/scripts/configure.sh= the default shortcuts. Now we have to configure and reconfigure shortcuts to our ergonomic form.
 
-Select Gnome Settings > Keyboard > =TODO=
+Original Pop!_OS Shell Settings: ~pop-shell-shortcuts~
 
-List of changes =TODO=
+#+html: <p align="left"><img src="images/popos-shell-shortcuts-default.jpg"/></p>
+
+*List of our changes*
+Select =Gnome Settings > Keyboard > Keyboard Shortcuts=
++ TODO per sections
 
 * Important Links
 + [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
