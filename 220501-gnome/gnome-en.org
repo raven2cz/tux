@@ -115,7 +115,37 @@ Original Pop!_OS Shell Settings: ~pop-shell-shortcuts~
 
 *List of our changes*
 Select =Gnome Settings > Keyboard > Keyboard Shortcuts=
-+ TODO per sections
++ Accessibility
+  - None
++ Launchers
+  - None
++ Move, size, and swap windows
+  - Adjustment mode [ctrl+super+return], remove default [super+return]
+  - All next is same
++ Navigate applications and windows
+  - Launch and switch applications [super+s], remove [super+/]
++ Navigation
+  - Move window to left and right [shift+super+left/right]
+  - Switch to workspaces: [super+F1,...F4]
+  - Move to workspace left and right [super+left/right], or default [ctrl+alt+left/right]
++ Screenshots
+  - None
++ Sound and Media
+  - None
++ System
+  - None
++ Tiling
+  - None
++ Typing
+  - Switch to next input source [alt+space],[super+space] (alt+shift cannot be used!)
++ Windows
+  - Window menu [alt+space]
+  - Close window [shift+super+c]
+  - Toggle fullscreen mode [super+f]
+  - Toggle maxmization state [super+m]
++ Custom Shortcuts
+  - Alacritty [super+return]
+  - kitty [super+alt+return]
 
 * Important Links
 + [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
