@@ -1,0 +1,105 @@
+#+TITLE: GNOME - Simple, beautiful, elegant.
+#+DESCRIPTION: GNOME - desktop environment that aims to be simple and easy to use.
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/gnome-en.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+#+html: <p align="left"><img src="images/gnome-screenshot1.jpg"/></p>
+#+html: <p align="left"><img src="images/gnome-screenshot2.jpg"/></p>
+
+* Obsah :toc:
+- [[#gnome---simple-beautiful-elegant][GNOME - Simple, beautiful, elegant.]]
+  - [[#important-gnome-links][Important GNOME Links]]
+- [[#gnome-installation][GNOME Installation]]
+- [[#gnome-optional-extensions][GNOME Optional Extensions]]
+- [[#gnome-fly-pie-extension][GNOME Fly-Pie Extension]]
+- [[#gnome-popos-shell-extensions][GNOME PopOS Shell Extensions]]
+- [[#gnome-environment-configuration][GNOME Environment Configuration]]
+- [[#gnome-ergonomic-settings][GNOME Ergonomic Settings]]
+- [[#important-links][Important Links]]
+
+* GNOME - Simple, beautiful, elegant.
+GNOME (/(ɡ)noʊm/, GNU Network Object Model Environment) is a desktop environment that aims to be simple and easy to use. It is designed by The [[https://en.wikipedia.org/wiki/The_GNOME_Project][GNOME Project]] and is composed entirely of free and open-source software. The largest corporate contributor being *Red Hat*. The default display is Wayland instead of Xorg and the available sessions are
+
++ *GNOME*, the default, runs GNOME Shell on Wayland. Traditional X applications are run through Xwayland.
++ *GNOME Classic* provides a "traditional desktop experience" (with an interface similar to GNOME 2) by using certain extensions and values. Thus, it is a customized form of GNOME Shell rather than a truly distinct mode.
++ *GNOME on Xorg* runs GNOME Shell using Xorg.
+
+** Important GNOME Links
++ [[https://wiki.archlinux.org/title/GNOME][GNOME Arch Wiki]]
++ [[https://www.gnome.org][GNOME Home Page]]
++ [[https://wiki.gnome.org/Newcomers/][Contribution Tutorial]]
++ [[https://wiki.gnome.org/DocumentationProject][GNOME DocumentationProject]]
++ [[https://gitlab.gnome.org/explore/groups][GNOME Source Codes and Report Issues]]
++ [[https://wiki.gnome.org/Home][GNOME Wiki]]
++ [[https://developer.gnome.org/][GNOME Developer Site]]
+
+* GNOME Installation
+Follow [[https://wiki.archlinux.org/title/GNOME][Arch Wiki Gnome]] page. Read details about installation steps.
+
+Install basic and extra components. After it extension gnome support and install optional extensions.
+#+BEGIN_SRC bash
+paru -S gnome gnome-extra
+# Optional Dependencies
+paru -S chrome-gnome-shell-git
+paru -S gnome-shell-extension-pop-shell-git --overwrite '*'
+/usr/share/gnome-shell/extensions/pop-shell@system76.com/scripts/configure.sh
+pop-shell-shortcuts
+#+END_SRC
+
+The gnome launcher is ready in my =.xinitrc=, which we use throughout our series. See the =.dotfiles= link below for Github. So all you have to do is run =startx ~/.xinitrc gnome=, or use the display manager to select =xinitrc-openbox= from my sessions files in the =.root= directory.
+
+* GNOME Optional Extensions
+I'm using these extensions for our demo project. Install Gnome Extensions from https://extensions.gnome.org/#
+=TODO Extensions=
+
+* GNOME Fly-Pie Extension
+#+html: <p align="left"><img src="images/fly-pie.jpg"/></p>
+
+There is a video [[https://www.youtube.com/watch?v=BGXtckqhEIk][Fly-Pie Intro]].
+
+Fly-Pie is an extension for GNOME Shell which lets you open marking menus via keyboard shortcuts. And — to the best of my knowledge — it is the *first GNOME Shell extension with achievements!* :trophy:
+
+Add this fly-pie extension to your project, install it.
+
+Configuration, run Extension app, select Fly-pie Configuration Button. Configure your fly-pie menus and activity shortcut with =ctrl+space= and =super+mouse-right-button=.
+
+* GNOME PopOS Shell Extensions
+Source code [[https://github.com/pop-os/shell][here]]. Now it works with GNOME >=42.
+
+Introduced by System76. Focus to [[https://pop.system76.com/][PopOS! Page]].
+
+[[https://www.youtube.com/watch?v=-fltwBKsMY0][Auto-Tiling Pop!_OS feature here.]]
+
+[[https://www.youtube.com/watch?v=1TSdFWY_U9A][Stacking support here.]]
+
+See details in our video.
+
+* GNOME Environment Configuration
+Configure recommended extensions and customize Gnome Environment. See video.
+
+Finally we will reach the top screenshots.
+
+* GNOME Ergonomic Settings
+Pop!_OS shell extension rewrite shortcuts by calling =/usr/share/gnome-shell/extensions/pop-shell@system76.com/scripts/configure.sh= the default shortcuts. Now we have to configure and reconfigure shortcuts to our ergonomic form.
+
+Select Gnome Settings > Keyboard > =TODO=
+
+List of changes =TODO=
+
+* Important Links
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://forum.arch-linux.cz/][Forum Arch Linux CZ]] - our forum for Czech Community of Arch!
++ [[https://arch-linux.cz/][Arch Linux CZ]] - web server for Arch CZ
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
++ [[https://github.com/raven2cz/public-wallpapers][raven2cz/public-wallpapers]]
++ [[https://github.com/raven2cz/global-colorscheme][raven2cz/global-colorschemes]]
