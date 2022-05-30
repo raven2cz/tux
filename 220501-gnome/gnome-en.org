@@ -116,9 +116,9 @@ Original Pop!_OS Shell Settings: ~pop-shell-shortcuts~
 *List of our changes*
 Select =Gnome Settings > Keyboard > Keyboard Shortcuts=
 + Accessibility
-  - None
+  - Default
 + Launchers
-  - None
+  - Default
 + Move, size, and swap windows
   - Adjustment mode [ctrl+super+return], remove default [super+return]
   - All next is same
@@ -129,13 +129,13 @@ Select =Gnome Settings > Keyboard > Keyboard Shortcuts=
   - Switch to workspaces: [super+F1,...F4]
   - Move to workspace left and right [super+left/right], or default [ctrl+alt+left/right]
 + Screenshots
-  - None
+  - Default
 + Sound and Media
-  - None
+  - Default
 + System
-  - None
+  - Default
 + Tiling
-  - None
+  - Default
 + Typing
   - Switch to next input source [alt+space],[super+space] (alt+shift cannot be used!)
 + Windows

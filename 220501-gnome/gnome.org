@@ -1,0 +1,162 @@
+#+TITLE: GNOME - Jednoduché, krásné, elegantní.
+#+DESCRIPTION: GNOME - desktopové prostředí, jehož cílem je být jednoduché a snadno použitelné.
+#+AUTHOR: Antonin Fischer (raven2cz)
+#+STARTUP: inlineimages
+#+EXPORT_FILE_NAME: /home/box/org/export/gnome-en.org
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+#+HTML_HEAD: <style> #content{max-width:1800px;}</style>
+#+HTML_HEAD: <style> p{max-width:800px;}</style>
+#+HTML_HEAD: <style> li{max-width:800px;}</style
+
+#+html: <p align="left"><img src="images/gnome-logo.png"/></p>
+#+html: <p align="left"><img src="images/gnome-screenshot1.jpg"/></p>
+#+html: <p align="left"><img src="images/gnome-screenshot3.jpg"/></p>
+
+* Obsah :toc:
+- [[#gnome---jednoduché-krásné-elegantní][GNOME - Jednoduché, krásné, elegantní.]]
+  - [[#nostalgie-gnome-2][Nostalgie Gnome 2]]
+  - [[#důležité-gnome-odkazy][Důležité GNOME odkazy]]
+- [[#gnome-instalace][GNOME Instalace]]
+- [[#gnome-volitelná-rozšíření][GNOME Volitelná rozšíření]]
+- [[#gnome-fly-pie-extension][GNOME Fly-Pie Extension]]
+- [[#gnome-pop_os-shell-rozšíření][GNOME Pop!_OS Shell Rozšíření]]
+- [[#gnome-konfigurace-prostředí][GNOME Konfigurace prostředí]]
+- [[#gnome-ergonomické-nastavení][GNOME Ergonomické nastavení]]
+- [[#důležité-odkazy][Důležité odkazy]]
+
+* GNOME - Jednoduché, krásné, elegantní.
+English document variant [[gnome-en.org][here]].
+
+GNOME (/(ɡ)noʊm/, GNU Network Object Model Environment) je desktopové prostředí, jehož cílem je být jednoduché a snadno použitelné. Je navržen [[https://en.wikipedia.org/wiki/The_GNOME_Project][GNOME Project]] a skládá se výhradně z bezplatného a open-source softwaru. Největším firemním přispěvatelem je *Red Hat*. Výchozí zobrazení je Wayland místo Xorg a dostupné relace jsou
+
++ *GNOME*, výchozí, spouští GNOME Shell na Wayland. Tradiční X aplikace běží přes Xwayland.
++ *GNOME Classic* poskytuje „tradiční pracovní prostředí“ (s rozhraním podobným GNOME 2) pomocí určitých rozšíření a hodnot. Jedná se tedy spíše o upravenou formu prostředí GNOME než o skutečně odlišný režim.
++ *GNOME na Xorg* spouští prostředí GNOME pomocí Xorg.
+
+** Nostalgie Gnome 2
+=GNOME 2.20= je nejnovější verze GNOME Desktop: oblíbené, multiplatformní desktopové prostředí. GNOME se zaměřuje na snadnost použití, stabilitu a prvotřídní podporu internacionalizace a usnadnění. Takto o něm kdysi psali ve zlatém věku Gnome.
+
+#+html: <p align="left"><img src="images/gnome2.png"/></p>
+
+** Důležité GNOME odkazy
++ [[https://wiki.archlinux.org/title/GNOME][GNOME Arch Wiki]]
++ [[https://www.gnome.org][GNOME Home Page]]
++ [[https://wiki.gnome.org/Newcomers/][Contribution Tutorial]]
++ [[https://wiki.gnome.org/DocumentationProject][GNOME DocumentationProject]]
++ [[https://gitlab.gnome.org/explore/groups][GNOME Source Codes and Report Issues]]
++ [[https://wiki.gnome.org/Home][GNOME Wiki]]
++ [[https://developer.gnome.org/][GNOME Developer Site]]
+
+* GNOME Instalace
+Sledujte stránku [[https://wiki.archlinux.org/title/GNOME][Arch Wiki Gnome]]. Přečtěte si podrobnosti o krocích instalace.
+
+Nainstalujte základní a doplňkové komponenty. Poté Gnome Extensions (rozšíření gnome) a nainstalujte volitelná rozšíření.
+#+BEGIN_SRC bash
+paru -S gnome gnome-extra
+# Optional Dependencies
+paru -S chrome-gnome-shell-git
+paru -S gnome-shell-extension-pop-shell-git --overwrite '*'
+/usr/share/gnome-shell/extensions/pop-shell@system76.com/scripts/configure.sh
+pop-shell-shortcuts
+#+END_SRC
+
+Spouštěč gnome je připraven v mém =.xinitrc=, který používáme v celé naší sérii. Viz odkaz =.dotfiles= níže pro Github. Takže vše, co musíte udělat, je spustit =startx ~/.xinitrc gnome=, nebo pomocí správce zobrazení vybrat =xinitrc-gnome= ze souborů mých relací v adresáři =.root=.
+
+* GNOME Volitelná rozšíření
+Tato rozšíření používám pro náš demo projekt. Nainstalujte rozšíření Gnome z https://extensions.gnome.org/#
+
+*GNOME Seznam Rozšíření*
++ Dash to Panel
++ Fly-Pie
++ System-monitor-next
++ Unite
++ Pop Shell
++ Několik vestavěných rozšíření: Pamac Updates Indicator, Places Status Indicator, Workspace Indicator, Applications Menu
+
+* GNOME Fly-Pie Extension
+#+html: <p align="left"><img src="images/fly-pie.jpg"/></p>
+
+Zde je video ukázka [[https://www.youtube.com/watch?v=BGXtckqhEIk][Fly-Pie Intro]].
+
+Fly-Pie je rozšíření pro GNOME Shell, které umožňuje otevírat nabídky označení pomocí klávesových zkratek. A — podle mého nejlepšího vědomí — je to *první rozšíření GNOME Shell s úspěchy!* :trophy:
+
+Přidejte toto rozšíření fly-pie do svého projektu, nainstalujte jej.
+
+Konfigurace, spusťte aplikaci Rozšíření, vyberte tlačítko Konfigurace Fly-Pie. Nakonfigurujte si nabídky fly-pie a zkratku aktivity pomocí =ctrl+mezera= a =super+myš-pravé-tlačítko=.
+
+* GNOME Pop!_OS Shell Rozšíření
+#+html: <p align="left"><img src="images/popos-shell-1.jpg"/></p>
+
+Zdrojový kód [[https://github.com/pop-os/shell][zde]]. Nyní funguje s GNOME >=42.
+
+Představil System76. Zaměřte se na [[https://pop.system76.com/][Pop!_OS Page]].
+
+[[https://www.youtube.com/watch?v=-fltwBKsMY0][Auto-Tiling Pop!_OS feature here.]]
+
+[[https://www.youtube.com/watch?v=1TSdFWY_U9A][Stacking support here.]]
+#+html: <p align="left"><img src="images/popos-shell-2.jpg"/></p>
+
+Úplnou konfiguraci a ovládání naleznete v našem videu.
+#+html: <p align="left"><img src="images/gnome-screenshot3.jpg"/></p>
+#+html: <p align="left"><img src="images/gnome-screenshot2.jpg"/></p>
+
+* GNOME Konfigurace prostředí
+#+html: <p align="left"><img src="images/gnome-screenshot1.jpg"/></p>
+
+Nakonfigurujte doporučená rozšíření a přizpůsobte prostředí Gnome. Viz video.
+
+Konečně se dostaneme k horním snímkům obrazovky
+
+* GNOME Ergonomické nastavení
+Rozšíření shellu Pop!_OS přepíše zkratky voláním =/usr/share/gnome-shell/extensions/pop-shell@system76.com/scripts/configure.sh= výchozí zkratky. Nyní musíme nakonfigurovat a překonfigurovat zkratky do naší ergonomické podoby.
+
+Původní nastavení prostředí Pop!_OS: ~pop-shell-shortcuts~
+
+#+html: <p align="left"><img src="images/popos-shell-shortcuts-default.jpg"/></p>
+
+*Seznam našich změn*
+Výběr =Gnome Settings > Keyboard > Keyboard Shortcuts=
++ Accessibility
+  - Default
++ Launchers
+  - Default
++ Move, size, and swap windows / Přesun, velikost a výměna oken
+  - Adjustment mode [ctrl+super+return], remove default [super+return]
+  - All next is same
++ Navigate applications and windows / Procházení aplikací a oken
+  - Launch and switch applications [super+s], remove [super+/]
++ Navigation
+  - Move window to left and right [shift+super+left/right]
+  - Switch to workspaces: [super+F1,...F4]
+  - Move to workspace left and right [super+left/right], or default [ctrl+alt+left/right]
++ Screenshots
+  - Default
++ Sound and Media
+  - Default
++ System
+  - Default
++ Tiling
+  - Default
++ Typing
+  - Switch to next input source [alt+space],[super+space] (alt+shift nemůže být v gnome použit!)
++ Windows
+  - Window menu [alt+space]
+  - Close window [shift+super+c]
+  - Toggle fullscreen mode [super+f]
+  - Toggle maxmization state [super+m]
++ Custom Shortcuts
+  - Alacritty [super+return]
+  - kitty [super+alt+return]
+
+* Důležité odkazy
++ [[https://www.youtube.com/user/tondafischer/featured][Youtube Channel TUX: Svět Linuxu]]
++ [[https://forum.arch-linux.cz/][Forum Arch Linux CZ]]
++ [[https://arch-linux.cz/][Arch Linux CZ]]
++ [[https://archlinux.org/][archlinux.org]]
++ [[https://wiki.archlinux.org/][wiki.achlinux.org]]
++ [[https://fishlive.org/en/blog-tech-art/arch][fishlive.org/blog]]
++ [[https://github.com/raven2cz/tux][github/raven2cz/tux]]
++ [[https://github.com/raven2cz/dotfiles][github/raven2cz/dotfiles]]
++ [[https://github.com/raven2cz/public-wallpapers][raven2cz/public-wallpapers]]
++ [[https://github.com/raven2cz/global-colorscheme][raven2cz/global-colorschemes]]
